@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink font-body antialiased;
+}
+
+/* Subtle marble-vein texture, light version */
+.marble-light {
+  background-color: #F2EADF;
+  background-image:
+    radial-gradient(at 20% 10%, rgba(108,37,41,0.03) 0px, transparent 40%),
+    radial-gradient(at 80% 30%, rgba(26,26,28,0.04) 0px, transparent 45%),
+    radial-gradient(at 40% 80%, rgba(108,37,41,0.025) 0px, transparent 40%),
+    linear-gradient(135deg, transparent 48%, rgba(26,26,28,0.03) 49%, transparent 50%),
+    linear-gradient(35deg, transparent 60%, rgba(26,26,28,0.025) 61%, transparent 62%);
+  background-size: cover, cover, cover, 400px 400px, 500px 500px;
+}
+
+/* Dark marble version for contrast sections */
+.marble-dark {
+  background-color: #17161a;
+  background-image:
+    radial-gradient(at 15% 20%, rgba(140,70,75,0.10) 0px, transparent 45%),
+    radial-gradient(at 85% 15%, rgba(255,255,255,0.03) 0px, transparent 40%),
+    radial-gradient(at 50% 90%, rgba(140,70,75,0.06) 0px, transparent 45%),
+    linear-gradient(120deg, transparent 48%, rgba(255,255,255,0.02) 49%, transparent 50%),
+    linear-gradient(25deg, transparent 60%, rgba(255,255,255,0.015) 61%, transparent 62%);
+  background-size: cover, cover, cover, 420px 420px, 520px 520px;
+}
+
+.arch-frame {
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .arch-frame {
+    border-radius: 50% 50% 0 0 / 18% 18% 0 0;
+  }
+}
+
+.eyebrow {
+  @apply font-mono uppercase tracking-[0.2em] text-xs md:text-sm text-wine;
+}
+
+.display-heading {
+  @apply font-display font-semibold leading-[0.95];
+}
+
+.btn-pill {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-mono uppercase tracking-widest transition-colors duration-200;
+}
+
+.btn-pill-dark {
+  @apply btn-pill border-ink text-ink hover:bg-ink hover:text-cream;
+}
+
+.btn-pill-light {
+  @apply btn-pill border-cream text-cream hover:bg-cream hover:text-ink;
+}
+
+.btn-pill-wine {
+  @apply btn-pill border-wine bg-wine text-cream hover:bg-wine-dark hover:border-wine-dark;
+}
+
+/* Hide scrollbar for horizontal gallery/menu strips while keeping scroll functional */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Auto-scrolling gallery marquee: two copies of the tile list scroll together for a seamless loop */
+.gallery-marquee-viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-marquee-track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  padding: 0 1.5rem 1rem;
+  animation: gallery-marquee 55s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .gallery-marquee-track {
+    padding: 0 2.5rem 1rem;
+  }
+}
+
+.gallery-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes gallery-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
