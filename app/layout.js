@@ -13,6 +13,9 @@ import './globals.css';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import QuickContact from '@/components/QuickContact';
+import FloatingCartBar from '@/components/FloatingCartBar';
+import AuntZiaSuggests from '@/components/AuntZiaSuggests';
+import { CartProvider } from '@/lib/cart';
 import { basePath } from '@/lib/basePath';
 
 export const metadata = {
@@ -71,10 +74,14 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <Nav />
-        {children}
-        <Footer />
-        <QuickContact />
+        <CartProvider>
+          <Nav />
+          {children}
+          <Footer />
+          <QuickContact />
+          <FloatingCartBar />
+          <AuntZiaSuggests />
+        </CartProvider>
       </body>
     </html>
   );
