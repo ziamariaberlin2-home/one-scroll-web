@@ -1,18 +1,35 @@
+'use client';
+
+import { useRef } from 'react';
 import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { basePath } from '@/lib/basePath';
 
 export default function Footer() {
+  const logoRef = useRef(null);
+
+  // Scroll-linked left-to-right wipe reveal of the wordmark as it scrolls into view,
+  // matching Pizzeria Sei's footer treatment.
+  const { scrollYProgress } = useScroll({
+    target: logoRef,
+    offset: ['start 95%', 'start 45%'],
+  });
+  const clipRight = useTransform(scrollYProgress, [0, 1], [100, 0]);
+  const clipPath = useTransform(clipRight, (v) => `inset(0% ${v}% 0% 0%)`);
+
   return (
     <footer className="marble-dark border-t border-cream/10 pb-14 pt-16 text-cream/70">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="flex justify-center border-b border-cream/10 pb-12 md:pb-16">
-          <Image
-            src={`${basePath}/images/zia-maria-logo.png`}
-            alt="Zia Maria"
-            width={800}
-            height={800}
-            className="h-32 w-32 opacity-95 sm:h-40 sm:w-40 md:h-48 md:w-48"
-          />
+          <motion.div ref={logoRef} className="w-[min(85vw,560px)] overflow-hidden" style={{ clipPath }}>
+            <Image
+              src={`${basePath}/images/zia-maria-wordmark.png`}
+              alt="Zia Maria — Contemporary Experience"
+              width={1600}
+              height={358}
+              className="h-auto w-full"
+            />
+          </motion.div>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-4">
