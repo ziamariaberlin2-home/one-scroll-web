@@ -57,6 +57,49 @@ export default function OurStoryPage() {
         </div>
       </section>
 
+      <section className="marble-light pb-24 md:pb-32">
+        <div className="mx-auto max-w-6xl px-6 text-center md:px-10">
+          <span className="eyebrow">Good Company</span>
+          <h2 className="display-heading mt-3 text-3xl text-ink md:text-5xl">
+            Craft Beer. Natural Wine. Artisan Pizza.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl font-body text-ink/70">
+            Great pizza deserves great company. We pair our Roman-style pies with a
+            thoughtfully chosen selection of craft beer and natural wine.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
+            <div className="relative aspect-[900/1837] w-full overflow-hidden rounded-[2rem]">
+              <Image
+                src={`${basePath}/images/craft-beer.jpg`}
+                alt="Craft beer served at Zia Maria, Friedrichshain, Berlin"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+            </div>
+            <div className="relative aspect-[900/1837] w-full overflow-hidden rounded-[2rem]">
+              <Image
+                src={`${basePath}/images/artisan-pizza.jpg`}
+                alt="Artisan Roman-style pizza at Zia Maria, Friedrichshain, Berlin"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+            </div>
+            <div className="relative aspect-[900/1837] w-full overflow-hidden rounded-[2rem]">
+              <Image
+                src={`${basePath}/images/natural-wine.jpg`}
+                alt="Natural wine served at Zia Maria, Friedrichshain, Berlin"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="marble-dark py-20 text-cream md:py-24">
         <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
           <span className="eyebrow text-sand">Roman-Style, Done Right</span>
