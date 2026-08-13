@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { basePath } from '@/lib/basePath';
+import { useCart } from '@/lib/cart';
 
 const LINKS = [
   { href: `${basePath}/our-story/`, label: 'Our Story' },
@@ -15,6 +16,7 @@ const LINKS = [
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { count } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -51,8 +53,13 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href={`${basePath}/order/`} className="btn-pill-wine">
+          <a href={`${basePath}/order/`} className="btn-pill-wine relative">
             Order Now
+            {count > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-cream">
+                {count}
+              </span>
+            )}
           </a>
         </nav>
 
@@ -80,8 +87,17 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href={`${basePath}/order/`} onClick={() => setOpen(false)} className="btn-pill-wine mt-2 w-full">
+          <a
+            href={`${basePath}/order/`}
+            onClick={() => setOpen(false)}
+            className="btn-pill-wine relative mt-2 w-full"
+          >
             Order Now
+            {count > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-cream">
+                {count}
+              </span>
+            )}
           </a>
         </nav>
       )}
