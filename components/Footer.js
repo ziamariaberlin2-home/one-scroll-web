@@ -3,18 +3,21 @@ import { basePath } from '@/lib/basePath';
 
 export default function Footer() {
   return (
-    <footer className="marble-dark border-t border-cream/10 py-14 text-cream/70">
+    <footer className="marble-dark border-t border-cream/10 pb-14 pt-16 text-cream/70">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+        <div className="flex justify-center border-b border-cream/10 pb-12 md:pb-16">
+          <Image
+            src={`${basePath}/images/zia-maria-logo.png`}
+            alt="Zia Maria"
+            width={800}
+            height={800}
+            className="h-32 w-32 opacity-95 sm:h-40 sm:w-40 md:h-48 md:w-48"
+          />
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-4">
           <div>
-            <Image
-              src={`${basePath}/images/zia-maria-logo.png`}
-              alt="Zia Maria"
-              width={56}
-              height={56}
-              className="h-14 w-14"
-            />
-            <h4 className="mt-3 font-display text-xl font-semibold text-cream">Zia Maria</h4>
+            <h4 className="font-display text-xl font-semibold text-cream">Zia Maria</h4>
             <p className="mt-3 text-sm">Roman-style pizza in the heart of Friedrichshain, Berlin.</p>
             <a
               href="https://www.instagram.com/ziamaria.fhain/"
@@ -58,8 +61,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-cream/10 pt-6 text-center text-xs text-cream/40">
-          &copy; {new Date().getFullYear()} Zia Maria Berlin.
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-6 text-center text-xs text-cream/40 md:flex-row md:text-left">
+          <span>&copy; {new Date().getFullYear()} Zia Maria Berlin.</span>
+          <div className="flex items-center gap-4">
+            <a href={`${basePath}/imprint.pdf`} className="hover:text-cream">Imprint</a>
+            <a href={`${basePath}/privacy-policy.pdf`} className="hover:text-cream">Privacy Policy</a>
+          </div>
         </div>
       </div>
     </footer>

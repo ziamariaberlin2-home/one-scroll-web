@@ -30,7 +30,7 @@ export default function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
-        <a href={`${basePath}/`} className="flex items-center gap-2">
+        <a href={`${basePath}/`} className="flex items-center">
           <Image
             src={`${basePath}/images/zia-maria-logo.png`}
             alt="Zia Maria"
@@ -39,7 +39,6 @@ export default function Nav() {
             className="h-10 w-10"
             priority
           />
-          <span className="font-display text-xl font-semibold tracking-wide text-ink">Zia Maria</span>
         </a>
 
         <nav className="hidden items-center gap-6 lg:flex">
@@ -52,8 +51,8 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href={`${basePath}/#reserve`} className="btn-pill-wine">
-            Reserve
+          <a href={`${basePath}/order/`} className="btn-pill-wine">
+            Order Now
           </a>
         </nav>
 
@@ -81,8 +80,8 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href={`${basePath}/#reserve`} onClick={() => setOpen(false)} className="btn-pill-wine mt-2 w-full">
-            Reserve
+          <a href={`${basePath}/order/`} onClick={() => setOpen(false)} className="btn-pill-wine mt-2 w-full">
+            Order Now
           </a>
         </nav>
       )}

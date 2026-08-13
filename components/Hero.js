@@ -13,8 +13,12 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  // Framed, rounded image -> full-bleed rectangle as the user scrolls through the pinned section.
-  const borderRadius = useTransform(scrollYProgress, [0, 0.55], ['32px', '0px']);
+  // Framed, arched "oven mouth" image -> full-bleed rectangle as the user scrolls through the pinned section.
+  const archAmount = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  const borderRadius = useTransform(
+    archAmount,
+    (v) => `${50 * v}% ${50 * v}% 0% 0% / ${42 * v}% ${42 * v}% 0% 0%`
+  );
   const widthPct = useTransform(scrollYProgress, [0, 0.55], ['88%', '100%']);
   const heightPct = useTransform(scrollYProgress, [0, 0.55], ['82%', '100%']);
   const brightness = useTransform(scrollYProgress, [0, 0.55], [0.78, 0.55]);
