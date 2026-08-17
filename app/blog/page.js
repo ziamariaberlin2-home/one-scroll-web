@@ -1,9 +1,13 @@
 import { events } from '@/lib/events';
+import { blogPosts } from '@/lib/blogData';
+import { pageMetadata } from '@/lib/seo';
+import { basePath } from '@/lib/basePath';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Blog & Events',
   description: 'Stories from Zia Maria, team lunches, private celebrations, wine nights, and events in the heart of Friedrichshain, Berlin.',
-};
+  path: '/blog/',
+});
 
 export default function BlogPage() {
   return (
@@ -17,7 +21,41 @@ export default function BlogPage() {
         </div>
       </section>
 
+      <section className="marble-light pb-20 md:pb-24">
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
+          <div className="mb-10 text-center">
+            <span className="eyebrow">From the Journal</span>
+            <h2 className="display-heading mt-3 text-3xl text-ink md:text-5xl">
+              Notes on Roman Pizza and Life at Zia Maria
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {blogPosts.map((post) => (
+              <a
+                key={post.slug}
+                href={`${basePath}/blog/${post.slug}/`}
+                className="flex flex-col rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-wine/40"
+              >
+                <span className="font-mono text-xs uppercase tracking-widest text-ink/40">
+                  {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  {' '}&middot; {post.readTime}
+                </span>
+                <h3 className="mt-3 font-display text-lg font-semibold text-ink">{post.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/65">{post.excerpt}</p>
+                <span className="mt-4 font-mono text-xs uppercase tracking-widest text-wine">Read more &rarr;</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="marble-light pb-24 md:pb-32">
+        <div className="mx-auto mb-12 max-w-4xl px-6 text-center md:px-10">
+          <span className="eyebrow">Events</span>
+          <h2 className="display-heading mt-3 text-3xl text-ink md:text-5xl">
+            What&rsquo;s Happening at Zia Maria
+          </h2>
+        </div>
         <div className="mx-auto max-w-4xl space-y-20 px-6 md:px-10">
           {events.map((ev) => (
             <article key={ev.slug} id={ev.slug} className="scroll-mt-28">
