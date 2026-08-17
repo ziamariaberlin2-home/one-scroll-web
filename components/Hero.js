@@ -1,25 +1,49 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { basePath } from '@/lib/basePath';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
+// Actual pixel aspect of /videos/opening-hero.mp4 (portrait footage).
+const VIDEO_ASPECT = 1920 / 3414; // ≈ 0.5625
+
+// Container aspect ratio at rest that keeps ~80% of the video frame visible
+// under object-cover (derived from VIDEO_ASPECT / desiredVisibleFraction).
+const REST_ASPECT = VIDEO_ASPECT / 0.8; // ≈ 0.703
+
 export default function Hero() {
   const containerRef = useRef(null);
+  // Sensible desktop default so SSR/first paint match; corrected on mount.
+  const [viewport, setViewport] = useState({ width: 1512, height: 800 });
+
+  useEffect(() => {
+    const update = () => setViewport({ width: window.innerWidth, height: window.innerHeight });
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
   });
 
-  // Framed, arched "oven mouth" image -> full-bleed rectangle as the user scrolls through the pinned section.
+  // Tall, arched "oven mouth" at rest (à la Pizzeria Sei) -> full-bleed rectangle on scroll.
+  let restHeight = viewport.height * 0.86;
+  let restWidth = restHeight * REST_ASPECT;
+  const maxWidth = viewport.width * 0.94;
+  if (restWidth > maxWidth) {
+    restWidth = maxWidth;
+    restHeight = restWidth / REST_ASPECT;
+  }
+
   const archAmount = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
   const borderRadius = useTransform(
     archAmount,
-    (v) => `${50 * v}% ${50 * v}% 0% 0% / ${42 * v}% ${42 * v}% 0% 0%`
+    (v) => `${50 * v}% ${50 * v}% 0% 0% / ${46 * v}% ${46 * v}% 0% 0%`
   );
-  const widthPct = useTransform(scrollYProgress, [0, 0.55], ['88%', '100%']);
-  const heightPct = useTransform(scrollYProgress, [0, 0.55], ['82%', '100%']);
+  const widthPx = useTransform(scrollYProgress, [0, 0.55], [restWidth, viewport.width]);
+  const heightPx = useTransform(scrollYProgress, [0, 0.55], [restHeight, viewport.height]);
   const brightness = useTransform(scrollYProgress, [0, 0.55], [0.78, 0.55]);
 
   return (
@@ -28,8 +52,8 @@ export default function Hero() {
         <motion.div
           className="relative overflow-hidden"
           style={{
-            width: widthPct,
-            height: heightPct,
+            width: widthPx,
+            height: heightPx,
             borderRadius,
           }}
         >
