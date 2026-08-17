@@ -1,10 +1,12 @@
 import MenuSection from '@/components/MenuSection';
 import Checkout from '@/components/Checkout';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Order Online',
   description: 'Order fresh Roman-style pizza online from Zia Maria in Friedrichshain, Berlin. Pickup and delivery available.',
-};
+  path: '/order/',
+});
 
 export default function OrderPage() {
   return (
