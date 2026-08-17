@@ -1,10 +1,13 @@
 import Image from 'next/image';
 import { basePath } from '@/lib/basePath';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Our Story',
   description: 'The story behind Zia Maria, Roman-style pizza made fresh daily in the heart of Friedrichshain, Berlin.',
-};
+  path: '/our-story/',
+  image: '/images/our-story.jpg',
+});
 
 export default function OurStoryPage() {
   return (
