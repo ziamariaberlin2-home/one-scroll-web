@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { events } from '@/lib/events';
 import { blogPosts } from '@/lib/blogData';
 import { pageMetadata } from '@/lib/seo';
@@ -60,9 +61,19 @@ export default function BlogPage() {
           {events.map((ev) => (
             <article key={ev.slug} id={ev.slug} className="scroll-mt-28">
               <div className="relative flex h-72 items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-wine/15 via-cream to-sand/25 md:h-96">
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" className="text-wine/25">
-                  <path d="M12 2 2 20h20L12 2z" stroke="currentColor" strokeWidth="1.2" />
-                </svg>
+                {ev.image ? (
+                  <Image
+                    src={`${basePath}/images/${ev.image}`}
+                    alt={ev.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 768px"
+                  />
+                ) : (
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" className="text-wine/25">
+                    <path d="M12 2 2 20h20L12 2z" stroke="currentColor" strokeWidth="1.2" />
+                  </svg>
+                )}
               </div>
               <h2 className="display-heading mt-8 text-3xl text-ink md:text-4xl">{ev.title}</h2>
               <p className="mt-4 font-body leading-relaxed text-ink/70">{ev.long}</p>
