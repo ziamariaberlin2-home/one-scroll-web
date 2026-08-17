@@ -6,6 +6,7 @@ import { basePath } from '@/lib/basePath';
 import { useCart } from '@/lib/cart';
 
 const LINKS = [
+  { href: `${basePath}/`, label: 'Home' },
   { href: `${basePath}/our-story/`, label: 'Our Story' },
   { href: `${basePath}/menu/`, label: 'Menu' },
   { href: `${basePath}/catering/`, label: 'Catering' },
