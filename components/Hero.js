@@ -4,12 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import { basePath } from '@/lib/basePath';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-// Actual pixel aspect of /videos/opening-hero.mp4 (portrait footage).
-const VIDEO_ASPECT = 1920 / 3414; // ≈ 0.5625
-
-// Container aspect ratio at rest that keeps ~80% of the video frame visible
-// under object-cover (derived from VIDEO_ASPECT / desiredVisibleFraction).
-const REST_ASPECT = VIDEO_ASPECT / 0.8; // ≈ 0.703
+// Container aspect ratio (width/height) for the arch at rest — a wide,
+// low "oven mouth" dome closer to Pizzeria Sei's own proportions on wide
+// screens; on tall/mobile screens a narrower arch reads better.
+const REST_ASPECT_LANDSCAPE = 1.35;
+const REST_ASPECT_PORTRAIT = 0.7;
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -28,13 +27,14 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  // Tall, arched "oven mouth" at rest (à la Pizzeria Sei) -> full-bleed rectangle on scroll.
-  let restHeight = viewport.height * 0.86;
-  let restWidth = restHeight * REST_ASPECT;
-  const maxWidth = viewport.width * 0.94;
+  // Wide, arched "oven mouth" at rest (à la Pizzeria Sei) -> full-bleed rectangle on scroll.
+  const restAspect = viewport.width > viewport.height * 1.1 ? REST_ASPECT_LANDSCAPE : REST_ASPECT_PORTRAIT;
+  let restHeight = viewport.height * 0.8;
+  let restWidth = restHeight * restAspect;
+  const maxWidth = viewport.width * 0.92;
   if (restWidth > maxWidth) {
     restWidth = maxWidth;
-    restHeight = restWidth / REST_ASPECT;
+    restHeight = restWidth / restAspect;
   }
 
   const archAmount = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
