@@ -17,6 +17,7 @@ import FloatingCartBar from '@/components/FloatingCartBar';
 import AuntZiaSuggests from '@/components/AuntZiaSuggests';
 import { CartProvider } from '@/lib/cart';
 import { basePath } from '@/lib/basePath';
+import { buildMenuJsonLd } from '@/lib/menuData';
 
 export const metadata = {
   metadataBase: new URL('https://www.ziamariaberlin.com'),
@@ -25,6 +26,9 @@ export const metadata = {
     template: '%s | Zia Maria',
   },
   description: 'Zia Maria, fresh Roman pizza in the heart of Friedrichshain, Berlin. Catering, business lunch for your team, private events, and a table for everyone.',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Zia Maria – Roman Pizza in the Heart of Berlin',
     description: 'Fresh, Roman-style pizza in the heart of Berlin. Catering, business lunch for your team, and private events.',
@@ -33,9 +37,22 @@ export const metadata = {
     images: ['/images/home.jpg'],
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Zia Maria – Roman Pizza in the Heart of Berlin',
+    description: 'Fresh, Roman-style pizza in the heart of Berlin. Catering, business lunch for your team, and private events.',
+    images: ['/images/home.jpg'],
+  },
   icons: {
     icon: `${basePath}/images/zia-maria-logo.png`,
   },
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Zia Maria',
+  url: 'https://www.ziamariaberlin.com/',
 };
 
 const jsonLd = {
@@ -62,12 +79,17 @@ const jsonLd = {
     { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Sunday', opens: '12:00', closes: '22:00' },
   ],
   sameAs: ['https://www.instagram.com/ziamaria.fhain/'],
+  hasMenu: buildMenuJsonLd(),
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
