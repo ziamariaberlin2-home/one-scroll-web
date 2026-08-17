@@ -52,7 +52,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               <li><a href={`${basePath}/our-story/`} className="hover:text-cream">Our Story</a></li>
               <li><a href={`${basePath}/menu/`} className="hover:text-cream">Menu</a></li>
-              <li><a href={`${basePath}/#catering`} className="hover:text-cream">Catering</a></li>
+              <li><a href={`${basePath}/catering/`} className="hover:text-cream">Catering</a></li>
               <li><a href={`${basePath}/business-lunch/`} className="hover:text-cream">Business Lunch</a></li>
               <li><a href={`${basePath}/blog/`} className="hover:text-cream">Blog and Events</a></li>
             </ul>

@@ -8,7 +8,7 @@ import { useCart } from '@/lib/cart';
 const LINKS = [
   { href: `${basePath}/our-story/`, label: 'Our Story' },
   { href: `${basePath}/menu/`, label: 'Menu' },
-  { href: `${basePath}/#catering`, label: 'Catering' },
+  { href: `${basePath}/catering/`, label: 'Catering' },
   { href: `${basePath}/business-lunch/`, label: 'Business Lunch' },
   { href: `${basePath}/blog/`, label: 'Blog' },
 ];
