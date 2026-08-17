@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef } from 'react';
-import Image from 'next/image';
 import { basePath } from '@/lib/basePath';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -35,13 +34,16 @@ export default function Hero() {
           }}
         >
           <motion.div className="absolute inset-0" style={{ filter: useTransform(brightness, (b) => `brightness(${b})`) }}>
-            <Image
-              src={`${basePath}/images/home.jpg`}
-              alt="Fresh Roman-style pizza at Zia Maria, Friedrichshain, Berlin"
-              fill
-              priority
-              className="object-cover"
-              sizes="100vw"
+            <video
+              className="h-full w-full object-cover"
+              src={`${basePath}/videos/opening-hero.mp4`}
+              poster={`${basePath}/videos/poster-frame.jpg`}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-hidden="true"
             />
           </motion.div>
 

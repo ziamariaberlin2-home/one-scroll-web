@@ -1,12 +1,15 @@
+import Image from 'next/image';
+import { basePath } from '@/lib/basePath';
+
 const TILES = [
-  { size: 'w-64 h-80', caption: 'Fresh from the oven' },
-  { size: 'w-80 h-64', caption: 'Roman-style dough' },
-  { size: 'w-56 h-96', caption: 'The dining room' },
-  { size: 'w-72 h-72', caption: 'Seasonal ingredients' },
-  { size: 'w-80 h-60', caption: 'Catering trays' },
-  { size: 'w-60 h-80', caption: 'Team lunch spread' },
-  { size: 'w-72 h-56', caption: 'Private events' },
-  { size: 'w-64 h-64', caption: 'Behind the counter' },
+  { size: 'w-64 h-80', caption: 'Fresh from the oven', image: 'food-1.jpg' },
+  { size: 'w-80 h-64', caption: 'The dining room', image: 'team-4.jpg' },
+  { size: 'w-56 h-96', caption: 'Roman-style dough', image: 'food-2.jpg' },
+  { size: 'w-72 h-72', caption: 'Team lunch spread', image: 'team-3.jpg' },
+  { size: 'w-80 h-60', caption: 'Seasonal ingredients', image: 'food-5.jpg' },
+  { size: 'w-60 h-80', caption: 'Private events', image: 'team-5.jpg' },
+  { size: 'w-72 h-56', caption: 'Catering trays', image: 'food-4.jpg' },
+  { size: 'w-64 h-64', caption: 'Behind the counter', image: 'food-3.jpg' },
 ];
 
 function Tile({ tile, i }) {
@@ -14,14 +17,13 @@ function Tile({ tile, i }) {
     <div
       className={`relative flex ${tile.size} flex-shrink-0 items-end overflow-hidden rounded-2xl border border-ink/10 bg-gradient-to-br from-wine/15 via-cream to-sand/25`}
     >
-      <div className="absolute inset-0 flex items-center justify-center">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-wine/30">
-          <path d="M12 2 2 20h20L12 2z" stroke="currentColor" strokeWidth="1.4" />
-          <circle cx="12" cy="14" r="1.4" fill="currentColor" />
-          <circle cx="9" cy="17" r="1" fill="currentColor" />
-          <circle cx="15" cy="17" r="1" fill="currentColor" />
-        </svg>
-      </div>
+      <Image
+        src={`${basePath}/images/gallery/${tile.image}`}
+        alt={tile.caption}
+        fill
+        className="object-cover"
+        sizes="384px"
+      />
       <span className="relative z-10 w-full bg-ink/40 px-4 py-3 font-mono text-xs uppercase tracking-widest text-cream backdrop-blur-sm">
         {tile.caption}
       </span>
@@ -47,9 +49,6 @@ export default function Gallery() {
           ))}
         </div>
       </div>
-      <p className="mx-auto mt-4 max-w-7xl px-6 font-mono text-xs uppercase tracking-widest text-ink/35 md:px-10">
-        Real photos coming soon
-      </p>
     </section>
   );
 }
