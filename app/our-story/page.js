@@ -75,27 +75,27 @@ export default function OurStoryPage() {
             <div className="relative aspect-[900/1837] w-full overflow-hidden rounded-[2rem]">
               <Image
                 src={`${basePath}/images/craft-beer.jpg`}
-                alt="Craft beer served at Zia Maria, Friedrichshain, Berlin"
+                alt="Craft Beer illustration, Zia Maria, Friedrichshain, Berlin"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="(max-width: 640px) 100vw, 33vw"
               />
             </div>
             <div className="relative aspect-[900/1837] w-full overflow-hidden rounded-[2rem]">
               <Image
                 src={`${basePath}/images/artisan-pizza.jpg`}
-                alt="Artisan Roman-style pizza at Zia Maria, Friedrichshain, Berlin"
+                alt="Artisan Pizza illustration, Zia Maria, Friedrichshain, Berlin"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="(max-width: 640px) 100vw, 33vw"
               />
             </div>
             <div className="relative aspect-[900/1837] w-full overflow-hidden rounded-[2rem]">
               <Image
                 src={`${basePath}/images/natural-wine.jpg`}
-                alt="Natural wine served at Zia Maria, Friedrichshain, Berlin"
+                alt="Natural Wine illustration, Zia Maria, Friedrichshain, Berlin"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="(max-width: 640px) 100vw, 33vw"
               />
             </div>
