@@ -180,7 +180,7 @@ export default function Checkout() {
                     type="button"
                     onClick={() => updateField('fulfillment', 'pickup')}
                     className={`flex-1 rounded-full border px-4 py-2 text-xs font-mono uppercase tracking-widest transition-colors ${
-                      !isDelivery ? 'border-wine-dark bg-wine-dark text-cream' : 'border-cream/20 text-cream/70'
+                      !isDelivery ? 'border-wine-dark bg-wine-dark text-white' : 'border-cream/20 text-cream/70'
                     }`}
                   >
                     Pickup
@@ -189,7 +189,7 @@ export default function Checkout() {
                     type="button"
                     onClick={() => updateField('fulfillment', 'delivery')}
                     className={`flex-1 rounded-full border px-4 py-2 text-xs font-mono uppercase tracking-widest transition-colors ${
-                      isDelivery ? 'border-wine-dark bg-wine-dark text-cream' : 'border-cream/20 text-cream/70'
+                      isDelivery ? 'border-wine-dark bg-wine-dark text-white' : 'border-cream/20 text-cream/70'
                     }`}
                   >
                     Delivery

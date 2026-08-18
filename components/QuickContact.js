@@ -49,7 +49,7 @@ export default function QuickContact() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="relative flex items-center gap-2 rounded-full bg-wine px-5 py-3.5 text-sm font-semibold text-ink shadow-lg shadow-wine/30 transition-transform hover:-translate-y-0.5 hover:bg-wine-dark hover:text-cream"
+        className="relative flex items-center gap-2 rounded-full bg-wine px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-wine/30 transition-transform hover:-translate-y-0.5 hover:bg-wine-dark"
       >
         <span className="absolute -left-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-cream bg-sand animate-ping" />
         <span className="absolute -left-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-cream bg-sand" />

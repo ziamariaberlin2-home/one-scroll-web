@@ -36,8 +36,8 @@ export default function MenuSection({ hideHeader = false }) {
               onClick={() => setActive(cat)}
               className={`rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
                 active === cat
-                  ? 'border-wine bg-wine text-ink font-semibold'
-                  : 'border-wine/25 bg-cream-dark text-wine-dark hover:border-wine hover:bg-wine hover:text-ink'
+                  ? 'border-wine bg-wine text-white font-semibold'
+                  : 'border-wine/25 bg-cream-dark text-wine-dark hover:border-wine hover:bg-wine hover:text-white'
               }`}
             >
               {cat}
@@ -64,7 +64,7 @@ export default function MenuSection({ hideHeader = false }) {
                       type="button"
                       onClick={() => addItem(item, 1)}
                       className={`flex-shrink-0 rounded-full px-4 py-2 text-xs font-mono uppercase tracking-widest transition-colors ${
-                        qty > 0 ? 'bg-wine text-ink font-semibold hover:bg-wine-dark hover:text-cream' : 'bg-ink text-cream hover:bg-wine hover:text-ink'
+                        qty > 0 ? 'bg-wine text-white font-semibold hover:bg-wine-dark' : 'bg-ink text-cream hover:bg-wine hover:text-white'
                       }`}
                     >
                       {qty > 0 ? `In Cart · ${qty}` : 'Add to Cart'}

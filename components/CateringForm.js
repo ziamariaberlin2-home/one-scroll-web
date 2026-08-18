@@ -118,8 +118,8 @@ export default function CateringForm() {
 
   return (
     <section id="catering-form" className="marble-light scroll-mt-24 py-24 md:py-28">
-      <div className="mx-auto max-w-2xl px-6 md:px-10">
-        <div className="mb-10 text-center">
+      <div className="mx-auto max-w-6xl px-6 md:px-10">
+        <div className="mx-auto mb-10 max-w-2xl text-center">
           <span className="eyebrow">Request a Quote</span>
           <h2 className="display-heading mt-3 text-4xl text-ink md:text-5xl">
             Get a Catering or Private Event Quote in Berlin
@@ -130,36 +130,36 @@ export default function CateringForm() {
           </p>
         </div>
 
-        <div className="mb-6">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
           <OrderBuilder quantities={quantities} onChange={setQuantities} />
-        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-ink/10 bg-white/50 p-6 md:p-8">
-          {status && (
-            <p className={`rounded-xl p-3 text-center text-sm ${status.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-              {status.message}
-            </p>
-          )}
-          <Field label="Your Name *" name="name" required />
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Phone *" name="phone" type="tel" required />
-            <Field label="Email *" name="email" type="email" required />
-          </div>
-          <Select label="What Are You Enquiring About? *" name="enquiryType" required options={ENQUIRY_TYPES} />
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Event Date *" name="date" type="date" required />
-            <Select label="Guest Count *" name="guests" required options={['Up to 10', '10–25', '25–50', '50–100', '100+']} />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Select label="Delivery or Pickup *" name="fulfilment" required options={['Delivery', 'Pickup', 'Not sure yet']} />
-            <Select label="Budget Range" name="budget" options={['Under €500', '€500 to €1000', '€1000 to €2000', '€2000+', 'To be discussed']} />
-          </div>
-          <Field label="Delivery Address (if applicable)" name="address" placeholder="Street, postcode, Berlin" />
-          <TextArea label="Tell us about your event *" name="message" required placeholder="Dietary needs, budget, time, occasion..." />
-          <button type="submit" disabled={loading} className="btn-pill-wine w-full disabled:opacity-60">
-            {loading ? 'Sending…' : 'Request Quote'}
-          </button>
-        </form>
+          <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-ink/10 bg-white/50 p-6 md:p-8">
+            {status && (
+              <p className={`rounded-xl p-3 text-center text-sm ${status.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                {status.message}
+              </p>
+            )}
+            <Field label="Your Name *" name="name" required />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label="Phone *" name="phone" type="tel" required />
+              <Field label="Email *" name="email" type="email" required />
+            </div>
+            <Select label="What Are You Enquiring About? *" name="enquiryType" required options={ENQUIRY_TYPES} />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label="Event Date *" name="date" type="date" required />
+              <Select label="Guest Count *" name="guests" required options={['Up to 10', '10–25', '25–50', '50–100', '100+']} />
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Select label="Delivery or Pickup *" name="fulfilment" required options={['Delivery', 'Pickup', 'Not sure yet']} />
+              <Select label="Budget Range" name="budget" options={['Under €500', '€500 to €1000', '€1000 to €2000', '€2000+', 'To be discussed']} />
+            </div>
+            <Field label="Delivery Address (if applicable)" name="address" placeholder="Street, postcode, Berlin" />
+            <TextArea label="Tell us about your event *" name="message" required placeholder="Dietary needs, budget, time, occasion..." />
+            <button type="submit" disabled={loading} className="btn-pill-wine w-full disabled:opacity-60">
+              {loading ? 'Sending…' : 'Request Quote'}
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );

@@ -27,7 +27,7 @@ export default function AuntZiaSuggests() {
             <button
               type="button"
               onClick={acceptSuggestion}
-              className="rounded-full bg-wine px-3 py-1.5 text-xs font-semibold text-ink hover:bg-wine-dark hover:text-cream"
+              className="rounded-full bg-wine px-3 py-1.5 text-xs font-semibold text-white hover:bg-wine-dark"
             >
               Add it
             </button>
