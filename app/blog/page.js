@@ -35,7 +35,7 @@ export default function BlogPage() {
               <a
                 key={post.slug}
                 href={`${basePath}/blog/${post.slug}/`}
-                className="flex flex-col rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-wine/40"
+                className="card-3d flex flex-col rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-wine/40"
               >
                 <span className="font-mono text-xs uppercase tracking-widest text-ink/40">
                   {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
