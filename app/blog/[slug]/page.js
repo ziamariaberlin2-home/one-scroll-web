@@ -48,7 +48,7 @@ export default function BlogPostPage({ params }) {
 
       <article className="marble-light pb-24 pt-8 md:pb-32">
         <div className="mx-auto max-w-3xl px-6 md:px-10">
-          <a href={`${basePath}/blog/`} className="font-mono text-xs uppercase tracking-widest text-wine hover:text-wine-dark">
+          <a href={`${basePath}/blog/`} className="font-mono text-xs uppercase tracking-widest text-wine-dark hover:text-wine-dark">
             &larr; Blog &amp; Events
           </a>
 
