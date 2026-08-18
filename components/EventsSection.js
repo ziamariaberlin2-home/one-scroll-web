@@ -45,7 +45,7 @@ export default function EventsSection({
               <div className="flex flex-1 flex-col p-6">
                 <h3 className="font-display text-lg font-semibold text-ink">{ev.title}</h3>
                 <p className="mt-2 flex-1 text-sm text-ink/65">{ev.short}</p>
-                <span className="mt-4 font-mono text-xs uppercase tracking-widest text-wine transition-transform group-hover:translate-x-1">
+                <span className="mt-4 font-mono text-xs uppercase tracking-widest text-wine-dark transition-transform group-hover:translate-x-1">
                   Read More →
                 </span>
               </div>

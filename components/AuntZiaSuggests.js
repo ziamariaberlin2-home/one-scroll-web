@@ -19,7 +19,7 @@ export default function AuntZiaSuggests() {
           />
         )}
         <div className="min-w-0 flex-1">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-wine">Aunt Zia suggests</p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-wine-dark">Aunt Zia suggests</p>
           <p className="mt-0.5 truncate font-display text-sm font-semibold text-ink">
             Add {suggestion.name}? <span className="font-body font-normal text-ink/50">{suggestion.price}</span>
           </p>
@@ -27,7 +27,7 @@ export default function AuntZiaSuggests() {
             <button
               type="button"
               onClick={acceptSuggestion}
-              className="rounded-full bg-wine px-3 py-1.5 text-xs font-semibold text-cream hover:bg-wine-dark"
+              className="rounded-full bg-wine px-3 py-1.5 text-xs font-semibold text-ink hover:bg-wine-dark hover:text-cream"
             >
               Add it
             </button>

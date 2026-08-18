@@ -26,7 +26,7 @@ export default function MenuTeaser() {
               <div className="flex flex-1 flex-col p-5">
                 <h3 className="font-display text-lg font-semibold text-ink">{item.name}</h3>
                 <p className="mt-1 flex-1 text-sm text-ink/60">{item.description}</p>
-                <span className="mt-3 font-display text-lg font-semibold text-wine">{item.price}</span>
+                <span className="mt-3 font-display text-lg font-semibold text-wine-dark">{item.price}</span>
               </div>
             </div>
           ))}

@@ -8,7 +8,7 @@ import { reviews, GOOGLE_MAPS_URL } from '@/lib/reviews';
 
 function Stars() {
   return (
-    <div className="flex justify-center gap-0.5 text-wine" aria-hidden="true">
+    <div className="flex justify-center gap-0.5 text-accent" aria-hidden="true">
       {Array.from({ length: 5 }).map((_, i) => (
         <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2 14.9 8.6 22 9.2 16.7 13.9 18.2 21 12 17.3 5.8 21 7.3 13.9 2 9.2 9.1 8.6z" />
@@ -55,7 +55,7 @@ export default function ReviewsSection() {
           href={GOOGLE_MAPS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-ink/60 hover:text-wine"
+          className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-ink/60 hover:text-wine-dark"
         >
           <Stars />
           4.8 out of 5, 1,229 Google reviews
@@ -109,7 +109,7 @@ export default function ReviewsSection() {
             type="button"
             onClick={() => goTo(index - 1)}
             aria-label="Previous review"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 font-display text-lg text-ink/60 transition-colors hover:border-wine hover:text-wine"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 font-display text-lg text-ink/60 transition-colors hover:border-wine hover:text-wine-dark"
           >
             &#8249;
           </button>
@@ -131,7 +131,7 @@ export default function ReviewsSection() {
             type="button"
             onClick={() => goTo(index + 1)}
             aria-label="Next review"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 font-display text-lg text-ink/60 transition-colors hover:border-wine hover:text-wine"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 font-display text-lg text-ink/60 transition-colors hover:border-wine hover:text-wine-dark"
           >
             &#8250;
           </button>

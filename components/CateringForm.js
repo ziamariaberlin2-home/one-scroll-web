@@ -46,7 +46,7 @@ function OrderBuilder({ quantities, onChange }) {
                   onClick={() => adjust(item.name, -STEP)}
                   disabled={qty === 0}
                   aria-label={`Remove 5 slices of ${item.name}`}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/20 text-ink hover:border-wine hover:text-wine disabled:opacity-30"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/20 text-ink hover:border-wine hover:text-wine-dark disabled:opacity-30"
                 >
                   &minus;
                 </button>
@@ -55,7 +55,7 @@ function OrderBuilder({ quantities, onChange }) {
                   type="button"
                   onClick={() => adjust(item.name, STEP)}
                   aria-label={`Add 5 slices of ${item.name}`}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/20 text-ink hover:border-wine hover:text-wine"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/20 text-ink hover:border-wine hover:text-wine-dark"
                 >
                   +
                 </button>

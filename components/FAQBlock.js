@@ -30,7 +30,7 @@ export default function FAQBlock({ id = 'faq', eyebrow = 'Good to Know', heading
             <details key={f.q} className="group rounded-2xl border border-ink/10 bg-white/50 p-5 open:bg-white/80">
               <summary className="flex cursor-pointer list-none items-center justify-between font-display text-base font-semibold text-ink">
                 {f.q}
-                <span className="ml-4 flex-shrink-0 font-mono text-lg text-wine transition-transform group-open:rotate-45">+</span>
+                <span className="ml-4 flex-shrink-0 font-mono text-lg text-wine-dark transition-transform group-open:rotate-45">+</span>
               </summary>
               <p className="mt-3 text-sm leading-relaxed text-ink/65">{f.a}</p>
             </details>

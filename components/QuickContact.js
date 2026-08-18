@@ -22,7 +22,7 @@ export default function QuickContact() {
         <div className="absolute bottom-16 left-0 w-[min(340px,88vw)] rounded-3xl border border-ink/10 bg-cream p-6 shadow-2xl">
           <div className="mb-1 flex items-center justify-between">
             <h3 className="font-display text-lg font-semibold text-ink">Ask Us Anything</h3>
-            <button type="button" onClick={() => setOpen(false)} aria-label="Close" className="text-ink/50 hover:text-wine">
+            <button type="button" onClick={() => setOpen(false)} aria-label="Close" className="text-ink/50 hover:text-wine-dark">
               ✕
             </button>
           </div>
@@ -49,7 +49,7 @@ export default function QuickContact() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="relative flex items-center gap-2 rounded-full bg-wine px-5 py-3.5 text-sm font-semibold text-cream shadow-lg shadow-wine/30 transition-transform hover:-translate-y-0.5 hover:bg-wine-dark"
+        className="relative flex items-center gap-2 rounded-full bg-wine px-5 py-3.5 text-sm font-semibold text-ink shadow-lg shadow-wine/30 transition-transform hover:-translate-y-0.5 hover:bg-wine-dark hover:text-cream"
       >
         <span className="absolute -left-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-cream bg-sand animate-ping" />
         <span className="absolute -left-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-cream bg-sand" />

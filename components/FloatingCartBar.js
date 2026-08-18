@@ -14,7 +14,7 @@ export default function FloatingCartBar() {
         href={`${basePath}/order/#checkout`}
         className="flex items-center gap-3 rounded-full bg-ink px-5 py-3.5 text-sm font-semibold text-cream shadow-lg shadow-ink/30 transition-transform hover:-translate-y-0.5 hover:bg-black"
       >
-        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-wine text-xs">
+        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-wine text-xs font-semibold text-ink">
           {count}
         </span>
         View Cart · €{subtotal.toFixed(2)}

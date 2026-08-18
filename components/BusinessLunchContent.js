@@ -150,7 +150,7 @@ export default function BusinessLunchContent() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {HOW_IT_WORKS.map((s) => (
               <div key={s.step} className="card-3d rounded-2xl border border-ink/10 bg-white/50 p-6 text-left">
-                <span className="font-mono text-xs uppercase tracking-widest text-wine">Step {s.step}</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-wine-dark">Step {s.step}</span>
                 <h3 className="mt-2 font-display text-lg font-semibold text-ink">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.body}</p>
               </div>
@@ -168,7 +168,7 @@ export default function BusinessLunchContent() {
                 <ul className="mt-3 space-y-1 text-sm text-ink/60">
                   {set.items.map((i) => <li key={i}>&middot; {i}</li>)}
                 </ul>
-                <span className="mt-4 block font-display text-lg font-semibold text-wine">{set.price}</span>
+                <span className="mt-4 block font-display text-lg font-semibold text-wine-dark">{set.price}</span>
               </div>
             ))}
           </div>

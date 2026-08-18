@@ -36,8 +36,8 @@ export default function MenuSection({ hideHeader = false }) {
               onClick={() => setActive(cat)}
               className={`rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
                 active === cat
-                  ? 'border-wine bg-wine text-cream'
-                  : 'border-wine/25 bg-cream-dark text-wine hover:border-wine hover:bg-wine hover:text-cream'
+                  ? 'border-wine bg-wine text-ink font-semibold'
+                  : 'border-wine/25 bg-cream-dark text-wine-dark hover:border-wine hover:bg-wine hover:text-ink'
               }`}
             >
               {cat}
@@ -59,12 +59,12 @@ export default function MenuSection({ hideHeader = false }) {
                   <h3 className="font-display text-lg font-semibold text-ink">{item.name}</h3>
                   <p className="mt-1 flex-1 text-sm text-ink/60">{item.description}</p>
                   <div className="mt-3 flex items-center justify-between gap-3">
-                    <span className="font-display text-lg font-semibold text-wine">{item.price}</span>
+                    <span className="font-display text-lg font-semibold text-wine-dark">{item.price}</span>
                     <button
                       type="button"
                       onClick={() => addItem(item, 1)}
                       className={`flex-shrink-0 rounded-full px-4 py-2 text-xs font-mono uppercase tracking-widest transition-colors ${
-                        qty > 0 ? 'bg-wine text-cream hover:bg-wine-dark' : 'bg-ink text-cream hover:bg-wine'
+                        qty > 0 ? 'bg-wine text-ink font-semibold hover:bg-wine-dark hover:text-cream' : 'bg-ink text-cream hover:bg-wine hover:text-ink'
                       }`}
                     >
                       {qty > 0 ? `In Cart · ${qty}` : 'Add to Cart'}
