@@ -69,6 +69,36 @@ body {
   @apply btn-pill border-wine bg-wine text-cream hover:bg-wine-dark hover:border-wine-dark;
 }
 
+.btn-pill-sand {
+  @apply btn-pill border-sand bg-sand text-ink hover:bg-cream hover:border-cream;
+}
+
+/* Sitewide "lifted" 3D card treatment: layered depth shadow, subtle hover
+   tilt/lift. Works on any rounded bordered card without changing layout. */
+.card-3d {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow:
+    0 1px 2px rgba(26, 26, 28, 0.06),
+    0 8px 16px -4px rgba(26, 26, 28, 0.10),
+    0 20px 32px -12px rgba(26, 26, 28, 0.14);
+  will-change: transform;
+}
+.card-3d:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow:
+    0 2px 4px rgba(26, 26, 28, 0.08),
+    0 14px 24px -6px rgba(26, 26, 28, 0.16),
+    0 32px 48px -16px rgba(108, 37, 41, 0.20);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-3d {
+    transition: none;
+  }
+  .card-3d:hover {
+    transform: none;
+  }
+}
+
 /* Hide scrollbar for horizontal gallery/menu strips while keeping scroll functional */
 .scrollbar-none {
   scrollbar-width: none;
