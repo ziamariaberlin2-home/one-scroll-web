@@ -7,20 +7,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // "Sunset Warm" palette
         cream: {
-          DEFAULT: '#F2EADF',
-          dark: '#E8DCC8',
+          DEFAULT: '#FFF7ED', // Neutral
+          dark: '#FFEDD5',
         },
         ink: {
-          DEFAULT: '#1A1A1C',
-          light: '#222224',
+          DEFAULT: '#7C2D12', // Text
+          light: '#9A3412',
         },
         wine: {
-          DEFAULT: '#6C2529',
-          dark: '#4E1B1E',
-          light: '#8A3238',
+          DEFAULT: '#F97316', // Primary
+          dark: '#C2410C', // accessible darker orange for hover states + text-on-light use
+          light: '#FB923C', // Secondary
         },
-        sand: '#C9B99A',
+        sand: '#FB923C', // Secondary
+        accent: '#DC2626', // Accent
       },
       fontFamily: {
         display: ['Dosis', 'sans-serif'],
