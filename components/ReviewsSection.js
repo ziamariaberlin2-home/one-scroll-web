@@ -8,7 +8,7 @@ import { reviews, GOOGLE_MAPS_URL } from '@/lib/reviews';
 
 function Stars() {
   return (
-    <div className="flex justify-center gap-0.5 text-sand" aria-hidden="true">
+    <div className="flex justify-center gap-0.5 text-wine" aria-hidden="true">
       {Array.from({ length: 5 }).map((_, i) => (
         <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2 14.9 8.6 22 9.2 16.7 13.9 18.2 21 12 17.3 5.8 21 7.3 13.9 2 9.2 9.1 8.6z" />
@@ -36,26 +36,26 @@ export default function ReviewsSection() {
   const current = reviews[index];
 
   return (
-    <section id="reviews" className="marble-dark relative overflow-hidden py-24 text-cream md:py-28">
+    <section id="reviews" className="marble-light relative overflow-hidden py-24 md:py-28">
       <div className="absolute inset-0">
         <Image
           src={`${basePath}/images/reviews-bg.jpg`}
           alt=""
           fill
-          className="object-cover opacity-25"
+          className="object-cover opacity-15"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-ink/70" />
+        <div className="absolute inset-0 bg-cream/85" />
       </div>
 
       <div className="relative mx-auto max-w-3xl px-6 text-center md:px-10">
-        <span className="eyebrow text-sand">Loved in Friedrichshain</span>
-        <h2 className="display-heading mt-3 text-4xl text-cream md:text-6xl">What Berlin Says</h2>
+        <span className="eyebrow">Loved in Friedrichshain</span>
+        <h2 className="display-heading mt-3 text-4xl text-ink md:text-6xl">What Berlin Says</h2>
         <a
           href={GOOGLE_MAPS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cream/70 hover:text-cream"
+          className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-ink/60 hover:text-wine"
         >
           <Stars />
           4.8 out of 5, 1,229 Google reviews
@@ -81,23 +81,23 @@ export default function ReviewsSection() {
                   aria-hidden="true"
                   viewBox="0 0 32 32"
                   fill="currentColor"
-                  className="absolute -left-1 -top-8 h-10 w-10 text-sand/35 md:-left-12 md:-top-4 md:h-14 md:w-14"
+                  className="absolute -left-1 -top-8 h-10 w-10 text-wine/25 md:-left-12 md:-top-4 md:h-14 md:w-14"
                 >
                   <path d="M11 7c-3.6 0-6.5 2.9-6.5 6.5V25h11.5V13.5H8.5c0-1.4 1.1-2.5 2.5-2.5V7zm14 0c-3.6 0-6.5 2.9-6.5 6.5V25H30V13.5h-7.5c0-1.4 1.1-2.5 2.5-2.5V7z" />
                 </svg>
-                <p className="font-display text-xl leading-relaxed text-cream md:text-2xl">
+                <p className="font-display text-xl leading-relaxed text-ink md:text-2xl">
                   {current.quote}
                 </p>
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 32 32"
                   fill="currentColor"
-                  className="absolute -bottom-8 -right-1 h-10 w-10 rotate-180 text-sand/35 md:-bottom-4 md:-right-12 md:h-14 md:w-14"
+                  className="absolute -bottom-8 -right-1 h-10 w-10 rotate-180 text-wine/25 md:-bottom-4 md:-right-12 md:h-14 md:w-14"
                 >
                   <path d="M11 7c-3.6 0-6.5 2.9-6.5 6.5V25h11.5V13.5H8.5c0-1.4 1.1-2.5 2.5-2.5V7zm14 0c-3.6 0-6.5 2.9-6.5 6.5V25H30V13.5h-7.5c0-1.4 1.1-2.5 2.5-2.5V7z" />
                 </svg>
               </div>
-              <p className="mt-8 font-mono text-xs uppercase tracking-widest text-cream/50">
+              <p className="mt-8 font-mono text-xs uppercase tracking-widest text-ink/50">
                 {current.name} &middot; {current.meta}
               </p>
             </motion.a>
@@ -109,7 +109,7 @@ export default function ReviewsSection() {
             type="button"
             onClick={() => goTo(index - 1)}
             aria-label="Previous review"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/20 font-display text-lg text-cream/70 transition-colors hover:border-cream/50 hover:text-cream"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 font-display text-lg text-ink/60 transition-colors hover:border-wine hover:text-wine"
           >
             &#8249;
           </button>
@@ -122,7 +122,7 @@ export default function ReviewsSection() {
                 aria-label={`Show review ${i + 1} of ${total}`}
                 aria-current={i === index}
                 className={`h-1.5 rounded-full transition-all ${
-                  i === index ? 'w-6 bg-sand' : 'w-1.5 bg-cream/30 hover:bg-cream/50'
+                  i === index ? 'w-6 bg-wine' : 'w-1.5 bg-ink/20 hover:bg-ink/40'
                 }`}
               />
             ))}
@@ -131,7 +131,7 @@ export default function ReviewsSection() {
             type="button"
             onClick={() => goTo(index + 1)}
             aria-label="Next review"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/20 font-display text-lg text-cream/70 transition-colors hover:border-cream/50 hover:text-cream"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 font-display text-lg text-ink/60 transition-colors hover:border-wine hover:text-wine"
           >
             &#8250;
           </button>

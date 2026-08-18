@@ -37,7 +37,7 @@ export default function MenuSection({ hideHeader = false }) {
               className={`rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
                 active === cat
                   ? 'border-wine bg-wine text-cream'
-                  : 'border-ink/20 text-ink/70 hover:border-wine hover:text-wine'
+                  : 'border-wine/25 bg-cream-dark text-wine hover:border-wine hover:bg-wine hover:text-cream'
               }`}
             >
               {cat}
@@ -51,7 +51,7 @@ export default function MenuSection({ hideHeader = false }) {
             return (
               <div
                 key={item.name + item.category}
-                className="flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40 shadow-sm"
+                className="card-3d flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={item.image} alt={item.name} loading="lazy" className="h-44 w-full object-cover" />

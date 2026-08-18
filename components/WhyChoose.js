@@ -8,7 +8,7 @@ const POINTS = [
     body: 'No shortcuts. Toppings are prepped fresh daily with seasonal, quality ingredients sourced with care.',
   },
   {
-    title: 'Pizza From Just €2.40',
+    title: 'Pizza From Just €2.50',
     body: 'Real Italian pizza in Berlin, priced for everyday enjoyment, from a quick slice to a full team catering order.',
   },
   {
@@ -35,7 +35,7 @@ export default function WhyChoose() {
           {POINTS.map((p, i) => (
             <div
               key={p.title}
-              className="flex flex-col rounded-2xl border border-ink/10 bg-white/50 p-6"
+              className="card-3d flex flex-col rounded-2xl border border-ink/10 bg-white/50 p-6"
             >
               <span className="font-display text-3xl font-semibold text-wine/70">
                 {String(i + 1).padStart(2, '0')}

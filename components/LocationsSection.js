@@ -1,34 +1,38 @@
+import { basePath } from '@/lib/basePath';
+import { GOOGLE_MAPS_URL } from '@/lib/reviews';
+
 export default function LocationsSection() {
   return (
-    <section id="visit" className="marble-dark py-24 text-cream md:py-28">
+    <section id="visit" className="marble-light py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="mb-14 text-center">
-          <span className="eyebrow text-sand">Find Us</span>
-          <h2 className="display-heading mt-3 text-5xl text-cream md:text-7xl">Visit Us</h2>
+          <span className="eyebrow">Find Us</span>
+          <h2 className="display-heading mt-3 text-5xl text-ink md:text-7xl">Contact Us</h2>
         </div>
 
-        <div className="grid grid-cols-1 overflow-hidden rounded-3xl border border-cream/15 md:grid-cols-2">
-          <div className="bg-cream/10 p-8 md:p-10">
-            <h3 className="font-display text-2xl font-semibold text-cream">Zia Maria</h3>
-            <p className="mt-3 text-cream/70">
+        <div className="card-3d grid grid-cols-1 overflow-hidden rounded-3xl border border-ink/10 bg-white/50 md:grid-cols-2">
+          <div className="p-8 md:p-10">
+            <h3 className="font-display text-2xl font-semibold text-ink">Zia Maria</h3>
+            <p className="mt-3 text-ink/70">
               Neue Bahnhofstraße 32
               <br />
               10245 Berlin, Friedrichshain
             </p>
-            <div className="mt-6 space-y-1 text-sm text-cream/70">
+            <div className="mt-6 space-y-1 text-sm text-ink/70">
               <p>Mon – Wed: 12:00–22:00</p>
               <p>Thu – Sat: 12:00–23:00</p>
               <p>Sun: 12:00–22:00</p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#reserve" className="btn-pill-light">Reserve a Table</a>
+              <a href="#reserve" className="btn-pill-dark">Reserve a Table</a>
+              <a href={`${basePath}/order/`} className="btn-pill-wine">Order Now</a>
               <a
-                href="https://wa.me/4917627705583"
+                href={GOOGLE_MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-pill border-cream/40 text-cream hover:bg-cream/10"
+                className="btn-pill border-ink/30 text-ink hover:bg-ink hover:text-cream"
               >
-                WhatsApp
+                Directions
               </a>
             </div>
           </div>

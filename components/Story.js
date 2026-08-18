@@ -31,10 +31,10 @@ export default function Story() {
 
         <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[2rem] md:mt-16">
           <Image
-            src={`${basePath}/images/our-story.jpg`}
-            alt="Artisan Roman-style pizza being prepared at Zia Maria, Friedrichshain, Berlin"
+            src={`${basePath}/images/artisan-pizza.jpg`}
+            alt="Artisan Pizza illustration, Zia Maria, Friedrichshain, Berlin"
             fill
-            className="object-cover"
+            className="object-cover object-top"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>

@@ -5,6 +5,7 @@ const FEATURES = [
   'Vegetarian and vegan options',
   'Delivery across Berlin or pickup in Friedrichshain',
   'Private events, birthdays, and team celebrations',
+  'On-site equipment and staffing, confirmed in writing',
 ];
 
 export default function CateringSection() {
@@ -31,7 +32,7 @@ export default function CateringSection() {
 
         <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 text-sm text-ink/70 sm:grid-cols-2">
           {FEATURES.map((f) => (
-            <li key={f} className="rounded-xl border border-ink/10 p-4">{f}</li>
+            <li key={f} className="card-3d rounded-xl border border-ink/10 p-4">{f}</li>
           ))}
         </ul>
 

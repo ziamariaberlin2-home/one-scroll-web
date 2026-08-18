@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 // Container aspect ratio (width/height) for the arch at rest — a wide,
 // low "oven mouth" dome closer to Pizzeria Sei's own proportions on wide
 // screens; on tall/mobile screens a narrower arch reads better.
-const REST_ASPECT_LANDSCAPE = 1.35;
+const REST_ASPECT_LANDSCAPE = 1.5;
 const REST_ASPECT_PORTRAIT = 0.7;
 
 export default function Hero() {
@@ -31,7 +31,7 @@ export default function Hero() {
   const restAspect = viewport.width > viewport.height * 1.1 ? REST_ASPECT_LANDSCAPE : REST_ASPECT_PORTRAIT;
   let restHeight = viewport.height * 0.8;
   let restWidth = restHeight * restAspect;
-  const maxWidth = viewport.width * 0.92;
+  const maxWidth = viewport.width * 0.95;
   if (restWidth > maxWidth) {
     restWidth = maxWidth;
     restHeight = restWidth / restAspect;
@@ -85,7 +85,7 @@ export default function Hero() {
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3 md:mt-8 md:gap-4">
               <a href={`${basePath}/order/`} className="btn-pill-wine">Order Now</a>
-              <a href="#catering" className="btn-pill-light">Catering</a>
+              <a href="#catering" className="btn-pill-sand">Catering</a>
             </div>
           </div>
         </motion.div>

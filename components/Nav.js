@@ -7,11 +7,12 @@ import { useCart } from '@/lib/cart';
 
 const LINKS = [
   { href: `${basePath}/`, label: 'Home' },
-  { href: `${basePath}/our-story/`, label: 'Our Story' },
-  { href: `${basePath}/menu/`, label: 'Menu' },
+  { href: `${basePath}/menu/`, label: 'Ordering & Menu' },
   { href: `${basePath}/catering/`, label: 'Catering' },
   { href: `${basePath}/business-lunch/`, label: 'Business Lunch' },
+  { href: `${basePath}/our-story/`, label: 'Our Story' },
   { href: `${basePath}/blog/`, label: 'Blog' },
+  { href: `${basePath}/#visit`, label: 'Contact Us' },
 ];
 
 export default function Nav() {
@@ -35,11 +36,11 @@ export default function Nav() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
         <a href={`${basePath}/`} className="flex items-center">
           <Image
-            src={`${basePath}/images/zia-maria-logo.png`}
+            src={`${basePath}/images/zia-maria-logo-wordmark.png`}
             alt="Zia Maria"
-            width={40}
-            height={40}
-            className="h-10 w-10"
+            width={900}
+            height={261}
+            className="h-8 w-auto md:h-9"
             priority
           />
         </a>

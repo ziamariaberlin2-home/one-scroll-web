@@ -2,15 +2,19 @@ import Image from 'next/image';
 import { basePath } from '@/lib/basePath';
 import { events } from '@/lib/events';
 
-export default function EventsSection() {
+export default function EventsSection({
+  eyebrow = 'Life at Zia Maria',
+  heading = 'Events at Zia',
+  description = 'From team lunches to terrace nights, a look at what happens around our table.',
+}) {
   return (
     <section id="events" className="marble-light py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="mb-14 text-center">
-          <span className="eyebrow">Life at Zia Maria</span>
-          <h2 className="display-heading mt-3 text-4xl text-ink md:text-6xl">Events at Zia</h2>
+          <span className="eyebrow">{eyebrow}</span>
+          <h2 className="display-heading mt-3 text-4xl text-ink md:text-6xl">{heading}</h2>
           <p className="mx-auto mt-4 font-body text-ink/70">
-            From team lunches to terrace nights, a look at what happens around our table.
+            {description}
           </p>
         </div>
 
@@ -19,7 +23,7 @@ export default function EventsSection() {
             <a
               key={ev.slug}
               href={`${basePath}/blog/#${ev.slug}`}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50 transition-shadow hover:shadow-lg"
+              className="card-3d group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50"
             >
               <div className="relative flex h-48 items-end overflow-hidden bg-gradient-to-br from-wine/15 via-cream to-sand/25">
                 {ev.image ? (

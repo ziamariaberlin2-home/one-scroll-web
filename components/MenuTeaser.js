@@ -11,7 +11,7 @@ export default function MenuTeaser() {
           <span className="eyebrow">Fresh, Every Day</span>
           <h2 className="display-heading mt-3 text-4xl text-ink md:text-6xl">Our Menu</h2>
           <p className="mx-auto mt-4 max-w-xl font-body text-ink/70">
-            Roman-style pizza, salads, and a few things worth lingering over, pizza from €2.40.
+            Roman-style pizza, salads, and a few things worth lingering over, pizza from €2.50.
           </p>
         </div>
 
@@ -19,7 +19,7 @@ export default function MenuTeaser() {
           {featured.map((item) => (
             <div
               key={item.name}
-              className="flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40 shadow-sm"
+              className="card-3d flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={item.image} alt={item.name} loading="lazy" className="h-44 w-full object-cover" />

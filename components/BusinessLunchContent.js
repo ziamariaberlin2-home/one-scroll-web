@@ -3,7 +3,15 @@
 import { useState } from 'react';
 import { sendEnquiry, EMAILJS_HOST_TEMPLATE } from '@/lib/emailjs';
 import { Field, Select, TextArea } from '@/components/FormField';
+import EventsSection from '@/components/EventsSection';
 import FAQBlock from '@/components/FAQBlock';
+
+const PERKS = [
+  'One-time and recurring orders',
+  'Delivery across Berlin',
+  'Simple company invoice',
+  'Vegetarian and vegan options',
+];
 
 const SETS = [
   { name: 'Classic Set', items: ['Pizza Margherita', 'Garlic olive oil', 'Still or sparkling water'], price: '€9.50' },
@@ -118,9 +126,17 @@ export default function BusinessLunchContent() {
             It works just as well for a one-off team lunch as it does for a standing weekly order.
             Plenty of the offices around Friedrichshain now have a regular slot with us, same day,
             same time, no need to re-order every week. Mix in vegetarian and vegan options where
-            your team needs them, and we will build the set around it.
+            your team needs them, and we will build the set around it. Every order comes with a
+            simple company invoice, so whoever&rsquo;s ordering lunch isn&rsquo;t stuck sorting
+            receipts afterward.
           </p>
         </div>
+
+        <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
+          {PERKS.map((f) => (
+            <li key={f} className="card-3d rounded-xl border border-ink/10 p-4 text-center">{f}</li>
+          ))}
+        </ul>
       </section>
 
       <section className="marble-light pb-16 md:pb-20">
@@ -133,7 +149,7 @@ export default function BusinessLunchContent() {
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {HOW_IT_WORKS.map((s) => (
-              <div key={s.step} className="rounded-2xl border border-ink/10 bg-white/50 p-6 text-left">
+              <div key={s.step} className="card-3d rounded-2xl border border-ink/10 bg-white/50 p-6 text-left">
                 <span className="font-mono text-xs uppercase tracking-widest text-wine">Step {s.step}</span>
                 <h3 className="mt-2 font-display text-lg font-semibold text-ink">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.body}</p>
@@ -147,7 +163,7 @@ export default function BusinessLunchContent() {
         <div className="mx-auto max-w-7xl px-6 text-center md:px-10">
           <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
             {SETS.map((set) => (
-              <div key={set.name} className="rounded-2xl border border-ink/10 bg-white/50 p-6 text-left">
+              <div key={set.name} className="card-3d rounded-2xl border border-ink/10 bg-white/50 p-6 text-left">
                 <h3 className="font-display text-xl font-semibold text-ink">{set.name}</h3>
                 <ul className="mt-3 space-y-1 text-sm text-ink/60">
                   {set.items.map((i) => <li key={i}>&middot; {i}</li>)}
@@ -184,6 +200,12 @@ export default function BusinessLunchContent() {
           </div>
         </div>
       </section>
+
+      <EventsSection
+        eyebrow="Office Favorites"
+        heading="Business Lunches Berlin Teams Love"
+        description="A look at the standing orders and office lunches we&rsquo;ve built with teams around Friedrichshain."
+      />
 
       <FAQBlock
         id="business-lunch-faq"
