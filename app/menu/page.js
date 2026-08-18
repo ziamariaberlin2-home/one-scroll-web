@@ -17,8 +17,12 @@ export default function MenuPage() {
             Roman Pizza Menu in Friedrichshain, Berlin
           </h1>
           <p className="mx-auto mt-4 max-w-xl font-body text-ink/70">
-            Slow-fermented Roman-style pizza, salads, and drinks, with vegetarian and vegan
-            options, from just €2.40 a slice.
+            Roman-style pizza, salads, and drinks, with vegetarian and vegan options, from just
+            €2.50 a slice.
+          </p>
+          <p className="mx-auto mt-2 max-w-xl font-mono text-xs uppercase tracking-widest text-ink/40">
+            All pizza is priced per slice. Salads and desserts are priced per portion. Drinks are
+            priced individually.
           </p>
         </div>
       </section>
