@@ -16,9 +16,9 @@ body {
 .marble-light {
   background-color: #FFF7ED;
   background-image:
-    radial-gradient(at 20% 10%, rgba(249,115,22,0.05) 0px, transparent 40%),
+    radial-gradient(at 20% 10%, rgba(197,52,22,0.05) 0px, transparent 40%),
     radial-gradient(at 80% 30%, rgba(124,45,18,0.04) 0px, transparent 45%),
-    radial-gradient(at 40% 80%, rgba(249,115,22,0.04) 0px, transparent 40%),
+    radial-gradient(at 40% 80%, rgba(197,52,22,0.04) 0px, transparent 40%),
     linear-gradient(135deg, transparent 48%, rgba(124,45,18,0.03) 49%, transparent 50%),
     linear-gradient(35deg, transparent 60%, rgba(124,45,18,0.025) 61%, transparent 62%);
   background-size: cover, cover, cover, 400px 400px, 500px 500px;
@@ -28,7 +28,7 @@ body {
 .marble-dark {
   background-color: #2B1207;
   background-image:
-    radial-gradient(at 15% 20%, rgba(249,115,22,0.14) 0px, transparent 45%),
+    radial-gradient(at 15% 20%, rgba(197,52,22,0.14) 0px, transparent 45%),
     radial-gradient(at 85% 15%, rgba(255,255,255,0.03) 0px, transparent 40%),
     radial-gradient(at 50% 90%, rgba(220,38,38,0.10) 0px, transparent 45%),
     linear-gradient(120deg, transparent 48%, rgba(255,255,255,0.02) 49%, transparent 50%),
@@ -68,7 +68,7 @@ body {
 }
 
 .btn-pill-wine {
-  @apply btn-pill border-wine bg-wine text-ink font-semibold hover:bg-wine-dark hover:border-wine-dark hover:text-cream;
+  @apply btn-pill border-wine bg-wine text-white font-semibold hover:bg-wine-dark hover:border-wine-dark;
 }
 
 .btn-pill-sand {
@@ -90,7 +90,7 @@ body {
   box-shadow:
     0 2px 4px rgba(124, 45, 18, 0.08),
     0 14px 24px -6px rgba(124, 45, 18, 0.16),
-    0 32px 48px -16px rgba(249, 115, 22, 0.20);
+    0 32px 48px -16px rgba(197, 52, 22, 0.20);
 }
 @media (prefers-reduced-motion: reduce) {
   .card-3d {
