@@ -17,11 +17,11 @@ module.exports = {
           light: '#9A3412',
         },
         wine: {
-          DEFAULT: '#F97316', // Primary
-          dark: '#C2410C', // accessible darker orange for hover states + text-on-light use
-          light: '#FB923C', // Secondary
+          DEFAULT: '#C53416', // Primary red
+          dark: '#991B1B', // darker red for hover states + accessible text-on-light use
+          light: '#F2704B', // Secondary light red
         },
-        sand: '#FB923C', // Secondary
+        sand: '#F2704B', // Secondary light red
         accent: '#DC2626', // Accent
       },
       fontFamily: {
