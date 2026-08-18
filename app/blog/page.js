@@ -43,7 +43,7 @@ export default function BlogPage() {
                 </span>
                 <h3 className="mt-3 font-display text-lg font-semibold text-ink">{post.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/65">{post.excerpt}</p>
-                <span className="mt-4 font-mono text-xs uppercase tracking-widest text-wine">Read more &rarr;</span>
+                <span className="mt-4 font-mono text-xs uppercase tracking-widest text-wine-dark">Read more &rarr;</span>
               </a>
             ))}
           </div>
