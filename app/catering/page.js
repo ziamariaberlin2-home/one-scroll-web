@@ -1,4 +1,5 @@
 import CateringForm from '@/components/CateringForm';
+import EventsSection from '@/components/EventsSection';
 import FAQBlock from '@/components/FAQBlock';
 import { pageMetadata } from '@/lib/seo';
 import { basePath } from '@/lib/basePath';
@@ -15,6 +16,7 @@ const FEATURES = [
   'Vegetarian and vegan options on every order',
   'Delivery across Berlin or pickup in Friedrichshain',
   'Custom quotes based on headcount, date, and budget',
+  'On-site equipment and staffing, confirmed in writing ahead of your event',
 ];
 
 const OCCASIONS = [
@@ -81,11 +83,16 @@ export default function CateringPage() {
             put together a menu and quote sized for your group, the same Roman-style pizza Berlin
             teams and hosts keep coming back to.
           </p>
+          <p>
+            For larger or more involved events, we can also take care of on-site setup, ovens,
+            service staff, and everything else the day calls for, with the details confirmed in
+            writing well before your date, so nothing is left to chance once guests arrive.
+          </p>
         </div>
 
         <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
           {FEATURES.map((f) => (
-            <li key={f} className="rounded-xl border border-ink/10 p-4 text-center">{f}</li>
+            <li key={f} className="card-3d rounded-xl border border-ink/10 p-4 text-center">{f}</li>
           ))}
         </ul>
 
@@ -100,6 +107,12 @@ export default function CateringPage() {
             Inquire on WhatsApp
           </a>
         </div>
+
+        <p className="mx-auto mt-8 max-w-xl text-center text-sm text-ink/60">
+          Still unsure how much to order? Build your own catering order online in batches of five
+          per pizza style below, or send us a rough headcount and we&rsquo;ll help you land on the
+          right amount.
+        </p>
       </section>
 
       <section className="marble-light pb-16 md:pb-20">
@@ -112,7 +125,7 @@ export default function CateringPage() {
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {OCCASIONS.map((o) => (
-              <div key={o.title} className="rounded-2xl border border-ink/10 bg-white/50 p-6">
+              <div key={o.title} className="card-3d rounded-2xl border border-ink/10 bg-white/50 p-6">
                 <h3 className="font-display text-lg font-semibold text-ink">{o.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/65">{o.body}</p>
               </div>
@@ -120,6 +133,12 @@ export default function CateringPage() {
           </div>
         </div>
       </section>
+
+      <EventsSection
+        eyebrow="Catering in Action"
+        heading="Catering & Private Events We&rsquo;ve Hosted"
+        description="A look at the office parties, weddings, and private celebrations we&rsquo;ve catered around Berlin."
+      />
 
       <section className="marble-light pb-24 md:pb-28">
         <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
