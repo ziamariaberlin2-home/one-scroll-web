@@ -144,11 +144,11 @@ export default function CateringPage() {
         <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
           <p className="font-body text-ink/70">
             Want to see what&rsquo;s on offer first? Browse the full{' '}
-            <a href={`${basePath}/menu/`} className="text-wine underline hover:text-wine-dark">
+            <a href={`${basePath}/menu/`} className="text-wine-dark underline hover:text-wine-dark">
               Zia Maria menu
             </a>{' '}
             or check out our{' '}
-            <a href={`${basePath}/business-lunch/`} className="text-wine underline hover:text-wine-dark">
+            <a href={`${basePath}/business-lunch/`} className="text-wine-dark underline hover:text-wine-dark">
               business lunch options
             </a>{' '}
             for smaller, recurring office orders.
