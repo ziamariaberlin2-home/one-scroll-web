@@ -14,10 +14,10 @@ export default function OrderPage() {
       <section className="marble-light pb-4 pt-4 md:pb-8">
         <div className="mx-auto max-w-2xl px-6 text-center md:px-10">
           <span className="eyebrow">Order Online</span>
-          <h1 className="display-heading mt-3 text-4xl text-ink md:text-6xl">
+          <h1 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">
             Order Zia Maria, Straight to Your Door
           </h1>
-          <p className="mx-auto mt-6 max-w-xl font-body text-ink/70">
+          <p className="mx-auto mt-6 max-w-xl font-body text-ink/75">
             Add your favorites below, then check out with PayPal or send your order straight to us on
             WhatsApp.
           </p>
