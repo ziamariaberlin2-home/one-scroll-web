@@ -59,10 +59,10 @@ export default function CateringPage() {
       <section className="marble-light py-16 text-center md:py-20">
         <div className="mx-auto max-w-3xl px-6 md:px-10">
           <span className="eyebrow">Catering in Berlin</span>
-          <h1 className="display-heading mt-3 text-4xl text-ink md:text-6xl">
+          <h1 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">
             Pizza Catering in Berlin for Offices, Weddings &amp; Private Events
           </h1>
-          <p className="mx-auto mt-4 max-w-xl font-body text-ink/70">
+          <p className="mx-auto mt-4 max-w-xl font-body text-ink/75">
             Generous, family-style Roman-style pizza for groups of any size, delivered across
             Berlin or picked up in Friedrichshain.
           </p>
@@ -70,7 +70,7 @@ export default function CateringPage() {
       </section>
 
       <section className="marble-light pb-16 md:pb-20">
-        <div className="mx-auto max-w-3xl space-y-4 px-6 text-center font-body text-ink/70 md:px-10">
+        <div className="mx-auto max-w-3xl space-y-4 px-6 text-center font-body text-ink/75 md:px-10">
           <p>
             An aunt never shows up with just enough, she brings extra, always. That&rsquo;s the
             spirit behind our Berlin catering: slow-fermented Roman-style pizza, baked fresh and
@@ -119,7 +119,7 @@ export default function CateringPage() {
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <div className="mb-10 text-center">
             <span className="eyebrow">Every Occasion</span>
-            <h2 className="display-heading mt-3 text-3xl text-ink md:text-5xl">
+            <h2 className="display-heading mt-3 text-3xl text-wine/90 md:text-5xl">
               A Setup for Every Kind of Event
             </h2>
           </div>
