@@ -150,20 +150,7 @@ export default function CateringPage() {
           ))}
         </ul>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <a href="#catering-form" className="btn-pill-wine">Request a Quote</a>
-          <a href="#pizza-calculator" className="btn-pill-dark">🍕 Try the Pizza Calculator</a>
-          <a
-            href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-pill-dark"
-          >
-            Inquire on WhatsApp
-          </a>
-        </div>
-
-        <p className="mx-auto mt-8 max-w-xl text-center text-sm text-ink/60">
+        <p className="mx-auto mt-10 max-w-xl text-center text-sm text-ink/60">
           Still unsure how much to order? Try the pizza calculator below, build your own order in
           batches of five per pizza style further down, or send us a rough headcount and
           we&rsquo;ll help you land on the right amount.
