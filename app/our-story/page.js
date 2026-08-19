@@ -43,7 +43,7 @@ export default function OurStoryPage() {
             <p>
               That&rsquo;s the spirit behind Zia Maria. We opened our doors in Friedrichshain,
               Berlin with one simple goal: bring people together around honest, Roman-style
-              pizza. Our dough ferments slowly for a light, crisp base, topped daily with fresh,
+              pizza. Our dough rests for days for a light, crisp base, topped daily with fresh,
               seasonal ingredients sourced with care.
             </p>
             <p>
@@ -107,7 +107,7 @@ export default function OurStoryPage() {
         <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
           <span className="eyebrow text-sand">Roman-Style, Done Right</span>
           <h2 className="display-heading mt-3 text-3xl text-cream md:text-5xl">
-            Slow Fermentation. Fresh Ingredients. Every Single Day.
+            Slow-Rested Dough. Fresh Ingredients. Every Single Day.
           </h2>
           <p className="mx-auto mt-6 max-w-xl font-body text-cream/70">
             Our dough rests for days before it ever sees the oven, giving it that light, crisp,
