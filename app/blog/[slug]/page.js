@@ -54,7 +54,7 @@ export default function BlogPostPage({ params }) {
 
           <div className="mt-6 text-center">
             <span className="eyebrow">Zia Maria Journal</span>
-            <h1 className="display-heading mt-3 text-4xl text-ink md:text-6xl">{post.title}</h1>
+            <h1 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">{post.title}</h1>
             <p className="mt-4 font-mono text-xs uppercase tracking-widest text-ink/40">
               {formattedDate} &middot; {post.readTime}
             </p>
@@ -63,7 +63,7 @@ export default function BlogPostPage({ params }) {
           <div className="mx-auto mt-12 max-w-2xl space-y-5 font-body leading-relaxed text-ink/75">
             {post.body.map((block, i) =>
               block.type === 'h2' ? (
-                <h2 key={i} className="display-heading pt-4 text-2xl text-ink md:text-3xl">
+                <h2 key={i} className="display-heading pt-4 text-2xl text-wine/90 md:text-3xl">
                   {block.text}
                 </h2>
               ) : (
