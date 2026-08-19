@@ -45,6 +45,7 @@ const FEATURES = [
   'Delivery across Berlin or pickup in Friedrichshain',
   'Custom quotes based on headcount, date, and budget',
   'On-site equipment and staffing, confirmed in writing ahead of your event',
+  'Fast turnaround, some orders ready within 24–48 hours',
 ];
 
 const OCCASIONS = [
@@ -139,6 +140,7 @@ export default function CateringPage() {
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <a href="#catering-form" className="btn-pill-wine">Request a Quote</a>
+          <a href="#pizza-calculator" className="btn-pill-sand">🍕 Try the Pizza Calculator</a>
           <a
             href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
             target="_blank"
