@@ -15,7 +15,7 @@ export default function OurStoryPage() {
       <section className="marble-light py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
           <span className="eyebrow">Our Story</span>
-          <h1 className="display-heading mt-3 text-4xl text-ink md:text-6xl">
+          <h1 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">
             Zia Maria, Roman Pizza in the Heart of Berlin
           </h1>
         </div>
@@ -63,10 +63,10 @@ export default function OurStoryPage() {
       <section className="marble-light pb-24 md:pb-32">
         <div className="mx-auto max-w-6xl px-6 text-center md:px-10">
           <span className="eyebrow">Good Company</span>
-          <h2 className="display-heading mt-3 text-3xl text-ink md:text-5xl">
+          <h2 className="display-heading mt-3 text-3xl text-wine/90 md:text-5xl">
             Craft Beer. Natural Wine. Artisan Pizza.
           </h2>
-          <p className="mx-auto mt-4 max-w-xl font-body text-ink/70">
+          <p className="mx-auto mt-4 max-w-xl font-body text-ink/75">
             Great pizza deserves great company. We pair our Roman-style pies with a
             thoughtfully chosen selection of craft beer and natural wine.
           </p>
