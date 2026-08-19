@@ -104,10 +104,10 @@ export default function BusinessLunchContent() {
       <section className="marble-light py-16 text-center md:py-20">
         <div className="mx-auto max-w-3xl px-6 md:px-10">
           <span className="eyebrow">Business Lunch in Berlin</span>
-          <h1 className="display-heading mt-3 text-4xl text-ink md:text-6xl">
+          <h1 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">
             Business Lunch for Teams in Friedrichshain, Berlin
           </h1>
-          <p className="mx-auto mt-4 max-w-xl font-body text-ink/70">
+          <p className="mx-auto mt-4 max-w-xl font-body text-ink/75">
             A quick, satisfying weekday lunch for nearby offices and teams, order ahead or drop
             in. Monday–Friday, 12:00–15:00.
           </p>
@@ -115,7 +115,7 @@ export default function BusinessLunchContent() {
       </section>
 
       <section className="marble-light pb-16 md:pb-20">
-        <div className="mx-auto max-w-3xl space-y-4 px-6 text-center font-body text-ink/70 md:px-10">
+        <div className="mx-auto max-w-3xl space-y-4 px-6 text-center font-body text-ink/75 md:px-10">
           <p>
             Skip the group-lunch debate. Instead of ten people arguing over delivery apps, one
             person sends us a headcount and we take it from there: slow-fermented Roman-style
@@ -143,7 +143,7 @@ export default function BusinessLunchContent() {
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <div className="mb-10 text-center">
             <span className="eyebrow">How It Works</span>
-            <h2 className="display-heading mt-3 text-3xl text-ink md:text-5xl">
+            <h2 className="display-heading mt-3 text-3xl text-wine/90 md:text-5xl">
               From Headcount to Table in Three Steps
             </h2>
           </div>

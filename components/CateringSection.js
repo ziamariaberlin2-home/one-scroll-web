@@ -13,10 +13,10 @@ export default function CateringSection() {
     <section id="catering" className="marble-light py-24 md:py-28">
       <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
         <span className="eyebrow">Catering in Berlin</span>
-        <h2 className="display-heading mt-3 text-4xl text-ink md:text-5xl">
+        <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-5xl">
           Roman-Style Pizza Catering and Private Events in Berlin
         </h2>
-        <div className="mx-auto mt-6 max-w-2xl space-y-4 font-body text-ink/70">
+        <div className="mx-auto mt-6 max-w-2xl space-y-4 font-body text-ink/75">
           <p>
             An aunt never shows up with just enough, she brings extra, always. That&rsquo;s the
             spirit behind our Berlin catering: generous, family-style Roman pizza for offices,

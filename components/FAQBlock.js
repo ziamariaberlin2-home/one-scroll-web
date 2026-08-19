@@ -21,8 +21,8 @@ export default function FAQBlock({ id = 'faq', eyebrow = 'Good to Know', heading
       <div className="mx-auto max-w-3xl px-6 md:px-10">
         <div className="mb-12 text-center">
           <span className="eyebrow">{eyebrow}</span>
-          <h2 className="display-heading mt-3 text-4xl text-ink md:text-5xl">{heading}</h2>
-          {description && <p className="mx-auto mt-4 font-body text-ink/70">{description}</p>}
+          <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-5xl">{heading}</h2>
+          {description && <p className="mx-auto mt-4 font-body text-ink/75">{description}</p>}
         </div>
 
         <div className="space-y-3">

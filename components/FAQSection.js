@@ -45,10 +45,10 @@ export default function FAQSection() {
       <div className="mx-auto max-w-3xl px-6 md:px-10">
         <div className="mb-12 text-center">
           <span className="eyebrow">Good to Know</span>
-          <h2 className="display-heading mt-3 text-4xl text-ink md:text-5xl">
+          <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-5xl">
             Frequently Asked Questions
           </h2>
-          <p className="mx-auto mt-4 font-body text-ink/70">
+          <p className="mx-auto mt-4 font-body text-ink/75">
             Catering, business lunch, and Roman-style pizza in Berlin, answered.
           </p>
         </div>

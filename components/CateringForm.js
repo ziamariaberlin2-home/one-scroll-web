@@ -121,10 +121,10 @@ export default function CateringForm() {
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div className="mx-auto mb-10 max-w-2xl text-center">
           <span className="eyebrow">Request a Quote</span>
-          <h2 className="display-heading mt-3 text-4xl text-ink md:text-5xl">
+          <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-5xl">
             Get a Catering or Private Event Quote in Berlin
           </h2>
-          <p className="mt-4 font-body text-ink/70">
+          <p className="mt-4 font-body text-ink/75">
             Tell us your date, headcount, and occasion, whether it&rsquo;s a catering order or a
             private celebration, and we&rsquo;ll send a custom quote.
           </p>
