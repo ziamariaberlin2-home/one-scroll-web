@@ -108,6 +108,18 @@ export default function CateringPage() {
             Generous, family-style Roman-style pizza for groups of any size, delivered across
             Berlin or picked up in Friedrichshain.
           </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="#catering-form" className="btn-pill-wine">Request a Quote</a>
+            <a href="#pizza-calculator" className="btn-pill-dark">🍕 Try the Pizza Calculator</a>
+            <a
+              href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-pill-dark"
+            >
+              Inquire on WhatsApp
+            </a>
+          </div>
         </div>
       </section>
 
@@ -115,7 +127,7 @@ export default function CateringPage() {
         <div className="mx-auto max-w-3xl space-y-4 px-6 text-center font-body text-ink/75 md:px-10">
           <p>
             An aunt never shows up with just enough, she brings extra, always. That&rsquo;s the
-            spirit behind our Berlin catering: slow-fermented Roman-style pizza, baked fresh and
+            spirit behind our Berlin catering: slow-rested Roman-style pizza, baked fresh and
             cut into trays that get passed around rather than portioned out, so a group actually
             eats together instead of everyone waiting on their own plate.
           </p>
@@ -140,7 +152,7 @@ export default function CateringPage() {
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <a href="#catering-form" className="btn-pill-wine">Request a Quote</a>
-          <a href="#pizza-calculator" className="btn-pill-sand">🍕 Try the Pizza Calculator</a>
+          <a href="#pizza-calculator" className="btn-pill-dark">🍕 Try the Pizza Calculator</a>
           <a
             href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
             target="_blank"
