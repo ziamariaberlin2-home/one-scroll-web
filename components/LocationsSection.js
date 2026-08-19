@@ -7,7 +7,7 @@ export default function LocationsSection() {
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="mb-14 text-center">
           <span className="eyebrow">Find Us</span>
-          <h2 className="display-heading mt-3 text-5xl text-ink md:text-7xl">Contact Us</h2>
+          <h2 className="display-heading mt-3 text-5xl text-wine/90 md:text-7xl">Contact Us</h2>
         </div>
 
         <div className="card-3d grid grid-cols-1 overflow-hidden rounded-3xl border border-ink/10 bg-white/50 md:grid-cols-2">

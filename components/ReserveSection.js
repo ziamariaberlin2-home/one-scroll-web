@@ -39,8 +39,8 @@ export default function ReserveSection() {
       <div className="mx-auto max-w-xl px-6 md:px-10">
         <div className="mb-10 text-center">
           <span className="eyebrow">Book a Table</span>
-          <h2 className="display-heading mt-3 text-4xl text-ink md:text-5xl">Reserve</h2>
-          <p className="mt-4 font-body text-ink/70">Book your spot in Friedrichshain.</p>
+          <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-5xl">Reserve</h2>
+          <p className="mt-4 font-body text-ink/75">Book your spot in Friedrichshain.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-ink/10 bg-white/50 p-6 md:p-8">

@@ -23,10 +23,10 @@ export default function WhyChoose() {
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="mb-14 text-center">
           <span className="eyebrow">Why Zia Maria</span>
-          <h2 className="display-heading mt-3 text-4xl text-ink md:text-6xl">
+          <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">
             Why Choose Zia Maria
           </h2>
-          <p className="mx-auto mt-4 max-w-xl font-body text-ink/70">
+          <p className="mx-auto mt-4 max-w-xl font-body text-ink/75">
             The best Roman-style pizza in Berlin, made the way it should be.
           </p>
         </div>

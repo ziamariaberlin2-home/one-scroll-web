@@ -50,7 +50,7 @@ export default function ReviewsSection() {
 
       <div className="relative mx-auto max-w-3xl px-6 text-center md:px-10">
         <span className="eyebrow">Loved in Friedrichshain</span>
-        <h2 className="display-heading mt-3 text-4xl text-ink md:text-6xl">What Berlin Says</h2>
+        <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">What Berlin Says</h2>
         <a
           href={GOOGLE_MAPS_URL}
           target="_blank"

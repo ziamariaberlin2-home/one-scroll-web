@@ -36,7 +36,7 @@ export default function Gallery() {
     <section id="gallery" className="marble-light overflow-hidden py-20 md:py-24">
       <div className="mx-auto mb-10 max-w-7xl px-6 text-center md:px-10">
         <span className="eyebrow">A Look Inside</span>
-        <h2 className="display-heading mt-3 text-3xl text-ink md:text-5xl">The Zia Maria Gallery</h2>
+        <h2 className="display-heading mt-3 text-3xl text-wine/90 md:text-5xl">The Zia Maria Gallery</h2>
       </div>
 
       <div className="gallery-marquee-viewport">

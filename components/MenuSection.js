@@ -21,8 +21,8 @@ export default function MenuSection({ hideHeader = false }) {
         {!hideHeader && (
           <div className="mb-12 text-center">
             <span className="eyebrow">Fresh, Every Day</span>
-            <h2 className="display-heading mt-3 text-4xl text-ink md:text-6xl">Our Menu</h2>
-            <p className="mx-auto mt-4 max-w-xl font-body text-ink/70">
+            <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">Our Menu</h2>
+            <p className="mx-auto mt-4 max-w-xl font-body text-ink/75">
               Pizza, salads, and a few things worth lingering over.
             </p>
           </div>
