@@ -16,7 +16,7 @@ export default function BlogPage() {
       <section className="marble-light py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
           <span className="eyebrow">Life at Zia Maria</span>
-          <h1 className="display-heading mt-3 text-4xl text-ink md:text-6xl">
+          <h1 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">
             Stories & Events in Friedrichshain, Berlin
           </h1>
         </div>
@@ -26,7 +26,7 @@ export default function BlogPage() {
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <div className="mb-10 text-center">
             <span className="eyebrow">From the Journal</span>
-            <h2 className="display-heading mt-3 text-3xl text-ink md:text-5xl">
+            <h2 className="display-heading mt-3 text-3xl text-wine/90 md:text-5xl">
               Notes on Roman Pizza and Life at Zia Maria
             </h2>
           </div>
@@ -53,7 +53,7 @@ export default function BlogPage() {
       <section className="marble-light pb-24 md:pb-32">
         <div className="mx-auto mb-12 max-w-4xl px-6 text-center md:px-10">
           <span className="eyebrow">Events</span>
-          <h2 className="display-heading mt-3 text-3xl text-ink md:text-5xl">
+          <h2 className="display-heading mt-3 text-3xl text-wine/90 md:text-5xl">
             What&rsquo;s Happening at Zia Maria
           </h2>
         </div>
@@ -75,8 +75,8 @@ export default function BlogPage() {
                   </svg>
                 )}
               </div>
-              <h2 className="display-heading mt-8 text-3xl text-ink md:text-4xl">{ev.title}</h2>
-              <p className="mt-4 font-body leading-relaxed text-ink/70">{ev.long}</p>
+              <h2 className="display-heading mt-8 text-3xl text-wine/90 md:text-4xl">{ev.title}</h2>
+              <p className="mt-4 font-body leading-relaxed text-ink/75">{ev.long}</p>
             </article>
           ))}
         </div>
