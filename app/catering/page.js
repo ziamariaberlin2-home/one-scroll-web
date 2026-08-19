@@ -1,6 +1,9 @@
+import Image from 'next/image';
 import CateringForm from '@/components/CateringForm';
 import EventsSection from '@/components/EventsSection';
 import FAQBlock from '@/components/FAQBlock';
+import ReviewsSection from '@/components/ReviewsSection';
+import PizzaCalculator from '@/components/PizzaCalculator';
 import { pageMetadata } from '@/lib/seo';
 import { basePath } from '@/lib/basePath';
 import { whatsappLink } from '@/lib/emailjs';
@@ -10,6 +13,31 @@ export const metadata = pageMetadata({
   description: 'Roman-style pizza catering across Berlin: office parties, birthdays, weddings, and private events of any size. Vegetarian and vegan options, delivery or pickup in Friedrichshain.',
   path: '/catering/',
 });
+
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Pizza Catering',
+  name: 'Zia Maria Pizza Catering',
+  description: 'Roman-style pizza catering for offices, weddings, birthdays, and private events across Berlin, delivered or picked up in Friedrichshain.',
+  areaServed: {
+    '@type': 'City',
+    name: 'Berlin',
+  },
+  provider: {
+    '@type': 'Restaurant',
+    name: 'Zia Maria',
+    telephone: '+49-176-27705583',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Neue Bahnhofstraße 32',
+      addressLocality: 'Berlin',
+      addressRegion: 'Friedrichshain',
+      postalCode: '10245',
+      addressCountry: 'DE',
+    },
+  },
+};
 
 const FEATURES = [
   'Family-style pizza trays, cut and ready to share',
@@ -56,8 +84,21 @@ const FAQS = [
 export default function CateringPage() {
   return (
     <main className="pt-32">
-      <section className="marble-light py-16 text-center md:py-20">
-        <div className="mx-auto max-w-3xl px-6 md:px-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <section className="relative overflow-hidden py-16 text-center md:py-20">
+        <div className="marble-light absolute inset-0" />
+        <Image
+          src={`${basePath}/images/gallery/food-4.jpg`}
+          alt=""
+          fill
+          className="object-cover opacity-35"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-cream/50" />
+        <div className="relative mx-auto max-w-3xl px-6 md:px-10">
           <span className="eyebrow">Catering in Berlin</span>
           <h1 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">
             Pizza Catering in Berlin for Offices, Weddings &amp; Private Events
@@ -109,10 +150,16 @@ export default function CateringPage() {
         </div>
 
         <p className="mx-auto mt-8 max-w-xl text-center text-sm text-ink/60">
-          Still unsure how much to order? Build your own catering order online in batches of five
-          per pizza style below, or send us a rough headcount and we&rsquo;ll help you land on the
-          right amount.
+          Still unsure how much to order? Try the pizza calculator below, build your own order in
+          batches of five per pizza style further down, or send us a rough headcount and
+          we&rsquo;ll help you land on the right amount.
         </p>
+      </section>
+
+      <section id="pizza-calculator" className="marble-light scroll-mt-24 pb-16 md:pb-20">
+        <div className="mx-auto px-6 md:px-10">
+          <PizzaCalculator />
+        </div>
       </section>
 
       <section className="marble-light pb-16 md:pb-20">
@@ -139,6 +186,8 @@ export default function CateringPage() {
         heading="Catering & Private Events We&rsquo;ve Hosted"
         description="A look at the office parties, weddings, and private celebrations we&rsquo;ve catered around Berlin."
       />
+
+      <ReviewsSection bgImage="gallery/team-5.jpg" />
 
       <section className="marble-light pb-24 md:pb-28">
         <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
