@@ -2,6 +2,61 @@ import { notFound } from 'next/navigation';
 import { blogPosts, getBlogPost } from '@/lib/blogData';
 import { pageMetadata } from '@/lib/seo';
 import { basePath } from '@/lib/basePath';
+import PizzaCalculator from '@/components/PizzaCalculator';
+
+function BlogBlock({ block }) {
+  switch (block.type) {
+    case 'h2':
+      return (
+        <h2 className="display-heading pt-4 text-2xl text-wine/90 md:text-3xl">{block.text}</h2>
+      );
+    case 'callout':
+      return (
+        <div className="rounded-2xl border border-dashed border-wine/40 bg-white/50 px-6 py-5 text-center">
+          <p className="display-heading text-2xl text-wine md:text-3xl">{block.title}</p>
+          {block.text && <p className="mt-1 text-sm text-ink/60">{block.text}</p>}
+        </div>
+      );
+    case 'table':
+      return (
+        <div className="overflow-hidden rounded-2xl border border-ink/10">
+          <table className="w-full text-center text-sm">
+            <thead>
+              <tr className="bg-ink text-cream">
+                {block.headers.map((h) => (
+                  <th key={h} className="px-4 py-3 font-mono text-xs uppercase tracking-widest">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, i) => (
+                <tr key={i} className={i % 2 === 0 ? 'bg-cream' : 'bg-white/60'}>
+                  {row.map((cell, j) => (
+                    <td key={j} className="px-4 py-2.5 text-ink/80">{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    case 'tips':
+      return (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {block.items.map((tip) => (
+            <div key={tip.title} className="card-3d rounded-xl border border-ink/10 bg-white/50 p-4 text-left">
+              <p className="font-display text-sm font-semibold text-ink">{tip.title}</p>
+              <p className="mt-1 text-sm text-ink/60">{tip.text}</p>
+            </div>
+          ))}
+        </div>
+      );
+    case 'calculator':
+      return <PizzaCalculator />;
+    default:
+      return <p>{block.text}</p>;
+  }
+}
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -61,15 +116,9 @@ export default function BlogPostPage({ params }) {
           </div>
 
           <div className="mx-auto mt-12 max-w-2xl space-y-5 font-body leading-relaxed text-ink/75">
-            {post.body.map((block, i) =>
-              block.type === 'h2' ? (
-                <h2 key={i} className="display-heading pt-4 text-2xl text-wine/90 md:text-3xl">
-                  {block.text}
-                </h2>
-              ) : (
-                <p key={i}>{block.text}</p>
-              )
-            )}
+            {post.body.map((block, i) => (
+              <BlogBlock key={i} block={block} />
+            ))}
           </div>
 
           <div className="mx-auto mt-14 max-w-2xl border-t border-ink/10 pt-8 text-center">
