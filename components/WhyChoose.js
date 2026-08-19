@@ -1,6 +1,6 @@
 const POINTS = [
   {
-    title: 'Slow-Fermented Roman Dough',
+    title: 'Slow-Rested Roman Dough',
     body: 'Our dough rests for days before it ever sees the oven, the secret to a light, crisp, authentic Roman-style base.',
   },
   {

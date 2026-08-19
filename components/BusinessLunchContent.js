@@ -133,7 +133,7 @@ export default function BusinessLunchContent() {
         <div className="mx-auto max-w-3xl space-y-4 px-6 text-center font-body text-ink/75 md:px-10">
           <p>
             Skip the group-lunch debate. Instead of ten people arguing over delivery apps, one
-            person sends us a headcount and we take it from there: slow-fermented Roman-style
+            person sends us a headcount and we take it from there: slow-rested Roman-style
             pizza, cut and set out family-style, so everyone eats at the same time without a long
             wait or a pile of separate orders.
           </p>

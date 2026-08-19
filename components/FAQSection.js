@@ -9,7 +9,7 @@ const FAQS = [
   },
   {
     q: 'What makes your pizza “Roman-style”?',
-    a: 'Roman-style pizza uses a slow-fermented dough that bakes into a thin, light, crisp base, different from a Neapolitan pie. It’s the same style you’ll find in the best pizzerias in Rome, made fresh daily here in Berlin.',
+    a: 'Roman-style pizza uses a dough that rests for days before it bakes into a thin, light, crisp base, different from a Neapolitan pie. It’s the same style you’ll find in the best pizzerias in Rome, made fresh daily here in Berlin.',
   },
   {
     q: 'Do you deliver business lunch to offices in Friedrichshain and beyond?',
