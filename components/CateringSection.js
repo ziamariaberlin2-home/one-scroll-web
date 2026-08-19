@@ -6,6 +6,7 @@ const FEATURES = [
   'Delivery across Berlin or pickup in Friedrichshain',
   'Private events, birthdays, and team celebrations',
   'On-site equipment and staffing, confirmed in writing',
+  'Fast turnaround for smaller orders',
 ];
 
 export default function CateringSection() {
