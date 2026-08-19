@@ -85,7 +85,7 @@ export default function Hero() {
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3 md:mt-8 md:gap-4">
               <a href={`${basePath}/order/`} className="btn-pill-wine">Order Now</a>
-              <a href="#catering" className="btn-pill-sand">Catering</a>
+              <a href="#catering" className="btn-pill-white">Catering</a>
             </div>
           </div>
         </motion.div>

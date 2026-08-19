@@ -18,7 +18,7 @@ function Stars() {
   );
 }
 
-export default function ReviewsSection() {
+export default function ReviewsSection({ bgImage = 'reviews-bg.jpg' }) {
   const total = reviews.length;
   const [index, setIndex] = useState(0);
 
@@ -39,13 +39,13 @@ export default function ReviewsSection() {
     <section id="reviews" className="marble-light relative overflow-hidden py-24 md:py-28">
       <div className="absolute inset-0">
         <Image
-          src={`${basePath}/images/reviews-bg.jpg`}
+          src={`${basePath}/images/${bgImage}`}
           alt=""
           fill
-          className="object-cover opacity-15"
+          className="object-cover opacity-30"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-cream/85" />
+        <div className="absolute inset-0 bg-cream/55" />
       </div>
 
       <div className="relative mx-auto max-w-3xl px-6 text-center md:px-10">

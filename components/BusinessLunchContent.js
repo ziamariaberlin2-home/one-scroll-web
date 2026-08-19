@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { sendEnquiry, EMAILJS_HOST_TEMPLATE } from '@/lib/emailjs';
 import { Field, Select, TextArea } from '@/components/FormField';
 import EventsSection from '@/components/EventsSection';
 import FAQBlock from '@/components/FAQBlock';
+import ReviewsSection from '@/components/ReviewsSection';
+import { basePath } from '@/lib/basePath';
 
 const PERKS = [
   'One-time and recurring orders',
@@ -101,8 +104,17 @@ export default function BusinessLunchContent() {
 
   return (
     <>
-      <section className="marble-light py-16 text-center md:py-20">
-        <div className="mx-auto max-w-3xl px-6 md:px-10">
+      <section className="relative overflow-hidden py-16 text-center md:py-20">
+        <div className="marble-light absolute inset-0" />
+        <Image
+          src={`${basePath}/images/gallery/team-3.jpg`}
+          alt=""
+          fill
+          className="object-cover opacity-35"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-cream/50" />
+        <div className="relative mx-auto max-w-3xl px-6 md:px-10">
           <span className="eyebrow">Business Lunch in Berlin</span>
           <h1 className="display-heading mt-3 text-4xl text-wine/90 md:text-6xl">
             Business Lunch for Teams in Friedrichshain, Berlin
@@ -111,6 +123,9 @@ export default function BusinessLunchContent() {
             A quick, satisfying weekday lunch for nearby offices and teams, order ahead or drop
             in. Monday–Friday, 12:00–15:00.
           </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <a href="#lunch-form" className="btn-pill-wine">Request Business Lunch</a>
+          </div>
         </div>
       </section>
 
@@ -159,7 +174,7 @@ export default function BusinessLunchContent() {
         </div>
       </section>
 
-      <section className="marble-light pb-24 md:pb-28">
+      <section id="lunch-form" className="marble-light scroll-mt-24 pb-24 md:pb-28">
         <div className="mx-auto max-w-7xl px-6 text-center md:px-10">
           <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
             {SETS.map((set) => (
@@ -206,6 +221,8 @@ export default function BusinessLunchContent() {
         heading="Business Lunches Berlin Teams Love"
         description="A look at the standing orders and office lunches we&rsquo;ve built with teams around Friedrichshain."
       />
+
+      <ReviewsSection bgImage="gallery/food-1.jpg" />
 
       <FAQBlock
         id="business-lunch-faq"

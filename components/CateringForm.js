@@ -3,7 +3,9 @@
 import { useMemo, useState } from 'react';
 import { sendEnquiry, EMAILJS_HOST_TEMPLATE } from '@/lib/emailjs';
 import { Field, Select, TextArea } from '@/components/FormField';
+import PizzaIcon from '@/components/PizzaIcon';
 import { menuData } from '@/lib/menuData';
+import { basePath } from '@/lib/basePath';
 
 const ENQUIRY_TYPES = ['Catering', 'Private Event / Celebration', 'Birthday', 'Corporate Dinner', 'Team Event', 'Other'];
 const STEP = 5;
@@ -128,6 +130,15 @@ export default function CateringForm() {
             Tell us your date, headcount, and occasion, whether it&rsquo;s a catering order or a
             private celebration, and we&rsquo;ll send a custom quote.
           </p>
+          <a
+            href={`${basePath}/blog/how-much-pizza-per-person-to-order/`}
+            className="card-3d mt-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-5 py-2.5 text-sm text-ink/75 transition-colors hover:border-wine/40"
+          >
+            <span>
+              Not sure how many <PizzaIcon /> you need? Explore our{' '}
+              <span className="font-semibold text-wine-dark">pizza calculator</span>
+            </span>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">

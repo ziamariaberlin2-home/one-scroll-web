@@ -12,8 +12,9 @@ const LINKS = [
   { href: `${basePath}/business-lunch/`, label: 'Business Lunch' },
   { href: `${basePath}/our-story/`, label: 'Our Story' },
   { href: `${basePath}/blog/`, label: 'Blog' },
-  { href: `${basePath}/#visit`, label: 'Contact Us' },
 ];
+
+const CONTACT_LINK = { href: `${basePath}/#visit`, label: 'Contact Us' };
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -55,6 +56,9 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
+          <a href={CONTACT_LINK.href} className="btn-pill-dark">
+            {CONTACT_LINK.label}
+          </a>
           <a href={`${basePath}/order/`} className="btn-pill-wine relative">
             Order Now
             {count > 0 && (
@@ -89,6 +93,13 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
+          <a
+            href={CONTACT_LINK.href}
+            onClick={() => setOpen(false)}
+            className="btn-pill-dark mt-2 w-full"
+          >
+            {CONTACT_LINK.label}
+          </a>
           <a
             href={`${basePath}/order/`}
             onClick={() => setOpen(false)}
