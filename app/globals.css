@@ -75,6 +75,10 @@ body {
   @apply btn-pill border-sand bg-sand text-ink hover:bg-cream hover:border-cream;
 }
 
+.btn-pill-white {
+  @apply btn-pill border-white bg-white text-wine font-semibold hover:bg-wine hover:border-wine hover:text-white;
+}
+
 /* Sitewide "lifted" 3D card treatment: layered depth shadow, subtle hover
    tilt/lift. Works on any rounded bordered card without changing layout. */
 .card-3d {

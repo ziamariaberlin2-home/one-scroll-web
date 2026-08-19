@@ -80,6 +80,11 @@ const jsonLd = {
   ],
   sameAs: ['https://www.instagram.com/ziamaria.fhain/'],
   hasMenu: buildMenuJsonLd(),
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    reviewCount: '1229',
+  },
 };
 
 export default function RootLayout({ children }) {
