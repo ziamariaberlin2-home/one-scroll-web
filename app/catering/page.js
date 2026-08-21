@@ -18,24 +18,27 @@ const serviceJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   serviceType: 'Pizza Catering',
-  name: 'Zia Maria Pizza Catering',
-  description: 'Roman-style pizza catering for offices, weddings, birthdays, and private events across Berlin, delivered or picked up in Friedrichshain.',
+  name: 'Pizza Catering Berlin for Offices, Weddings & Private Events',
+  description: 'Roman-style pizza catering across Berlin: office parties, birthdays, weddings, and private events of any size. Vegetarian and vegan options, delivery or pickup in Friedrichshain.',
+  url: 'https://www.ziamariaberlin.com/catering/',
   areaServed: {
     '@type': 'City',
     name: 'Berlin',
   },
   provider: {
     '@type': 'Restaurant',
+    '@id': 'https://www.ziamariaberlin.com/#restaurant',
     name: 'Zia Maria',
-    telephone: '+49-176-27705583',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Neue Bahnhofstraße 32',
-      addressLocality: 'Berlin',
-      addressRegion: 'Friedrichshain',
-      postalCode: '10245',
-      addressCountry: 'DE',
-    },
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Catering Packages',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Office Parties & Corporate Events' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Weddings & Engagements' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Birthdays & Private Celebrations' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Team Lunches & Standing Orders' } },
+    ],
   },
 };
 
@@ -85,6 +88,8 @@ const FAQS = [
 export default function CateringPage() {
   return (
     <main className="pt-32">
+      {/* FAQPage schema for the FAQS below is generated automatically by
+          FAQBlock from this same array, so it's not duplicated here. */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
