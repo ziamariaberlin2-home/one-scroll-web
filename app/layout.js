@@ -58,13 +58,17 @@ const websiteJsonLd = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
+  '@id': 'https://www.ziamariaberlin.com/#restaurant',
   name: 'Zia Maria',
   description: 'Fresh Roman-style pizza in the heart of Friedrichshain, Berlin. Catering, business lunch, and private events.',
   servesCuisine: ['Italian', 'Roman Pizza', 'Pizza'],
   image: 'https://www.ziamariaberlin.com/images/home.jpg',
+  logo: 'https://www.ziamariaberlin.com/images/zia-maria-logo.png',
   url: 'https://www.ziamariaberlin.com/',
   telephone: '+49-176-27705583',
+  email: 'bringteamtogether@ziamariaberlin.com',
   priceRange: '€€',
+  acceptsReservations: true,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Neue Bahnhofstraße 32',
@@ -78,12 +82,17 @@ const jsonLd = {
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Thursday', 'Friday', 'Saturday'], opens: '12:00', closes: '23:00' },
     { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Sunday', opens: '12:00', closes: '22:00' },
   ],
-  sameAs: ['https://www.instagram.com/ziamaria.fhain/'],
+  menu: 'https://www.ziamariaberlin.com/menu/',
+  sameAs: [
+    'https://www.instagram.com/ziamaria.fhain/',
+    'https://www.google.com/maps/place/Pizza+Zia+Maria+-+pizzeria/',
+  ],
   hasMenu: buildMenuJsonLd(),
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.8',
     reviewCount: '1229',
+    bestRating: '5',
   },
 };
 
