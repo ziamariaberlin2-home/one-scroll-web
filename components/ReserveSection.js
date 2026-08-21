@@ -38,9 +38,12 @@ export default function ReserveSection() {
     <section id="reserve" className="marble-light py-24 md:py-28">
       <div className="mx-auto max-w-xl px-6 md:px-10">
         <div className="mb-10 text-center">
-          <span className="eyebrow">Book a Table</span>
-          <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-5xl">Reserve</h2>
-          <p className="mt-4 font-body text-ink/75">Book your spot in Friedrichshain.</p>
+          <span className="eyebrow">Reserve</span>
+          <h2 className="display-heading mt-3 text-4xl text-wine/90 md:text-5xl">Events &amp; Parties</h2>
+          <p className="mx-auto mt-4 max-w-lg font-body text-ink/75">
+            Are you planning an event or party at Zia Maria? For small or large groups, we send
+            you our offer via this form, book now to get a special discount.
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-ink/10 bg-white/50 p-6 md:p-8">

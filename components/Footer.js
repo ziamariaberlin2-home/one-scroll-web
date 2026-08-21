@@ -17,9 +17,36 @@ export default function Footer() {
   const clipRight = useTransform(scrollYProgress, [0, 1], [100, 0]);
   const clipPath = useTransform(clipRight, (v) => `inset(0% ${v}% 0% 0%)`);
 
+  // Every crawlable page on the site, for the visible HTML sitemap block below —
+  // kept in the same order as the main nav, plus the pages nav doesn't list directly.
+  const SITEMAP_LINKS = [
+    { href: `${basePath}/`, label: 'Home' },
+    { href: `${basePath}/menu/`, label: 'Ordering & Menu' },
+    { href: `${basePath}/catering/`, label: 'Catering' },
+    { href: `${basePath}/business-lunch/`, label: 'Business Lunch' },
+    { href: `${basePath}/our-story/`, label: 'Our Story' },
+    { href: `${basePath}/blog/`, label: 'Blog' },
+    { href: `${basePath}/order/`, label: 'Order Online' },
+    { href: `${basePath}/#reserve`, label: 'Reserve a Table' },
+    { href: `${basePath}/#visit`, label: 'Contact Us' },
+  ];
+
+  const linkClass =
+    'text-base font-medium text-ink/85 transition-colors hover:text-wine-dark hover:underline underline-offset-4';
+
   return (
-    <footer className="marble-light border-t border-ink/10 pb-14 pt-16 text-ink/70">
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
+    <footer className="relative overflow-hidden border-t border-ink/10 pb-14 pt-16 text-ink/70">
+      <div className="marble-light absolute inset-0" />
+      <Image
+        src={`${basePath}/images/gallery/food-5.jpg`}
+        alt=""
+        fill
+        className="object-cover opacity-30"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-cream/60" />
+
+      <div className="relative mx-auto max-w-7xl px-6 md:px-10">
         <div className="flex justify-center border-b border-ink/10 pb-12 md:pb-16">
           <motion.div ref={logoRef} className="w-[min(85vw,560px)] overflow-hidden" style={{ clipPath }}>
             <Image
@@ -49,22 +76,23 @@ export default function Footer() {
 
           <div>
             <h4 className="font-mono text-xs uppercase tracking-widest text-ink">Explore</h4>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li><a href={`${basePath}/our-story/`} className="hover:text-wine-dark">Our Story</a></li>
-              <li><a href={`${basePath}/menu/`} className="hover:text-wine-dark">Menu</a></li>
-              <li><a href={`${basePath}/catering/`} className="hover:text-wine-dark">Catering</a></li>
-              <li><a href={`${basePath}/business-lunch/`} className="hover:text-wine-dark">Business Lunch</a></li>
-              <li><a href={`${basePath}/blog/`} className="hover:text-wine-dark">Blog and Events</a></li>
+            <ul className="mt-4 space-y-2.5">
+              <li><a href={`${basePath}/`} className={linkClass}>Home</a></li>
+              <li><a href={`${basePath}/menu/`} className={linkClass}>Ordering &amp; Menu</a></li>
+              <li><a href={`${basePath}/catering/`} className={linkClass}>Catering</a></li>
+              <li><a href={`${basePath}/business-lunch/`} className={linkClass}>Business Lunch</a></li>
+              <li><a href={`${basePath}/our-story/`} className={linkClass}>Our Story</a></li>
+              <li><a href={`${basePath}/blog/`} className={linkClass}>Blog</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-mono text-xs uppercase tracking-widest text-ink">Visit</h4>
             <p className="mt-4 text-sm">Neue Bahnhofstraße 32,<br />10245 Berlin, Friedrichshain</p>
-            <a href="https://wa.me/4917627705583" target="_blank" rel="noopener noreferrer" className="mt-2 block text-sm hover:text-wine-dark">
+            <a href="https://wa.me/4917627705583" target="_blank" rel="noopener noreferrer" className={`mt-3 block ${linkClass}`}>
               Chat on WhatsApp
             </a>
-            <a href="mailto:bringteamtogether@ziamariaberlin.com" className="mt-1 block text-sm hover:text-wine-dark">
+            <a href="mailto:bringteamtogether@ziamariaberlin.com" className={`mt-2 block ${linkClass}`}>
               bringteamtogether@ziamariaberlin.com
             </a>
           </div>
@@ -78,7 +106,18 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-ink/10 pt-6 text-center text-xs text-ink/40 md:flex-row md:text-left">
+        <div className="mt-12 border-t border-ink/10 pt-8">
+          <h4 className="font-mono text-xs uppercase tracking-widest text-ink">Sitemap</h4>
+          <nav aria-label="Sitemap" className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+            {SITEMAP_LINKS.map((l) => (
+              <a key={l.label} href={l.href} className={linkClass}>
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-ink/10 pt-6 text-center text-xs text-ink/40 md:flex-row md:text-left">
           <span>&copy; {new Date().getFullYear()} Zia Maria Berlin.</span>
           <div className="flex items-center gap-4">
             <a href={`${basePath}/imprint.pdf`} className="hover:text-wine-dark">Imprint</a>

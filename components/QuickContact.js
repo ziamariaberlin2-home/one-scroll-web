@@ -8,10 +8,11 @@ export default function QuickContact() {
   const [message, setMessage] = useState('');
 
   function send(via) {
-    const msg = message.trim() || "Hi Zia Maria, I'd like to get in touch.";
     if (via === 'whatsapp') {
+      const msg = message.trim() || 'I want to avail 10% off on my first order';
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
     } else {
+      const msg = message.trim() || "Hi Zia Maria, I'd like to get in touch.";
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Website Enquiry')}&body=${encodeURIComponent(msg)}`;
     }
   }
@@ -53,7 +54,7 @@ export default function QuickContact() {
       >
         <span className="absolute -left-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-cream bg-sand animate-ping" />
         <span className="absolute -left-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-cream bg-sand" />
-        Ask Us
+        Get 10% off on your first order
       </button>
     </div>
   );
