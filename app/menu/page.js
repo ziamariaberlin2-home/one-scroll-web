@@ -1,5 +1,6 @@
 import MenuSection from '@/components/MenuSection';
 import { pageMetadata } from '@/lib/seo';
+import { basePath } from '@/lib/basePath';
 
 export const metadata = pageMetadata({
   title: 'Menu, Roman Pizza in Friedrichshain, Berlin',
@@ -24,6 +25,9 @@ export default function MenuPage() {
             All pizza is priced per slice. Salads and desserts are priced per portion. Drinks are
             priced individually.
           </p>
+          <div className="mt-6 flex justify-center">
+            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-olive">Host an Event With Us</a>
+          </div>
         </div>
       </section>
 
