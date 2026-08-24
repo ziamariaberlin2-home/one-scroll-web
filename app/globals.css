@@ -79,6 +79,32 @@ body {
   @apply btn-pill border-white bg-white text-wine font-semibold hover:bg-wine hover:border-wine hover:text-white;
 }
 
+.btn-pill-olive {
+  @apply btn-pill border-olive bg-olive text-white font-semibold hover:bg-olive/85 hover:border-olive/85;
+}
+
+/* Thin olive accent line that grows in from the left on hover/active, used on
+   catering feature cards and menu item cards alongside .card-3d. */
+.hover-line-olive {
+  position: relative;
+  overflow: hidden;
+}
+.hover-line-olive::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #5B6E3F;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.hover-line-olive:hover::after {
+  transform: scaleX(1);
+}
+
 /* Sitewide "lifted" 3D card treatment: layered depth shadow, subtle hover
    tilt/lift. Works on any rounded bordered card without changing layout. */
 .card-3d {

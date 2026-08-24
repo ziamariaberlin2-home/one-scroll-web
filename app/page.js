@@ -23,6 +23,9 @@ export default function Home() {
       <WhyChoose />
       <EventsSection />
       <FAQSection />
+      <section className="marble-light pb-4 text-center">
+        <a href="#catering-form" className="btn-pill-olive">Planning an Event? Get a Quote</a>
+      </section>
       <CateringForm />
       <ReserveSection />
       <LocationsSection />
