@@ -23,6 +23,10 @@ module.exports = {
         },
         sand: '#F2704B', // Secondary light red
         accent: '#DC2626', // Accent
+        olive: {
+          DEFAULT: '#5B6E3F', // Secondary/browsing accent, WCAG AA on white text
+          light: '#E8ECDD', // Card background / hover fill tint
+        },
       },
       fontFamily: {
         display: ['Dosis', 'sans-serif'],
