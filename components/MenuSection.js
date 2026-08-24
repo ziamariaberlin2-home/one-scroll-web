@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { menuData, menuCategories } from '@/lib/menuData';
+import { menuData, menuCategories, categoryIcons } from '@/lib/menuData';
 import { useCart } from '@/lib/cart';
 
 export default function MenuSection({ hideHeader = false }) {
@@ -34,12 +34,13 @@ export default function MenuSection({ hideHeader = false }) {
               key={cat}
               type="button"
               onClick={() => setActive(cat)}
-              className={`rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
+              className={`flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
                 active === cat
-                  ? 'border-wine bg-wine text-white font-semibold'
-                  : 'border-wine/25 bg-cream-dark text-wine-dark hover:border-wine hover:bg-wine hover:text-white'
+                  ? 'border-olive bg-olive text-white font-semibold'
+                  : 'border-olive/25 bg-cream-dark text-wine-dark hover:border-olive hover:bg-olive hover:text-white'
               }`}
             >
+              <span aria-hidden="true">{categoryIcons[cat]}</span>
               {cat}
             </button>
           ))}
@@ -51,7 +52,7 @@ export default function MenuSection({ hideHeader = false }) {
             return (
               <div
                 key={item.name + item.category}
-                className="card-3d flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40"
+                className="card-3d hover-line-olive flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40 transition-colors hover:border-olive/30"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={item.image} alt={item.name} loading="lazy" className="h-44 w-full object-cover" />

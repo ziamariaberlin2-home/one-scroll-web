@@ -1,12 +1,12 @@
 import { whatsappLink } from '@/lib/emailjs';
 
 const FEATURES = [
-  'Family-style pizza trays',
-  'Vegetarian and vegan options',
-  'Delivery across Berlin or pickup in Friedrichshain',
-  'Private events, birthdays, and team celebrations',
-  'On-site equipment and staffing, confirmed in writing',
-  'Fast turnaround for smaller orders',
+  { text: 'Family-style pizza trays', icon: '🍕' },
+  { text: 'Vegetarian and vegan options', icon: '🌱' },
+  { text: 'Delivery across Berlin or pickup in Friedrichshain', icon: '🚚' },
+  { text: 'Private events, birthdays, and team celebrations', icon: '🎉' },
+  { text: 'On-site equipment and staffing, confirmed in writing', icon: '📋' },
+  { text: 'Fast turnaround for smaller orders', icon: '⚡' },
 ];
 
 export default function CateringSection() {
@@ -33,7 +33,18 @@ export default function CateringSection() {
 
         <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 text-sm text-ink/70 sm:grid-cols-2">
           {FEATURES.map((f) => (
-            <li key={f} className="card-3d rounded-xl border border-ink/10 p-4">{f}</li>
+            <li
+              key={f.text}
+              className="card-3d hover-line-olive flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-olive/30"
+            >
+              <span
+                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-olive-light text-lg"
+                aria-hidden="true"
+              >
+                {f.icon}
+              </span>
+              <span>{f.text}</span>
+            </li>
           ))}
         </ul>
 

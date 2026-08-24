@@ -28,7 +28,8 @@ export default function QuickContact() {
             </button>
           </div>
           <p className="mb-3 text-xs text-ink/60">
-            Reservations, catering, business lunch, events, write it below and pick how to send it.
+            Reservations, catering, business lunch, events — write it below and get 10% off your
+            first order.
           </p>
           <textarea
             value={message}
@@ -54,7 +55,7 @@ export default function QuickContact() {
       >
         <span className="absolute -left-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-cream bg-sand animate-ping" />
         <span className="absolute -left-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-cream bg-sand" />
-        Get 10% off on your first order
+        Get 10% Off on Your First Order
       </button>
     </div>
   );

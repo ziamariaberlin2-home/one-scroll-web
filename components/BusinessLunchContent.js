@@ -125,6 +125,7 @@ export default function BusinessLunchContent() {
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <a href="#lunch-form" className="btn-pill-wine">Request Business Lunch</a>
+            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-olive">Book Your Office Event</a>
           </div>
         </div>
       </section>
@@ -190,6 +191,10 @@ export default function BusinessLunchContent() {
           <p className="mt-4 font-mono text-xs uppercase tracking-widest text-ink/40">
             Sample pricing, ask about your team&rsquo;s standing order
           </p>
+
+          <div className="mt-6 flex justify-center">
+            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-olive">Plan Your Office Event</a>
+          </div>
 
           <div className="mt-12">
             <form onSubmit={handleSubmit} className="mx-auto max-w-xl space-y-4 rounded-3xl border border-ink/10 bg-white/50 p-6 text-left md:p-8">
