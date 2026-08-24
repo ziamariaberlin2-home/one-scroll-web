@@ -43,12 +43,12 @@ const serviceJsonLd = {
 };
 
 const FEATURES = [
-  'Family-style pizza trays, cut and ready to share',
-  'Vegetarian and vegan options on every order',
-  'Delivery across Berlin or pickup in Friedrichshain',
-  'Custom quotes based on headcount, date, and budget',
-  'On-site equipment and staffing, confirmed in writing ahead of your event',
-  'Fast turnaround, some orders ready within 24–48 hours',
+  { text: 'Family-style pizza trays, cut and ready to share', icon: '🍕' },
+  { text: 'Vegetarian and vegan options on every order', icon: '🌱' },
+  { text: 'Delivery across Berlin or pickup in Friedrichshain', icon: '🚚' },
+  { text: 'Custom quotes based on headcount, date, and budget', icon: '📝' },
+  { text: 'On-site equipment and staffing, confirmed in writing ahead of your event', icon: '📋' },
+  { text: 'Fast turnaround, some orders ready within 24–48 hours', icon: '⚡' },
 ];
 
 const OCCASIONS = [
@@ -151,7 +151,18 @@ export default function CateringPage() {
 
         <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
           {FEATURES.map((f) => (
-            <li key={f} className="card-3d rounded-xl border border-ink/10 p-4 text-center">{f}</li>
+            <li
+              key={f.text}
+              className="card-3d hover-line-olive flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-olive/30"
+            >
+              <span
+                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-olive-light text-lg"
+                aria-hidden="true"
+              >
+                {f.icon}
+              </span>
+              <span>{f.text}</span>
+            </li>
           ))}
         </ul>
 
