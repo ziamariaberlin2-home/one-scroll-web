@@ -1,12 +1,14 @@
 import { whatsappLink } from '@/lib/emailjs';
+import { FEATURE_ICONS } from '@/lib/icons';
+import IconChip from '@/components/IconBadge';
 
 const FEATURES = [
-  { text: 'Family-style pizza trays', icon: '🍕' },
-  { text: 'Vegetarian and vegan options', icon: '🌱' },
-  { text: 'Delivery across Berlin or pickup in Friedrichshain', icon: '🚚' },
-  { text: 'Private events, birthdays, and team celebrations', icon: '🎉' },
-  { text: 'On-site equipment and staffing, confirmed in writing', icon: '📋' },
-  { text: 'Fast turnaround for smaller orders', icon: '⚡' },
+  { text: 'Family-style pizza trays', icon: 'pizza' },
+  { text: 'Vegetarian and vegan options', icon: 'vegan' },
+  { text: 'Delivery across Berlin or pickup in Friedrichshain', icon: 'delivery' },
+  { text: 'Private events, birthdays, and team celebrations', icon: 'celebration' },
+  { text: 'On-site equipment and staffing, confirmed in writing', icon: 'staffing' },
+  { text: 'Fast turnaround for smaller orders', icon: 'fast' },
 ];
 
 export default function CateringSection() {
@@ -32,20 +34,18 @@ export default function CateringSection() {
         </div>
 
         <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 text-sm text-ink/70 sm:grid-cols-2">
-          {FEATURES.map((f) => (
-            <li
-              key={f.text}
-              className="card-3d hover-line-olive flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-olive/30"
-            >
-              <span
-                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-olive-light text-lg"
-                aria-hidden="true"
+          {FEATURES.map((f) => {
+            const { Icon, color } = FEATURE_ICONS[f.icon];
+            return (
+              <li
+                key={f.text}
+                className="card-3d card-pop hover-line-olive group flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-olive/30"
               >
-                {f.icon}
-              </span>
-              <span>{f.text}</span>
-            </li>
-          ))}
+                <IconChip icon={Icon} color={color} />
+                <span>{f.text}</span>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

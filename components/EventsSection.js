@@ -23,7 +23,7 @@ export default function EventsSection({
             <a
               key={ev.slug}
               href={`${basePath}/blog/#${ev.slug}`}
-              className="card-3d group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50"
+              className="card-3d card-pop group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/50 transition-colors"
             >
               <div className="relative flex h-48 items-end overflow-hidden bg-gradient-to-br from-wine/15 via-cream to-sand/25">
                 {ev.image ? (
@@ -31,7 +31,7 @@ export default function EventsSection({
                     src={`${basePath}/images/${ev.image}`}
                     alt={ev.title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 ) : (

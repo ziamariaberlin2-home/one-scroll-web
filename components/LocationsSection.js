@@ -10,7 +10,7 @@ export default function LocationsSection() {
           <h2 className="display-heading mt-3 text-5xl text-wine/90 md:text-7xl">Contact Us</h2>
         </div>
 
-        <div className="card-3d grid grid-cols-1 overflow-hidden rounded-3xl border border-ink/10 bg-white/50 md:grid-cols-2">
+        <div className="card-3d card-pop grid grid-cols-1 overflow-hidden rounded-3xl border border-ink/10 bg-white/50 transition-colors md:grid-cols-2">
           <div className="p-8 md:p-10">
             <h3 className="font-display text-2xl font-semibold text-ink">Zia Maria</h3>
             <p className="mt-3 text-ink/70">

@@ -8,18 +8,20 @@ import EventsSection from '@/components/EventsSection';
 import FAQBlock from '@/components/FAQBlock';
 import ReviewsSection from '@/components/ReviewsSection';
 import { basePath } from '@/lib/basePath';
+import { BIZ_ICONS } from '@/lib/icons';
+import IconChip from '@/components/IconBadge';
 
 const PERKS = [
-  'One-time and recurring orders',
-  'Delivery across Berlin',
-  'Simple company invoice',
-  'Vegetarian and vegan options',
+  { text: 'One-time and recurring orders', icon: 'recurring' },
+  { text: 'Delivery across Berlin', icon: 'delivery' },
+  { text: 'Simple company invoice', icon: 'invoice' },
+  { text: 'Vegetarian and vegan options', icon: 'vegan' },
 ];
 
 const SETS = [
-  { name: 'Classic Set', items: ['Pizza Margherita', 'Garlic olive oil', 'Still or sparkling water'], price: '€9.50' },
-  { name: 'Green Set', items: ['Insalata Mista', 'Pizza Spinaci', 'Still or sparkling water'], price: '€12.50' },
-  { name: 'Hearty Set', items: ['Pizza Piccantina', 'Insalata Mista (small)', 'Soft drink or water'], price: '€13.50' },
+  { name: 'Classic Set', items: ['Pizza Margherita', 'Garlic olive oil', 'Still or sparkling water'], price: '€9.50', icon: 'classic' },
+  { name: 'Green Set', items: ['Insalata Mista', 'Pizza Spinaci', 'Still or sparkling water'], price: '€12.50', icon: 'green' },
+  { name: 'Hearty Set', items: ['Pizza Piccantina', 'Insalata Mista (small)', 'Soft drink or water'], price: '€13.50', icon: 'hearty' },
 ];
 
 const HOW_IT_WORKS = [
@@ -27,16 +29,19 @@ const HOW_IT_WORKS = [
     step: '01',
     title: 'Tell us your headcount',
     body: 'Send us your team size, preferred day and time, and any dietary notes, one-off or a standing weekly order, whatever works for your office.',
+    icon: 'headcount',
   },
   {
     step: '02',
     title: 'We build your set',
     body: 'We put together a mix of Roman-style pizza, salad, and drinks sized for your group, including vegetarian and vegan options where needed.',
+    icon: 'build',
   },
   {
     step: '03',
     title: 'Delivered or ready for pickup',
     body: 'Your order arrives hot and on time, or is ready to collect from Friedrichshain, so your team is back at their desks without the wait.',
+    icon: 'deliver',
   },
 ];
 
@@ -149,9 +154,18 @@ export default function BusinessLunchContent() {
         </div>
 
         <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
-          {PERKS.map((f) => (
-            <li key={f} className="card-3d rounded-xl border border-ink/10 p-4 text-center">{f}</li>
-          ))}
+          {PERKS.map((f) => {
+            const { Icon, color } = BIZ_ICONS[f.icon];
+            return (
+              <li
+                key={f.text}
+                className="card-3d card-pop hover-line-olive group flex flex-col items-center gap-2 rounded-xl border border-ink/10 bg-white/40 p-4 text-center transition-colors hover:border-olive/30"
+              >
+                <IconChip icon={Icon} color={color} />
+                {f.text}
+              </li>
+            );
+          })}
         </ul>
       </section>
 
@@ -164,13 +178,19 @@ export default function BusinessLunchContent() {
             </h2>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {HOW_IT_WORKS.map((s) => (
-              <div key={s.step} className="card-3d rounded-2xl border border-ink/10 bg-white/50 p-6 text-left">
-                <span className="font-mono text-xs uppercase tracking-widest text-wine-dark">Step {s.step}</span>
-                <h3 className="mt-2 font-display text-lg font-semibold text-ink">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.body}</p>
-              </div>
-            ))}
+            {HOW_IT_WORKS.map((s) => {
+              const { Icon, color } = BIZ_ICONS[s.icon];
+              return (
+                <div key={s.step} className="card-3d card-pop hover-line-olive group rounded-2xl border border-ink/10 bg-white/50 p-6 text-left transition-colors hover:border-olive/30">
+                  <div className="flex items-center justify-between">
+                    <IconChip icon={Icon} color={color} size="lg" />
+                    <span className="font-mono text-xs uppercase tracking-widest text-wine-dark">Step {s.step}</span>
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-semibold text-ink">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.body}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -178,15 +198,19 @@ export default function BusinessLunchContent() {
       <section id="lunch-form" className="marble-light scroll-mt-24 pb-24 md:pb-28">
         <div className="mx-auto max-w-7xl px-6 text-center md:px-10">
           <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
-            {SETS.map((set) => (
-              <div key={set.name} className="card-3d rounded-2xl border border-ink/10 bg-white/50 p-6 text-left">
-                <h3 className="font-display text-xl font-semibold text-ink">{set.name}</h3>
-                <ul className="mt-3 space-y-1 text-sm text-ink/60">
-                  {set.items.map((i) => <li key={i}>&middot; {i}</li>)}
-                </ul>
-                <span className="mt-4 block font-display text-lg font-semibold text-wine-dark">{set.price}</span>
-              </div>
-            ))}
+            {SETS.map((set) => {
+              const { Icon, color } = BIZ_ICONS[set.icon];
+              return (
+                <div key={set.name} className="card-3d card-pop hover-line-olive group rounded-2xl border border-ink/10 bg-white/50 p-6 text-left transition-colors hover:border-olive/30">
+                  <IconChip icon={Icon} color={color} size="lg" />
+                  <h3 className="mt-4 font-display text-xl font-semibold text-ink">{set.name}</h3>
+                  <ul className="mt-3 space-y-1 text-sm text-ink/60">
+                    {set.items.map((i) => <li key={i}>&middot; {i}</li>)}
+                  </ul>
+                  <span className="mt-4 block font-display text-lg font-semibold text-wine-dark">{set.price}</span>
+                </div>
+              );
+            })}
           </div>
           <p className="mt-4 font-mono text-xs uppercase tracking-widest text-ink/40">
             Sample pricing, ask about your team&rsquo;s standing order

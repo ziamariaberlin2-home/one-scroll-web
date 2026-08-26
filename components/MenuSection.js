@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { menuData, menuCategories, categoryIcons } from '@/lib/menuData';
+import { menuData, menuCategories } from '@/lib/menuData';
 import { useCart } from '@/lib/cart';
+import { CATEGORY_ICONS } from '@/lib/icons';
+import IconChip, { IconGlyph } from '@/components/IconBadge';
 
 export default function MenuSection({ hideHeader = false }) {
   const [active, setActive] = useState(menuCategories[0]);
@@ -29,33 +31,54 @@ export default function MenuSection({ hideHeader = false }) {
         )}
 
         <div className="mb-10 flex flex-wrap justify-center gap-2">
-          {menuCategories.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActive(cat)}
-              className={`flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
-                active === cat
-                  ? 'border-olive bg-olive text-white font-semibold'
-                  : 'border-olive/25 bg-cream-dark text-wine-dark hover:border-olive hover:bg-olive hover:text-white'
-              }`}
-            >
-              <span aria-hidden="true">{categoryIcons[cat]}</span>
-              {cat}
-            </button>
-          ))}
+          {menuCategories.map((cat) => {
+            const isActive = active === cat;
+            const { Icon, color } = CATEGORY_ICONS[cat] || {};
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActive(cat)}
+                className={`flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all duration-200 ${
+                  isActive
+                    ? 'border-olive bg-olive text-white font-semibold shadow-md shadow-olive/30'
+                    : 'border-olive/25 bg-cream-dark text-wine-dark hover:border-olive hover:bg-olive hover:text-white hover:-translate-y-0.5'
+                }`}
+              >
+                {Icon && <IconGlyph icon={Icon} color={color} active={isActive} size="sm" />}
+                {cat}
+              </button>
+            );
+          })}
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => {
             const qty = qtyInCart(item);
+            const { Icon, color } = CATEGORY_ICONS[item.category] || {};
             return (
               <div
                 key={item.name + item.category}
-                className="card-3d hover-line-olive flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40 transition-colors hover:border-olive/30"
+                className="card-3d card-pop hover-line-olive group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40 transition-colors hover:border-olive/30"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={item.image} alt={item.name} loading="lazy" className="h-44 w-full object-cover" />
+                <div className="relative overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    loading="lazy"
+                    className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {Icon && (
+                    <IconChip
+                      icon={Icon}
+                      color={color}
+                      bg="rgba(255,255,255,0.95)"
+                      size="md"
+                      className="absolute left-3 top-3 shadow-md"
+                    />
+                  )}
+                </div>
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="font-display text-lg font-semibold text-ink">{item.name}</h3>
                   <p className="mt-1 flex-1 text-sm text-ink/60">{item.description}</p>

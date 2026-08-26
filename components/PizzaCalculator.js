@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Pizza } from 'lucide-react';
 import { basePath } from '@/lib/basePath';
 
 // House rule, straight from the "How Much Pizza Per Person" guide: 2 slices
@@ -154,11 +155,14 @@ export default function PizzaCalculator({ compact = false }) {
                 initial={{ scale: 0, rotate: -20 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ duration: 0.25, delay: i * 0.02 }}
-                className="text-xl leading-none"
-                role="img"
+                className="leading-none"
                 aria-hidden="true"
               >
-                🍕
+                <Pizza
+                  className="h-5 w-5"
+                  style={{ color: i % 2 === 0 ? '#C53416' : '#5B6E3F' }}
+                  strokeWidth={2.25}
+                />
               </motion.span>
             ))}
             {extraIcons > 0 && (
