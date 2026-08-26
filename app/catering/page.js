@@ -125,7 +125,7 @@ export default function CateringPage() {
               href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-pill-dark"
+              className="btn-pill-olive"
             >
               Inquire on WhatsApp
             </a>
@@ -134,27 +134,38 @@ export default function CateringPage() {
       </section>
 
       <section className="marble-light pb-16 md:pb-20">
-        <div className="mx-auto max-w-3xl space-y-4 px-6 text-center font-body text-ink/75 md:px-10">
-          <p>
-            An aunt never shows up with just enough, she brings extra, always. That&rsquo;s the
-            spirit behind our Berlin catering: slow-rested Roman-style pizza, baked fresh and
-            cut into trays that get passed around rather than portioned out, so a group actually
-            eats together instead of everyone waiting on their own plate.
-          </p>
-          <p>
-            Whether it&rsquo;s a Friedrichshain office lunch, a wedding, a birthday, or a company
-            party of a hundred people, tell us your date, headcount, and occasion, and we&rsquo;ll
-            put together a menu and quote sized for your group, the same Roman-style pizza Berlin
-            teams and hosts keep coming back to.
-          </p>
-          <p>
-            For larger or more involved events, we can also take care of on-site setup, ovens,
-            service staff, and everything else the day calls for, with the details confirmed in
-            writing well before your date, so nothing is left to chance once guests arrive.
-          </p>
+        <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 px-6 md:grid-cols-2 md:gap-14 md:px-10">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] order-first md:order-last">
+            <Image
+              src={`${basePath}/images/gallery/food-2.jpg`}
+              alt="Roman-style pizza topped for a Zia Maria catering order, Friedrichshain, Berlin"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="space-y-4 text-center font-body text-ink/75 md:text-left">
+            <p>
+              An aunt never shows up with just enough, she brings extra, always. That&rsquo;s the
+              spirit behind our Berlin catering: slow-rested Roman-style pizza, baked fresh and
+              cut into trays that get passed around rather than portioned out, so a group actually
+              eats together instead of everyone waiting on their own plate.
+            </p>
+            <p>
+              Whether it&rsquo;s a Friedrichshain office lunch, a wedding, a birthday, or a company
+              party of a hundred people, tell us your date, headcount, and occasion, and we&rsquo;ll
+              put together a menu and quote sized for your group, the same Roman-style pizza Berlin
+              teams and hosts keep coming back to.
+            </p>
+            <p>
+              For larger or more involved events, we can also take care of on-site setup, ovens,
+              service staff, and everything else the day calls for, with the details confirmed in
+              writing well before your date, so nothing is left to chance once guests arrive.
+            </p>
+          </div>
         </div>
 
-        <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
+        <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
           {FEATURES.map((f) => {
             const { Icon, color } = FEATURE_ICONS[f.icon];
             return (
@@ -216,16 +227,13 @@ export default function CateringPage() {
       <section className="marble-light pb-24 md:pb-28">
         <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
           <p className="font-body text-ink/70">
-            Want to see what&rsquo;s on offer first? Browse the full{' '}
-            <a href={`${basePath}/menu/`} className="text-wine-dark underline hover:text-wine-dark">
-              Zia Maria menu
-            </a>{' '}
-            or check out our{' '}
-            <a href={`${basePath}/business-lunch/`} className="text-wine-dark underline hover:text-wine-dark">
-              business lunch options
-            </a>{' '}
-            for smaller, recurring office orders.
+            Want to see what&rsquo;s on offer first? Browse the full menu, or check out our
+            business lunch options for smaller, recurring office orders.
           </p>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            <a href={`${basePath}/menu/`} className="btn-pill-dark">Browse the Full Menu</a>
+            <a href={`${basePath}/business-lunch/`} className="btn-pill-olive">See Business Lunch Options</a>
+          </div>
         </div>
       </section>
 
