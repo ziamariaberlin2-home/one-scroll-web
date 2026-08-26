@@ -136,24 +136,35 @@ export default function BusinessLunchContent() {
       </section>
 
       <section className="marble-light pb-16 md:pb-20">
-        <div className="mx-auto max-w-3xl space-y-4 px-6 text-center font-body text-ink/75 md:px-10">
-          <p>
-            Skip the group-lunch debate. Instead of ten people arguing over delivery apps, one
-            person sends us a headcount and we take it from there: slow-rested Roman-style
-            pizza, cut and set out family-style, so everyone eats at the same time without a long
-            wait or a pile of separate orders.
-          </p>
-          <p>
-            It works just as well for a one-off team lunch as it does for a standing weekly order.
-            Plenty of the offices around Friedrichshain now have a regular slot with us, same day,
-            same time, no need to re-order every week. Mix in vegetarian and vegan options where
-            your team needs them, and we will build the set around it. Every order comes with a
-            simple company invoice, so whoever&rsquo;s ordering lunch isn&rsquo;t stuck sorting
-            receipts afterward.
-          </p>
+        <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 px-6 md:grid-cols-2 md:gap-14 md:px-10">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem]">
+            <Image
+              src={`${basePath}/images/gallery/team-4.jpg`}
+              alt="A Friedrichshain team gathered together over a Zia Maria business lunch order"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="space-y-4 text-center font-body text-ink/75 md:text-left">
+            <p>
+              Skip the group-lunch debate. Instead of ten people arguing over delivery apps, one
+              person sends us a headcount and we take it from there: slow-rested Roman-style
+              pizza, cut and set out family-style, so everyone eats at the same time without a long
+              wait or a pile of separate orders.
+            </p>
+            <p>
+              It works just as well for a one-off team lunch as it does for a standing weekly order.
+              Plenty of the offices around Friedrichshain now have a regular slot with us, same day,
+              same time, no need to re-order every week. Mix in vegetarian and vegan options where
+              your team needs them, and we will build the set around it. Every order comes with a
+              simple company invoice, so whoever&rsquo;s ordering lunch isn&rsquo;t stuck sorting
+              receipts afterward.
+            </p>
+          </div>
         </div>
 
-        <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
+        <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
           {PERKS.map((f) => {
             const { Icon, color } = BIZ_ICONS[f.icon];
             return (

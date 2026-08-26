@@ -40,7 +40,7 @@ export default function MenuTeaser() {
         </div>
 
         <div className="mt-10 text-center">
-          <a href={`${basePath}/menu/`} className="btn-pill-dark">View Full Menu</a>
+          <a href={`${basePath}/menu/`} className="btn-pill-olive">View Full Menu</a>
         </div>
       </div>
     </section>

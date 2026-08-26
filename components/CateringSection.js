@@ -54,7 +54,7 @@ export default function CateringSection() {
             href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-pill-dark"
+            className="btn-pill-olive"
           >
             Inquire on WhatsApp
           </a>

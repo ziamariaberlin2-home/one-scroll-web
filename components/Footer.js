@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Mail } from 'lucide-react';
 import { basePath } from '@/lib/basePath';
 
 export default function Footer() {
@@ -92,8 +93,13 @@ export default function Footer() {
             <a href="https://wa.me/4917627705583" target="_blank" rel="noopener noreferrer" className={`mt-3 block ${linkClass}`}>
               Chat on WhatsApp
             </a>
-            <a href="mailto:bringteamtogether@ziamariaberlin.com" className={`mt-2 block break-words ${linkClass}`}>
-              bringteamtogether@ziamariaberlin.com
+            <a
+              href="mailto:bringteamtogether@ziamariaberlin.com"
+              title="bringteamtogether@ziamariaberlin.com"
+              className="mt-3 inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive/10 px-4 py-2 text-sm font-semibold text-olive transition-colors hover:bg-olive hover:text-white"
+            >
+              <Mail className="h-4 w-4 flex-shrink-0" strokeWidth={2.25} aria-hidden="true" />
+              Email Us
             </a>
           </div>
 
@@ -102,7 +108,7 @@ export default function Footer() {
             <p className="mt-4 text-sm">Mon – Wed: 12:00–22:00</p>
             <p className="text-sm">Thu – Sat: 12:00–23:00</p>
             <p className="text-sm">Sun: 12:00–22:00</p>
-            <a href={`${basePath}/#reserve`} className="btn-pill-dark mt-4 inline-flex">Reserve a Table</a>
+            <a href={`${basePath}/#reserve`} className="btn-pill-olive mt-4 inline-flex">Reserve a Table</a>
           </div>
         </div>
 

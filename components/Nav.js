@@ -56,7 +56,7 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href={CONTACT_LINK.href} className="btn-pill-dark">
+          <a href={CONTACT_LINK.href} className="btn-pill-olive">
             {CONTACT_LINK.label}
           </a>
           <a href={`${basePath}/order/`} className="btn-pill-wine relative">
@@ -96,7 +96,7 @@ export default function Nav() {
           <a
             href={CONTACT_LINK.href}
             onClick={() => setOpen(false)}
-            className="btn-pill-dark mt-2 w-full"
+            className="btn-pill-olive mt-2 w-full"
           >
             {CONTACT_LINK.label}
           </a>
