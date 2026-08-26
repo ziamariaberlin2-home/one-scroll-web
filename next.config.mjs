@@ -1,16 +1,10 @@
 /** @type {import('next').NextConfig} */
-const BASE_PATH = '/one-scroll-web';
-
+// Vercel build: a normal Next.js server, not a static export, so that
+// app/api/checkout/route.js (the Stripe backend) can run. No basePath is
+// needed since this deploys at its own domain instead of a GitHub Pages
+// subpath.
 const nextConfig = {
-  output: 'export',
-  images: { unoptimized: true },
-  trailingSlash: true,
-  basePath: BASE_PATH,
-  assetPrefix: BASE_PATH,
   eslint: { ignoreDuringBuilds: true },
-  env: {
-    NEXT_PUBLIC_BASE_PATH: BASE_PATH,
-  },
 };
 
 export default nextConfig;
