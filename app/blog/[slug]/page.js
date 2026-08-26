@@ -125,7 +125,7 @@ export default function BlogPostPage({ params }) {
             <p className="font-body text-ink/70">Hungry for the real thing?</p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
               <a href={`${basePath}/menu/`} className="btn-pill-wine">View the Menu</a>
-              <a href={`${basePath}/order/`} className="btn-pill-dark">Order Online</a>
+              <a href={`${basePath}/order/`} className="btn-pill-olive">Order Online</a>
             </div>
           </div>
         </div>
