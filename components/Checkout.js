@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { whatsappLink } from '@/lib/emailjs';
 import PayPalButton from './PayPalButton';
@@ -10,7 +10,29 @@ const EMPTY_FORM = { name: '', phone: '', fulfillment: 'pickup', address: '', no
 export default function Checkout() {
   const { items, updateQty, removeItem, subtotal, clearCart, hydrated } = useCart();
   const [form, setForm] = useState(EMPTY_FORM);
-  const [placed, setPlaced] = useState(null); // { via: 'paypal' | 'whatsapp' }
+  const [placed, setPlaced] = useState(null); // { via: 'paypal' | 'stripe' | 'whatsapp' }
+  const [stripeLoading, setStripeLoading] = useState(false);
+  const [stripeError, setStripeError] = useState('');
+
+  // Stripe redirects back here after a hosted Checkout session finishes.
+  // The order total was already verified and charged server-side before
+  // this redirect, so a success here is trustworthy.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const stripeResult = params.get('stripe');
+    if (stripeResult === 'success') {
+      setPlaced({ via: 'stripe' });
+      clearCart();
+    } else if (stripeResult === 'cancelled') {
+      setStripeError('Checkout was cancelled, your cart is still here whenever you’re ready.');
+    }
+    if (stripeResult) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('stripe');
+      window.history.replaceState({}, '', url.toString());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const isDelivery = form.fulfillment === 'delivery';
   const detailsValid =
@@ -55,18 +77,42 @@ export default function Checkout() {
     clearCart();
   }
 
+  async function handleStripeCheckout() {
+    setStripeError('');
+    setStripeLoading(true);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: items.map((i) => ({ name: i.name, qty: i.qty })),
+          fulfillment: form.fulfillment,
+          customer: { name: form.name, phone: form.phone, address: form.address, notes: form.notes },
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) {
+        throw new Error(data.error || 'Could not start checkout.');
+      }
+      window.location.href = data.url;
+    } catch (err) {
+      setStripeError(err.message || 'Could not start checkout. Please try again.');
+      setStripeLoading(false);
+    }
+  }
+
   if (placed) {
     return (
       <section id="checkout" className="marble-dark py-20 text-cream md:py-24">
         <div className="mx-auto max-w-xl px-6 text-center md:px-10">
           <span className="eyebrow text-sand">Thank You</span>
           <h2 className="display-heading mt-3 text-3xl text-cream md:text-5xl">
-            {placed.via === 'paypal' ? 'Payment Received!' : 'Order Sent!'}
+            {placed.via === 'whatsapp' ? 'Order Sent!' : 'Payment Received!'}
           </h2>
           <p className="mx-auto mt-4 max-w-md font-body text-cream/70">
-            {placed.via === 'paypal'
-              ? "We've got your payment, thank you! We'll start preparing your order right away."
-              : "We've sent your order details over, our team will confirm with you on WhatsApp shortly."}
+            {placed.via === 'whatsapp'
+              ? "We've sent your order details over, our team will confirm with you on WhatsApp shortly."
+              : "We've got your payment, thank you! We'll start preparing your order right away."}
           </p>
           <button
             type="button"
@@ -226,6 +272,15 @@ export default function Checkout() {
               </div>
 
               <div className="mt-6 space-y-3">
+                <button
+                  type="button"
+                  onClick={handleStripeCheckout}
+                  disabled={!canCheckout || stripeLoading}
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-[#635BFF] px-4 py-3 text-sm font-semibold text-white transition-opacity hover:bg-[#544ee0] disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  {stripeLoading ? 'Redirecting to checkout…' : 'Pay with Card'}
+                </button>
+                {stripeError && <p className="text-xs text-sand">{stripeError}</p>}
                 <PayPalButton amount={subtotal} onSuccess={handlePayPalSuccess} disabled={!canCheckout} />
                 <button
                   type="button"
