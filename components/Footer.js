@@ -35,7 +35,7 @@ export default function Footer() {
     'text-base font-medium text-ink/85 transition-colors hover:text-wine-dark hover:underline underline-offset-4';
 
   return (
-    <footer className="relative overflow-hidden border-t border-ink/10 pb-14 pt-16 text-ink/70">
+    <footer className="relative overflow-hidden border-t border-ink/10 pb-32 pt-16 text-ink/70 md:pb-20">
       <div className="marble-light absolute inset-0" />
       <Image
         src={`${basePath}/images/gallery/food-5.jpg`}
@@ -92,7 +92,7 @@ export default function Footer() {
             <a href="https://wa.me/4917627705583" target="_blank" rel="noopener noreferrer" className={`mt-3 block ${linkClass}`}>
               Chat on WhatsApp
             </a>
-            <a href="mailto:bringteamtogether@ziamariaberlin.com" className={`mt-2 block ${linkClass}`}>
+            <a href="mailto:bringteamtogether@ziamariaberlin.com" className={`mt-2 block break-words ${linkClass}`}>
               bringteamtogether@ziamariaberlin.com
             </a>
           </div>
