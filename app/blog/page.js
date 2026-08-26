@@ -35,7 +35,7 @@ export default function BlogPage() {
               <a
                 key={post.slug}
                 href={`${basePath}/blog/${post.slug}/`}
-                className="card-3d flex flex-col rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-wine/40"
+                className="card-3d card-pop group flex flex-col rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors"
               >
                 <span className="font-mono text-xs uppercase tracking-widest text-ink/40">
                   {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -43,7 +43,7 @@ export default function BlogPage() {
                 </span>
                 <h3 className="mt-3 font-display text-lg font-semibold text-ink">{post.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/65">{post.excerpt}</p>
-                <span className="mt-4 font-mono text-xs uppercase tracking-widest text-wine-dark">Read more &rarr;</span>
+                <span className="mt-4 font-mono text-xs uppercase tracking-widest text-wine-dark transition-transform group-hover:translate-x-1">Read more &rarr;</span>
               </a>
             ))}
           </div>
