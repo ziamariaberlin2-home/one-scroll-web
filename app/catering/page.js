@@ -7,6 +7,8 @@ import PizzaCalculator from '@/components/PizzaCalculator';
 import { pageMetadata } from '@/lib/seo';
 import { basePath } from '@/lib/basePath';
 import { whatsappLink } from '@/lib/emailjs';
+import { FEATURE_ICONS, OCCASION_ICONS, Pizza } from '@/lib/icons';
+import IconChip from '@/components/IconBadge';
 
 export const metadata = pageMetadata({
   title: 'Pizza Catering Berlin for Offices, Weddings & Private Events',
@@ -43,19 +45,19 @@ const serviceJsonLd = {
 };
 
 const FEATURES = [
-  { text: 'Family-style pizza trays, cut and ready to share', icon: '🍕' },
-  { text: 'Vegetarian and vegan options on every order', icon: '🌱' },
-  { text: 'Delivery across Berlin or pickup in Friedrichshain', icon: '🚚' },
-  { text: 'Custom quotes based on headcount, date, and budget', icon: '📝' },
-  { text: 'On-site equipment and staffing, confirmed in writing ahead of your event', icon: '📋' },
-  { text: 'Fast turnaround, some orders ready within 24–48 hours', icon: '⚡' },
+  { text: 'Family-style pizza trays, cut and ready to share', icon: 'pizza' },
+  { text: 'Vegetarian and vegan options on every order', icon: 'vegan' },
+  { text: 'Delivery across Berlin or pickup in Friedrichshain', icon: 'delivery' },
+  { text: 'Custom quotes based on headcount, date, and budget', icon: 'quote' },
+  { text: 'On-site equipment and staffing, confirmed in writing ahead of your event', icon: 'staffing' },
+  { text: 'Fast turnaround, some orders ready within 24–48 hours', icon: 'fast' },
 ];
 
 const OCCASIONS = [
-  { title: 'Office Parties & Corporate Events', body: 'Year-end parties, team offsites, or a full office buyout, we scale from a dozen colleagues to a large company event.' },
-  { title: 'Weddings & Engagements', body: 'A relaxed, generous alternative (or addition) to a formal menu, Roman-style pizza that guests actually remember.' },
-  { title: 'Birthdays & Private Celebrations', body: 'Family-style spreads built around what your group likes, at our place or delivered to yours.' },
-  { title: 'Team Lunches & Standing Orders', body: 'One-off or recurring, we set up weekly office lunch orders as easily as a single event.' },
+  { title: 'Office Parties & Corporate Events', body: 'Year-end parties, team offsites, or a full office buyout, we scale from a dozen colleagues to a large company event.', icon: 'office' },
+  { title: 'Weddings & Engagements', body: 'A relaxed, generous alternative (or addition) to a formal menu, Roman-style pizza that guests actually remember.', icon: 'wedding' },
+  { title: 'Birthdays & Private Celebrations', body: 'Family-style spreads built around what your group likes, at our place or delivered to yours.', icon: 'birthday' },
+  { title: 'Team Lunches & Standing Orders', body: 'One-off or recurring, we set up weekly office lunch orders as easily as a single event.', icon: 'team' },
 ];
 
 const FAQS = [
@@ -115,7 +117,10 @@ export default function CateringPage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a href="#catering-form" className="btn-pill-wine">Request a Quote</a>
-            <a href="#pizza-calculator" className="btn-pill-dark">🍕 Try the Pizza Calculator</a>
+            <a href="#pizza-calculator" className="btn-pill-olive">
+              <Pizza className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" />
+              Try the Pizza Calculator
+            </a>
             <a
               href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
               target="_blank"
@@ -150,20 +155,18 @@ export default function CateringPage() {
         </div>
 
         <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
-          {FEATURES.map((f) => (
-            <li
-              key={f.text}
-              className="card-3d hover-line-olive flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-olive/30"
-            >
-              <span
-                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-olive-light text-lg"
-                aria-hidden="true"
+          {FEATURES.map((f) => {
+            const { Icon, color } = FEATURE_ICONS[f.icon];
+            return (
+              <li
+                key={f.text}
+                className="card-3d card-pop hover-line-olive group flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-olive/30"
               >
-                {f.icon}
-              </span>
-              <span>{f.text}</span>
-            </li>
-          ))}
+                <IconChip icon={Icon} color={color} />
+                <span>{f.text}</span>
+              </li>
+            );
+          })}
         </ul>
 
         <p className="mx-auto mt-10 max-w-xl text-center text-sm text-ink/60">
@@ -188,12 +191,16 @@ export default function CateringPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {OCCASIONS.map((o) => (
-              <div key={o.title} className="card-3d rounded-2xl border border-ink/10 bg-white/50 p-6">
-                <h3 className="font-display text-lg font-semibold text-ink">{o.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/65">{o.body}</p>
-              </div>
-            ))}
+            {OCCASIONS.map((o) => {
+              const { Icon, color } = OCCASION_ICONS[o.icon];
+              return (
+                <div key={o.title} className="card-3d card-pop hover-line-olive group rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-olive/30">
+                  <IconChip icon={Icon} color={color} size="lg" />
+                  <h3 className="mt-4 font-display text-lg font-semibold text-ink">{o.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/65">{o.body}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
