@@ -184,10 +184,12 @@ body {
   right: 0;
 }
 
-/* Big, game-like slider thumb for the pizza calculator. Track fill color is
-   set inline per-instance via a linear-gradient background (see
-   PizzaCalculator.js), so only thumb + track shape live here. */
-.range-wine {
+/* Big, game-like slider thumb for the pizza calculator, styled as a little
+   olive pizza-slice badge. Track fill color is set inline per-instance via a
+   linear-gradient background (see PizzaCalculator.js), so only thumb + track
+   shape live here. Thumb icon is the lucide "pizza" glyph baked into an SVG
+   data-uri, since native range thumbs can't host a real React icon. */
+.range-olive {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -196,34 +198,46 @@ body {
   outline: none;
   cursor: pointer;
 }
-.range-wine::-webkit-slider-runnable-track {
+.range-olive::-webkit-slider-runnable-track {
   height: 10px;
   border-radius: 9999px;
 }
-.range-wine::-webkit-slider-thumb {
+.range-olive::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 28px;
-  height: 28px;
-  margin-top: -9px;
+  width: 32px;
+  height: 32px;
+  margin-top: -11px;
   border-radius: 50%;
-  background: #C53416;
-  border: 4px solid white;
-  box-shadow: 0 2px 6px rgba(124, 45, 18, 0.35);
+  background-color: #5B6E3F;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m12%2014-1%201%22%2F%3E%3Cpath%20d%3D%22m13.75%2018.25-1.25%201.42%22%2F%3E%3Cpath%20d%3D%22M17.775%205.654a15.68%2015.68%200%200%200-12.121%2012.12%22%2F%3E%3Cpath%20d%3D%22M18.8%209.3a1%201%200%200%200%202.1%207.7%22%2F%3E%3Cpath%20d%3D%22M21.964%2020.732a1%201%200%200%201-1.232%201.232l-18-5a1%201%200%200%201-.695-1.232A19.68%2019.68%200%200%201%2015.732%202.037a1%201%200%200%201%201.232.695z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  border: 3px solid white;
+  box-shadow: 0 2px 6px rgba(91, 110, 63, 0.45);
   cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.range-wine::-moz-range-track {
+.range-olive:active::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+.range-olive::-moz-range-track {
   height: 10px;
   border-radius: 9999px;
   background: transparent;
 }
-.range-wine::-moz-range-thumb {
-  width: 28px;
-  height: 28px;
+.range-olive::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: #C53416;
-  border: 4px solid white;
-  box-shadow: 0 2px 6px rgba(124, 45, 18, 0.35);
+  background-color: #5B6E3F;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m12%2014-1%201%22%2F%3E%3Cpath%20d%3D%22m13.75%2018.25-1.25%201.42%22%2F%3E%3Cpath%20d%3D%22M17.775%205.654a15.68%2015.68%200%200%200-12.121%2012.12%22%2F%3E%3Cpath%20d%3D%22M18.8%209.3a1%201%200%200%200%202.1%207.7%22%2F%3E%3Cpath%20d%3D%22M21.964%2020.732a1%201%200%200%201-1.232%201.232l-18-5a1%201%200%200%201-.695-1.232A19.68%2019.68%200%200%201%2015.732%202.037a1%201%200%200%201%201.232.695z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  border: 3px solid white;
+  box-shadow: 0 2px 6px rgba(91, 110, 63, 0.45);
   cursor: pointer;
 }
 
