@@ -44,7 +44,7 @@ function BlogBlock({ block }) {
       return (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {block.items.map((tip) => (
-            <div key={tip.title} className="card-3d rounded-xl border border-ink/10 bg-white/50 p-4 text-left">
+            <div key={tip.title} className="card-3d card-pop hover-line-olive rounded-xl border border-ink/10 bg-white/50 p-4 text-left transition-colors hover:border-olive/30">
               <p className="font-display text-sm font-semibold text-ink">{tip.title}</p>
               <p className="mt-1 text-sm text-ink/60">{tip.text}</p>
             </div>
