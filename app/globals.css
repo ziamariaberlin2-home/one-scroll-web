@@ -131,6 +131,59 @@ body {
   }
 }
 
+/* Playful hover layer for cards: bouncy lift, olive-tinted glow border, and
+   (paired with `group` on the card + `.icon-pop` on its icon) a little icon
+   bounce-and-tilt. Stack alongside .card-3d — .card-3d handles the base
+   shadow/lift, .card-pop adds the color pop and overshoot easing on top. */
+.card-pop {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-pop:hover {
+  border-color: rgba(91, 110, 63, 0.5) !important;
+  box-shadow:
+    0 2px 4px rgba(124, 45, 18, 0.08),
+    0 16px 28px -8px rgba(91, 110, 63, 0.30),
+    0 32px 56px -16px rgba(197, 52, 22, 0.22);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-pop {
+    transition: none;
+  }
+}
+
+.icon-pop {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.group:hover .icon-pop {
+  transform: scale(1.14) rotate(-6deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .icon-pop {
+    transition: none;
+  }
+  .group:hover .icon-pop {
+    transform: none;
+  }
+}
+
+/* Underline-grow link treatment in olive, used for the desktop nav. */
+.nav-link-olive {
+  position: relative;
+}
+.nav-link-olive::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 2px;
+  background: #5B6E3F;
+  transition: right 0.25s ease;
+}
+.nav-link-olive:hover::after {
+  right: 0;
+}
+
 /* Big, game-like slider thumb for the pizza calculator. Track fill color is
    set inline per-instance via a linear-gradient background (see
    PizzaCalculator.js), so only thumb + track shape live here. */
