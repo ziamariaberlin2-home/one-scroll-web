@@ -7,10 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // "Sunset Warm" palette
+        // "Red, White & Sand" palette — brand red (from the logo), white, and a
+        // soft sand/beige used sparingly for alternating sections and accents.
         cream: {
-          DEFAULT: '#FFF7ED', // Neutral
-          dark: '#FFEDD5',
+          DEFAULT: '#FFFDFA', // Neutral, near-white
+          dark: '#FBEFE0', // Soft sand, used for alternating sections/pills only
         },
         ink: {
           DEFAULT: '#7C2D12', // Text
@@ -23,10 +24,6 @@ module.exports = {
         },
         sand: '#F2704B', // Secondary light red
         accent: '#DC2626', // Accent
-        olive: {
-          DEFAULT: '#5B6E3F', // Secondary/browsing accent, WCAG AA on white text
-          light: '#E8ECDD', // Card background / hover fill tint
-        },
       },
       fontFamily: {
         display: ['Dosis', 'sans-serif'],
