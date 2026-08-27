@@ -60,22 +60,22 @@ export default function ReserveSection() {
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Date *" name="date" type="date" required />
             <div>
-              <label className="mb-1 block font-mono text-xs uppercase tracking-widest text-ink/60">Time *</label>
-              <select name="time" required className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm">
+              <label className="mb-1.5 block font-mono text-xs font-bold uppercase tracking-widest text-ink/75">Time *</label>
+              <select name="time" required className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-base font-medium text-ink">
                 <option value="">Select Time</option>
                 {TIMES.map((t) => <option key={t} value={t}>{t}</option>)}
               </select>
             </div>
           </div>
           <div>
-            <label className="mb-1 block font-mono text-xs uppercase tracking-widest text-ink/60">Number of Guests *</label>
-            <select name="guests" required defaultValue="2" className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm">
+            <label className="mb-1.5 block font-mono text-xs font-bold uppercase tracking-widest text-ink/75">Number of Guests *</label>
+            <select name="guests" required defaultValue="2" className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-base font-medium text-ink">
               {['1','2','3','4','5','6','7','8+'].map((g) => <option key={g} value={g}>{g} {g === '1' ? 'Person' : 'People'}</option>)}
             </select>
           </div>
           <div>
-            <label className="mb-1 block font-mono text-xs uppercase tracking-widest text-ink/60">Special Requests</label>
-            <textarea name="notes" rows={3} placeholder="Allergies, birthday, etc." className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm" />
+            <label className="mb-1.5 block font-mono text-xs font-bold uppercase tracking-widest text-ink/75">Special Requests</label>
+            <textarea name="notes" rows={3} placeholder="Allergies, birthday, etc." className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-base font-medium text-ink placeholder:font-normal placeholder:text-ink/40" />
           </div>
           <button type="submit" disabled={loading} className="btn-pill-wine w-full disabled:opacity-60">
             {loading ? 'Sending…' : 'Confirm Reservation'}
@@ -89,12 +89,12 @@ export default function ReserveSection() {
 function Field({ label, name, type = 'text', required }) {
   return (
     <div>
-      <label className="mb-1 block font-mono text-xs uppercase tracking-widest text-ink/60">{label}</label>
+      <label className="mb-1.5 block font-mono text-xs font-bold uppercase tracking-widest text-ink/75">{label}</label>
       <input
         name={name}
         type={type}
         required={required}
-        className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm"
+        className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-base font-medium text-ink placeholder:font-normal placeholder:text-ink/40"
       />
     </div>
   );

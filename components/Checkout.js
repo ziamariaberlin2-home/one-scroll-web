@@ -262,27 +262,27 @@ export default function Checkout() {
             <div>
               <div className="space-y-4 rounded-2xl border border-cream/10 bg-cream/5 p-6">
                 <div>
-                  <label className="font-mono text-[11px] uppercase tracking-widest text-cream/50">
+                  <label className="font-mono text-xs font-bold uppercase tracking-widest text-cream/75">
                     Your Name *
                   </label>
                   <input
                     value={form.name}
                     onChange={(e) => updateField('name', e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm text-ink outline-none focus:border-wine"
+                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm font-semibold text-ink placeholder:font-normal placeholder:text-ink/40 outline-none focus:border-wine"
                   />
                 </div>
                 <div>
-                  <label className="font-mono text-[11px] uppercase tracking-widest text-cream/50">
+                  <label className="font-mono text-xs font-bold uppercase tracking-widest text-cream/75">
                     Phone *
                   </label>
                   <input
                     value={form.phone}
                     onChange={(e) => updateField('phone', e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm text-ink outline-none focus:border-wine"
+                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm font-semibold text-ink placeholder:font-normal placeholder:text-ink/40 outline-none focus:border-wine"
                   />
                 </div>
                 <div>
-                  <label className="font-mono text-[11px] uppercase tracking-widest text-cream/50">
+                  <label className="font-mono text-xs font-bold uppercase tracking-widest text-cream/75">
                     Email *
                   </label>
                   <input
@@ -290,7 +290,7 @@ export default function Checkout() {
                     value={form.email}
                     onChange={(e) => updateField('email', e.target.value)}
                     placeholder="you@example.com"
-                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm text-ink outline-none focus:border-wine"
+                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm font-semibold text-ink placeholder:font-normal placeholder:text-ink/40 outline-none focus:border-wine"
                   />
                   <p className="mt-1 text-[11px] text-cream/40">We&rsquo;ll send your pickup/delivery time confirmation here.</p>
                 </div>
@@ -317,13 +317,13 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <label className="font-mono text-[11px] uppercase tracking-widest text-cream/50">
+                  <label className="font-mono text-xs font-bold uppercase tracking-widest text-cream/75">
                     {isDelivery ? 'Delivery Time *' : 'Pickup Time *'}
                   </label>
                   <select
                     value={form.time}
                     onChange={(e) => updateField('time', e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm text-ink outline-none focus:border-wine"
+                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm font-semibold text-ink placeholder:font-normal placeholder:text-ink/40 outline-none focus:border-wine"
                   >
                     <option value="">Select a time</option>
                     {TIME_SLOTS.map((t) => (
@@ -334,23 +334,23 @@ export default function Checkout() {
 
                 {isDelivery && (
                   <div>
-                    <label className="font-mono text-[11px] uppercase tracking-widest text-cream/50">
+                    <label className="font-mono text-xs font-bold uppercase tracking-widest text-cream/75">
                       Delivery Address *
                     </label>
                     <input
                       value={form.address}
                       onChange={(e) => updateField('address', e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm text-ink outline-none focus:border-wine"
+                      className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm font-semibold text-ink placeholder:font-normal placeholder:text-ink/40 outline-none focus:border-wine"
                     />
                   </div>
                 )}
 
                 <div>
-                  <label className="font-mono text-[11px] uppercase tracking-widest text-cream/50">Notes</label>
+                  <label className="font-mono text-xs font-bold uppercase tracking-widest text-cream/75">Notes</label>
                   <textarea
                     value={form.notes}
                     onChange={(e) => updateField('notes', e.target.value)}
-                    className="mt-1 h-16 w-full resize-y rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm text-ink outline-none focus:border-wine"
+                    className="mt-1 h-16 w-full resize-y rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm font-semibold text-ink placeholder:font-normal placeholder:text-ink/40 outline-none focus:border-wine"
                   />
                 </div>
 

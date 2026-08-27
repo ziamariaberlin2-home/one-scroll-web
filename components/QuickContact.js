@@ -35,7 +35,7 @@ export default function QuickContact() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="e.g. Catering for 25 people next Friday"
-            className="mb-3 h-20 w-full resize-y rounded-xl border border-ink/15 bg-white px-3 py-2 text-sm"
+            className="mb-3 h-20 w-full resize-y rounded-xl border border-ink/15 bg-white px-3 py-2 text-sm font-medium text-ink placeholder:font-normal placeholder:text-ink/40"
           />
           <div className="flex flex-col gap-2">
             <button type="button" onClick={() => send('whatsapp')} className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-semibold text-white hover:bg-[#20BA5A]">
