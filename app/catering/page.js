@@ -117,7 +117,7 @@ export default function CateringPage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a href="#catering-form" className="btn-pill-wine">Request a Quote</a>
-            <a href="#pizza-calculator" className="btn-pill-olive">
+            <a href="#pizza-calculator" className="btn-pill-white">
               <Pizza className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" />
               Try the Pizza Calculator
             </a>
@@ -125,7 +125,7 @@ export default function CateringPage() {
               href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-pill-olive"
+              className="btn-pill-white"
             >
               Inquire on WhatsApp
             </a>
@@ -171,7 +171,7 @@ export default function CateringPage() {
             return (
               <li
                 key={f.text}
-                className="card-3d card-pop hover-line-olive group flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-olive/30"
+                className="card-3d card-pop hover-line-wine group flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-wine/30"
               >
                 <IconChip icon={Icon} color={color} />
                 <span>{f.text}</span>
@@ -205,7 +205,7 @@ export default function CateringPage() {
             {OCCASIONS.map((o) => {
               const { Icon, color } = OCCASION_ICONS[o.icon];
               return (
-                <div key={o.title} className="card-3d card-pop hover-line-olive group rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-olive/30">
+                <div key={o.title} className="card-3d card-pop hover-line-wine group rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-wine/30">
                   <IconChip icon={Icon} color={color} size="lg" />
                   <h3 className="mt-4 font-display text-lg font-semibold text-ink">{o.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink/65">{o.body}</p>
@@ -232,7 +232,7 @@ export default function CateringPage() {
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
             <a href={`${basePath}/menu/`} className="btn-pill-dark">Browse the Full Menu</a>
-            <a href={`${basePath}/business-lunch/`} className="btn-pill-olive">See Business Lunch Options</a>
+            <a href={`${basePath}/business-lunch/`} className="btn-pill-wine">See Business Lunch Options</a>
           </div>
         </div>
       </section>
