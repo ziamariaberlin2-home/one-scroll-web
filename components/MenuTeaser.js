@@ -19,7 +19,7 @@ export default function MenuTeaser() {
           {featured.map((item) => (
             <div
               key={item.name}
-              className="card-3d card-pop hover-line-olive group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40 transition-colors hover:border-olive/30"
+              className="card-3d card-pop hover-line-wine group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40 transition-colors hover:border-wine/30"
             >
               <div className="overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -40,7 +40,7 @@ export default function MenuTeaser() {
         </div>
 
         <div className="mt-10 text-center">
-          <a href={`${basePath}/menu/`} className="btn-pill-olive">View Full Menu</a>
+          <a href={`${basePath}/menu/`} className="btn-pill-wine">View Full Menu</a>
         </div>
       </div>
     </section>

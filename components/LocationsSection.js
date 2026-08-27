@@ -24,7 +24,7 @@ export default function LocationsSection() {
               <p>Sun: 12:00–22:00</p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#reserve" className="btn-pill-olive">Reserve a Table</a>
+              <a href="#reserve" className="btn-pill-dark">Reserve a Table</a>
               <a href={`${basePath}/order/`} className="btn-pill-wine">Order Now</a>
               <a
                 href={GOOGLE_MAPS_URL}

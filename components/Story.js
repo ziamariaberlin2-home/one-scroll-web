@@ -24,7 +24,7 @@ export default function Story() {
             </p>
           </div>
 
-          <a href={`${basePath}/our-story/`} className="btn-pill-olive mt-8 w-fit">
+          <a href={`${basePath}/our-story/`} className="btn-pill-wine mt-8 w-fit">
             Read Our Story
           </a>
         </div>

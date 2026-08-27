@@ -44,7 +44,7 @@ export default function WhyChoose() {
             return (
               <div
                 key={p.title}
-                className="card-3d card-pop hover-line-olive group flex flex-col rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-olive/30"
+                className="card-3d card-pop hover-line-wine group flex flex-col rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-wine/30"
               >
                 <div className="flex items-center justify-between">
                   <IconChip icon={Icon} color={color} size="lg" />

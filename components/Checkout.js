@@ -2,10 +2,43 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useCart } from '@/lib/cart';
-import { whatsappLink } from '@/lib/emailjs';
+import { whatsappLink, sendEnquiry, EMAILJS_ORDER_TEMPLATE } from '@/lib/emailjs';
 import PayPalButton from './PayPalButton';
 
-const EMPTY_FORM = { name: '', phone: '', fulfillment: 'pickup', address: '', notes: '' };
+const EMPTY_FORM = { name: '', phone: '', email: '', fulfillment: 'pickup', address: '', time: '', notes: '' };
+
+// Same 30-minute slot pattern used on the Reservations form, so pickup and
+// delivery times stay consistent with the kitchen's actual service windows.
+const TIME_SLOTS = ['12:00','12:30','13:00','13:30','14:00','14:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30'];
+
+// Pending Stripe orders lose React state across the hosted-checkout redirect,
+// so the details needed for the confirmation email are stashed here and read
+// back once Stripe sends the customer back to `?stripe=success`.
+const STRIPE_PENDING_KEY = 'zia_pending_stripe_order';
+
+// Emails the pickup/delivery confirmation via the same EmailJS setup already
+// used for reservations and catering enquiries. Never blocks or fails the
+// checkout flow itself — if the template isn't configured yet, this just
+// quietly no-ops.
+async function sendOrderConfirmation({ form, items, subtotal, via }) {
+  try {
+    const data = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      fulfillment: form.fulfillment === 'delivery' ? 'Delivery' : 'Pickup',
+      time: form.time,
+      address: form.fulfillment === 'delivery' ? form.address : '—',
+      items: items.map((i) => `${i.qty}x ${i.name} (${i.price} each)`).join('\n'),
+      subtotal: `€${subtotal.toFixed(2)}`,
+      notes: form.notes || '—',
+      via,
+    };
+    await sendEnquiry({ templateId: EMAILJS_ORDER_TEMPLATE, data });
+  } catch (err) {
+    // Swallow errors — a missing/unconfigured template shouldn't block an order.
+  }
+}
 
 export default function Checkout() {
   const { items, updateQty, removeItem, subtotal, clearCart, hydrated } = useCart();
@@ -23,6 +56,16 @@ export default function Checkout() {
     if (stripeResult === 'success') {
       setPlaced({ via: 'stripe' });
       clearCart();
+      try {
+        const pending = sessionStorage.getItem(STRIPE_PENDING_KEY);
+        if (pending) {
+          const { form: savedForm, items: savedItems, subtotal: savedSubtotal } = JSON.parse(pending);
+          sendOrderConfirmation({ form: savedForm, items: savedItems, subtotal: savedSubtotal, via: 'Card' });
+          sessionStorage.removeItem(STRIPE_PENDING_KEY);
+        }
+      } catch (err) {
+        // No saved order details to confirm by email — payment itself already succeeded.
+      }
     } else if (stripeResult === 'cancelled') {
       setStripeError('Checkout was cancelled, your cart is still here whenever you’re ready.');
     }
@@ -38,6 +81,8 @@ export default function Checkout() {
   const detailsValid =
     form.name.trim().length > 1 &&
     form.phone.trim().length > 4 &&
+    form.email.trim().includes('@') &&
+    form.time.trim().length > 0 &&
     (!isDelivery || form.address.trim().length > 4);
   const canCheckout = hydrated && items.length > 0 && detailsValid;
 
@@ -50,7 +95,9 @@ export default function Checkout() {
     const details = [
       `Name: ${form.name}`,
       `Phone: ${form.phone}`,
+      form.email ? `Email: ${form.email}` : null,
       isDelivery ? 'Delivery' : 'Pickup',
+      form.time ? `Time: ${form.time}` : null,
       isDelivery && form.address ? `Address: ${form.address}` : null,
       form.notes ? `Notes: ${form.notes}` : null,
     ].filter(Boolean);
@@ -68,11 +115,13 @@ export default function Checkout() {
 
   function handleWhatsAppCheckout() {
     window.open(whatsappLink(orderMessage), '_blank', 'noopener');
+    sendOrderConfirmation({ form, items, subtotal, via: 'WhatsApp' });
     setPlaced({ via: 'whatsapp' });
     clearCart();
   }
 
   function handlePayPalSuccess() {
+    sendOrderConfirmation({ form, items, subtotal, via: 'PayPal' });
     setPlaced({ via: 'paypal' });
     clearCart();
   }
@@ -87,12 +136,21 @@ export default function Checkout() {
         body: JSON.stringify({
           items: items.map((i) => ({ name: i.name, qty: i.qty })),
           fulfillment: form.fulfillment,
-          customer: { name: form.name, phone: form.phone, address: form.address, notes: form.notes },
+          customer: { name: form.name, phone: form.phone, email: form.email, address: form.address, time: form.time, notes: form.notes },
         }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) {
         throw new Error(data.error || 'Could not start checkout.');
+      }
+      // Stash the order details so the confirmation email can be sent once
+      // Stripe redirects back here — this component remounts on return, so
+      // in-memory form state won't survive the round trip.
+      try {
+        sessionStorage.setItem(STRIPE_PENDING_KEY, JSON.stringify({ form, items, subtotal }));
+      } catch (err) {
+        // sessionStorage unavailable — the order still goes through, it just
+        // won't get an automatic confirmation email on return.
       }
       window.location.href = data.url;
     } catch (err) {
@@ -113,6 +171,9 @@ export default function Checkout() {
             {placed.via === 'whatsapp'
               ? "We've sent your order details over, our team will confirm with you on WhatsApp shortly."
               : "We've got your payment, thank you! We'll start preparing your order right away."}
+          </p>
+          <p className="mx-auto mt-2 max-w-md font-body text-sm text-cream/50">
+            A confirmation with your pickup/delivery time is on its way to your email.
           </p>
           <button
             type="button"
@@ -220,12 +281,25 @@ export default function Checkout() {
                     className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm text-ink outline-none focus:border-wine"
                   />
                 </div>
+                <div>
+                  <label className="font-mono text-[11px] uppercase tracking-widest text-cream/50">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => updateField('email', e.target.value)}
+                    placeholder="you@example.com"
+                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm text-ink outline-none focus:border-wine"
+                  />
+                  <p className="mt-1 text-[11px] text-cream/40">We&rsquo;ll send your pickup/delivery time confirmation here.</p>
+                </div>
 
                 <div className="flex gap-2">
                   <button
                     type="button"
                     onClick={() => updateField('fulfillment', 'pickup')}
-                    className={`flex-1 rounded-full border px-4 py-2 text-xs font-mono uppercase tracking-widest transition-colors ${
+                    className={`flex-1 rounded-full border px-4 py-2 text-sm font-semibold font-mono uppercase tracking-widest transition-colors ${
                       !isDelivery ? 'border-wine-dark bg-wine-dark text-white' : 'border-cream/20 text-cream/70'
                     }`}
                   >
@@ -234,12 +308,28 @@ export default function Checkout() {
                   <button
                     type="button"
                     onClick={() => updateField('fulfillment', 'delivery')}
-                    className={`flex-1 rounded-full border px-4 py-2 text-xs font-mono uppercase tracking-widest transition-colors ${
+                    className={`flex-1 rounded-full border px-4 py-2 text-sm font-semibold font-mono uppercase tracking-widest transition-colors ${
                       isDelivery ? 'border-wine-dark bg-wine-dark text-white' : 'border-cream/20 text-cream/70'
                     }`}
                   >
                     Delivery
                   </button>
+                </div>
+
+                <div>
+                  <label className="font-mono text-[11px] uppercase tracking-widest text-cream/50">
+                    {isDelivery ? 'Delivery Time *' : 'Pickup Time *'}
+                  </label>
+                  <select
+                    value={form.time}
+                    onChange={(e) => updateField('time', e.target.value)}
+                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm text-ink outline-none focus:border-wine"
+                  >
+                    <option value="">Select a time</option>
+                    {TIME_SLOTS.map((t) => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </select>
                 </div>
 
                 {isDelivery && (
@@ -266,7 +356,8 @@ export default function Checkout() {
 
                 {!detailsValid && (
                   <p className="text-xs text-sand">
-                    Fill in your name, phone{isDelivery ? ', and delivery address' : ''} to check out.
+                    Fill in your name, phone, email, and {isDelivery ? 'delivery' : 'pickup'} time
+                    {isDelivery ? ', and delivery address' : ''} to check out.
                   </p>
                 )}
               </div>

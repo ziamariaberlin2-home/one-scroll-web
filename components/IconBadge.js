@@ -9,7 +9,7 @@ const CHIP_BOX = { sm: 'h-9 w-9', md: 'h-11 w-11', lg: 'h-14 w-14' };
 const CHIP_ICON = { sm: 'h-4 w-4', md: 'h-5 w-5', lg: 'h-6 w-6' };
 const GLYPH_SIZE = { sm: 'h-3.5 w-3.5', md: 'h-4 w-4', lg: 'h-5 w-5' };
 
-export default function IconChip({ icon: Icon, color = '#5B6E3F', size = 'md', bg, className = '' }) {
+export default function IconChip({ icon: Icon, color = '#C53416', size = 'md', bg, className = '' }) {
   return (
     <span
       className={`icon-pop inline-flex flex-shrink-0 items-center justify-center rounded-full ${CHIP_BOX[size]} ${className}`}
@@ -21,7 +21,7 @@ export default function IconChip({ icon: Icon, color = '#5B6E3F', size = 'md', b
   );
 }
 
-export function IconGlyph({ icon: Icon, color = '#5B6E3F', active = false, size = 'md', className = '' }) {
+export function IconGlyph({ icon: Icon, color = '#C53416', active = false, size = 'md', className = '' }) {
   return (
     <Icon
       className={`icon-pop flex-shrink-0 ${GLYPH_SIZE[size]} ${className}`}

@@ -76,9 +76,9 @@ export default function PizzaCalculator({ compact = false }) {
           value={guests}
           onChange={(e) => setGuests(Number(e.target.value))}
           aria-label="Number of guests"
-          className="range-olive mt-4 w-full"
+          className="range-wine mt-4 w-full"
           style={{
-            background: `linear-gradient(to right, #5B6E3F 0%, #5B6E3F ${sliderPct}%, #FFEDD5 ${sliderPct}%, #FFEDD5 100%)`,
+            background: `linear-gradient(to right, #C53416 0%, #C53416 ${sliderPct}%, #FBEFE0 ${sliderPct}%, #FBEFE0 100%)`,
           }}
         />
         <div className="mt-1 flex justify-between font-mono text-[10px] uppercase tracking-widest text-ink/40">
@@ -96,8 +96,8 @@ export default function PizzaCalculator({ compact = false }) {
             onClick={() => setEventType(t.value)}
             className={`rounded-2xl border px-4 py-3 text-center transition-colors ${
               eventType === t.value
-                ? 'border-olive bg-olive text-white'
-                : 'border-ink/15 bg-white text-ink/70 hover:border-olive/40'
+                ? 'border-wine bg-wine text-white'
+                : 'border-ink/15 bg-white text-ink/70 hover:border-wine/40'
             }`}
           >
             <span className="block text-sm font-semibold">{t.label}</span>
@@ -118,7 +118,7 @@ export default function PizzaCalculator({ compact = false }) {
           Drinks / alcohol will be flowing <span className="block text-xs text-ink/45">People eat a bit slower</span>
         </span>
         <span
-          className={`relative h-6 w-11 flex-shrink-0 rounded-full transition-colors ${hasDrinks ? 'bg-olive' : 'bg-ink/15'}`}
+          className={`relative h-6 w-11 flex-shrink-0 rounded-full transition-colors ${hasDrinks ? 'bg-wine' : 'bg-ink/15'}`}
         >
           <span
             className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
@@ -160,7 +160,7 @@ export default function PizzaCalculator({ compact = false }) {
               >
                 <Pizza
                   className="h-5 w-5"
-                  style={{ color: i % 2 === 0 ? '#C53416' : '#5B6E3F' }}
+                  style={{ color: i % 2 === 0 ? '#C53416' : '#991B1B' }}
                   strokeWidth={2.25}
                 />
               </motion.span>

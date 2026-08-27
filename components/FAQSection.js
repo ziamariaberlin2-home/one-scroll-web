@@ -60,7 +60,7 @@ export default function FAQSection() {
             <details key={f.q} className="group rounded-2xl border border-ink/10 bg-white/50 p-5 open:bg-white/80">
               <summary className="flex cursor-pointer list-none items-center justify-between font-display text-base font-semibold text-ink">
                 {f.q}
-                <span className="ml-4 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-olive/10 text-olive transition-transform group-open:rotate-45">
+                <span className="ml-4 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-wine/10 text-wine transition-transform group-open:rotate-45">
                   <Plus className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />
                 </span>
               </summary>

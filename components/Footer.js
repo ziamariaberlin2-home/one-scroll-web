@@ -96,7 +96,7 @@ export default function Footer() {
             <a
               href="mailto:bringteamtogether@ziamariaberlin.com"
               title="bringteamtogether@ziamariaberlin.com"
-              className="mt-3 inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive/10 px-4 py-2 text-sm font-semibold text-olive transition-colors hover:bg-olive hover:text-white"
+              className="mt-3 inline-flex items-center gap-2 rounded-full border border-wine/30 bg-wine/10 px-4 py-2 text-sm font-semibold text-wine transition-colors hover:bg-wine hover:text-white"
             >
               <Mail className="h-4 w-4 flex-shrink-0" strokeWidth={2.25} aria-hidden="true" />
               Email Us
@@ -108,7 +108,7 @@ export default function Footer() {
             <p className="mt-4 text-sm">Mon – Wed: 12:00–22:00</p>
             <p className="text-sm">Thu – Sat: 12:00–23:00</p>
             <p className="text-sm">Sun: 12:00–22:00</p>
-            <a href={`${basePath}/#reserve`} className="btn-pill-olive mt-4 inline-flex">Reserve a Table</a>
+            <a href={`${basePath}/#reserve`} className="btn-pill-wine mt-4 inline-flex">Reserve a Table</a>
           </div>
         </div>
 

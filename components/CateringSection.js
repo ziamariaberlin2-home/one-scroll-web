@@ -39,7 +39,7 @@ export default function CateringSection() {
             return (
               <li
                 key={f.text}
-                className="card-3d card-pop hover-line-olive group flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-olive/30"
+                className="card-3d card-pop hover-line-wine group flex items-center gap-3 rounded-xl border border-ink/10 bg-white/40 p-4 text-left transition-colors hover:border-wine/30"
               >
                 <IconChip icon={Icon} color={color} />
                 <span>{f.text}</span>
@@ -54,7 +54,7 @@ export default function CateringSection() {
             href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-pill-olive"
+            className="btn-pill-dark"
           >
             Inquire on WhatsApp
           </a>

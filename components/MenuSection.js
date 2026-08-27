@@ -39,10 +39,10 @@ export default function MenuSection({ hideHeader = false }) {
                 key={cat}
                 type="button"
                 onClick={() => setActive(cat)}
-                className={`flex items-center gap-1.5 rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all duration-200 ${
+                className={`flex items-center gap-1.5 rounded-full border px-4 py-2.5 font-mono text-sm font-semibold uppercase tracking-widest transition-all duration-200 ${
                   isActive
-                    ? 'border-olive bg-olive text-white font-semibold shadow-md shadow-olive/30'
-                    : 'border-olive/25 bg-cream-dark text-wine-dark hover:border-olive hover:bg-olive hover:text-white hover:-translate-y-0.5'
+                    ? 'border-wine bg-wine text-white shadow-md shadow-wine/30'
+                    : 'border-wine/25 bg-cream-dark text-wine-dark hover:border-wine hover:bg-wine hover:text-white hover:-translate-y-0.5'
                 }`}
               >
                 {Icon && <IconGlyph icon={Icon} color={color} active={isActive} size="sm" />}
@@ -59,7 +59,7 @@ export default function MenuSection({ hideHeader = false }) {
             return (
               <div
                 key={item.name + item.category}
-                className="card-3d card-pop hover-line-olive group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40 transition-colors hover:border-olive/30"
+                className="card-3d card-pop hover-line-wine group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white/40 transition-colors hover:border-wine/30"
               >
                 <div className="relative overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}

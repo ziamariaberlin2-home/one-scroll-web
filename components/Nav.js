@@ -51,12 +51,12 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="nav-link-olive font-mono text-xs uppercase tracking-widest text-ink/80 transition-colors hover:text-olive"
+              className="nav-link-wine font-mono text-sm font-semibold uppercase tracking-widest text-ink/85 transition-colors hover:text-wine"
             >
               {l.label}
             </a>
           ))}
-          <a href={CONTACT_LINK.href} className="btn-pill-olive">
+          <a href={CONTACT_LINK.href} className="btn-pill-dark">
             {CONTACT_LINK.label}
           </a>
           <a href={`${basePath}/order/`} className="btn-pill-wine relative">
@@ -88,7 +88,7 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="py-3 font-mono text-sm uppercase tracking-widest text-ink/80"
+              className="py-3 font-mono text-base font-semibold uppercase tracking-widest text-ink/85"
             >
               {l.label}
             </a>
@@ -96,7 +96,7 @@ export default function Nav() {
           <a
             href={CONTACT_LINK.href}
             onClick={() => setOpen(false)}
-            className="btn-pill-olive mt-2 w-full"
+            className="btn-pill-dark mt-2 w-full"
           >
             {CONTACT_LINK.label}
           </a>

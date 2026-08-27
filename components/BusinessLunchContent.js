@@ -130,7 +130,7 @@ export default function BusinessLunchContent() {
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <a href="#lunch-form" className="btn-pill-wine">Request Business Lunch</a>
-            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-olive">Book Your Office Event</a>
+            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-white">Book Your Office Event</a>
           </div>
         </div>
       </section>
@@ -170,7 +170,7 @@ export default function BusinessLunchContent() {
             return (
               <li
                 key={f.text}
-                className="card-3d card-pop hover-line-olive group flex flex-col items-center gap-2 rounded-xl border border-ink/10 bg-white/40 p-4 text-center transition-colors hover:border-olive/30"
+                className="card-3d card-pop hover-line-wine group flex flex-col items-center gap-2 rounded-xl border border-ink/10 bg-white/40 p-4 text-center transition-colors hover:border-wine/30"
               >
                 <IconChip icon={Icon} color={color} />
                 {f.text}
@@ -192,7 +192,7 @@ export default function BusinessLunchContent() {
             {HOW_IT_WORKS.map((s) => {
               const { Icon, color } = BIZ_ICONS[s.icon];
               return (
-                <div key={s.step} className="card-3d card-pop hover-line-olive group rounded-2xl border border-ink/10 bg-white/50 p-6 text-left transition-colors hover:border-olive/30">
+                <div key={s.step} className="card-3d card-pop hover-line-wine group rounded-2xl border border-ink/10 bg-white/50 p-6 text-left transition-colors hover:border-wine/30">
                   <div className="flex items-center justify-between">
                     <IconChip icon={Icon} color={color} size="lg" />
                     <span className="font-mono text-xs uppercase tracking-widest text-wine-dark">Step {s.step}</span>
@@ -212,7 +212,7 @@ export default function BusinessLunchContent() {
             {SETS.map((set) => {
               const { Icon, color } = BIZ_ICONS[set.icon];
               return (
-                <div key={set.name} className="card-3d card-pop hover-line-olive group rounded-2xl border border-ink/10 bg-white/50 p-6 text-left transition-colors hover:border-olive/30">
+                <div key={set.name} className="card-3d card-pop hover-line-wine group rounded-2xl border border-ink/10 bg-white/50 p-6 text-left transition-colors hover:border-wine/30">
                   <IconChip icon={Icon} color={color} size="lg" />
                   <h3 className="mt-4 font-display text-xl font-semibold text-ink">{set.name}</h3>
                   <ul className="mt-3 space-y-1 text-sm text-ink/60">
@@ -228,7 +228,7 @@ export default function BusinessLunchContent() {
           </p>
 
           <div className="mt-6 flex justify-center">
-            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-olive">Plan Your Office Event</a>
+            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-wine">Plan Your Office Event</a>
           </div>
 
           <div className="mt-12">
