@@ -44,7 +44,7 @@ function BlogBlock({ block }) {
       return (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {block.items.map((tip) => (
-            <div key={tip.title} className="card-3d card-pop hover-line-olive rounded-xl border border-ink/10 bg-white/50 p-4 text-left transition-colors hover:border-olive/30">
+            <div key={tip.title} className="card-3d card-pop hover-line-wine rounded-xl border border-ink/10 bg-white/50 p-4 text-left transition-colors hover:border-wine/30">
               <p className="font-display text-sm font-semibold text-ink">{tip.title}</p>
               <p className="mt-1 text-sm text-ink/60">{tip.text}</p>
             </div>
@@ -124,8 +124,8 @@ export default function BlogPostPage({ params }) {
           <div className="mx-auto mt-14 max-w-2xl border-t border-ink/10 pt-8 text-center">
             <p className="font-body text-ink/70">Hungry for the real thing?</p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-              <a href={`${basePath}/menu/`} className="btn-pill-wine">View the Menu</a>
-              <a href={`${basePath}/order/`} className="btn-pill-olive">Order Online</a>
+              <a href={`${basePath}/menu/`} className="btn-pill-dark">View the Menu</a>
+              <a href={`${basePath}/order/`} className="btn-pill-wine">Order Online</a>
             </div>
           </div>
         </div>
