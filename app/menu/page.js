@@ -26,7 +26,7 @@ export default function MenuPage() {
             priced individually.
           </p>
           <div className="mt-6 flex justify-center">
-            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-olive">Host an Event With Us</a>
+            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-wine">Host an Event With Us</a>
           </div>
         </div>
       </section>
