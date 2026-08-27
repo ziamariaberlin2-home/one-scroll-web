@@ -10,11 +10,21 @@ import FAQSection from '@/components/FAQSection';
 import CateringForm from '@/components/CateringForm';
 import ReserveSection from '@/components/ReserveSection';
 import LocationsSection from '@/components/LocationsSection';
+import FeatureStrip from '@/components/FeatureStrip';
+import QuoteBanner from '@/components/QuoteBanner';
+
+const HOME_FACTS = [
+  'Roman-style pizza in Friedrichshain',
+  'Dine-in, catering, and business lunch',
+  'Vegetarian and vegan options',
+  'Fresh, baked daily',
+];
 
 export default function Home() {
   return (
     <main>
       <Hero />
+      <FeatureStrip items={HOME_FACTS} />
       <Story />
       <Gallery />
       <MenuTeaser />
@@ -23,9 +33,11 @@ export default function Home() {
       <WhyChoose />
       <EventsSection />
       <FAQSection />
-      <section className="marble-light pb-4 text-center">
-        <a href="#catering-form" className="btn-pill-wine">Planning an Event? Get a Quote</a>
-      </section>
+      <QuoteBanner
+        text="Tell us the occasion, number of guests and location, we&rsquo;ll respond with a clear recommendation for quantities and menu."
+        ctaText="Request a Quote"
+        ctaHref="#catering-form"
+      />
       <CateringForm />
       <ReserveSection />
       <LocationsSection />
