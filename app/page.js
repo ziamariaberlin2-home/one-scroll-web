@@ -24,7 +24,7 @@ export default function Home() {
       <EventsSection />
       <FAQSection />
       <section className="marble-light pb-4 text-center">
-        <a href="#catering-form" className="btn-pill-olive">Planning an Event? Get a Quote</a>
+        <a href="#catering-form" className="btn-pill-wine">Planning an Event? Get a Quote</a>
       </section>
       <CateringForm />
       <ReserveSection />

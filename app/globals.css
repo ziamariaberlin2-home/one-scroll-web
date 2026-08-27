@@ -14,7 +14,7 @@ body {
 
 /* Subtle marble-vein texture, light version */
 .marble-light {
-  background-color: #FFF7ED;
+  background-color: #FFFDFA;
   background-image:
     radial-gradient(at 20% 10%, rgba(197,52,22,0.05) 0px, transparent 40%),
     radial-gradient(at 80% 30%, rgba(124,45,18,0.04) 0px, transparent 45%),
@@ -79,29 +79,25 @@ body {
   @apply btn-pill border-white bg-white text-wine font-semibold hover:bg-wine hover:border-wine hover:text-white;
 }
 
-.btn-pill-olive {
-  @apply btn-pill border-olive bg-olive text-white font-semibold hover:bg-olive/85 hover:border-olive/85;
-}
-
-/* Thin olive accent line that grows in from the left on hover/active, used on
+/* Thin red accent line that grows in from the left on hover/active, used on
    catering feature cards and menu item cards alongside .card-3d. */
-.hover-line-olive {
+.hover-line-wine {
   position: relative;
   overflow: hidden;
 }
-.hover-line-olive::after {
+.hover-line-wine::after {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   height: 2px;
-  background: #5B6E3F;
+  background: #C53416;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.25s ease;
 }
-.hover-line-olive:hover::after {
+.hover-line-wine:hover::after {
   transform: scaleX(1);
 }
 
@@ -131,7 +127,7 @@ body {
   }
 }
 
-/* Playful hover layer for cards: bouncy lift, olive-tinted glow border, and
+/* Playful hover layer for cards: bouncy lift, red-tinted glow border, and
    (paired with `group` on the card + `.icon-pop` on its icon) a little icon
    bounce-and-tilt. Stack alongside .card-3d — .card-3d handles the base
    shadow/lift, .card-pop adds the color pop and overshoot easing on top. */
@@ -139,10 +135,10 @@ body {
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .card-pop:hover {
-  border-color: rgba(91, 110, 63, 0.5) !important;
+  border-color: rgba(197, 52, 22, 0.45) !important;
   box-shadow:
     0 2px 4px rgba(124, 45, 18, 0.08),
-    0 16px 28px -8px rgba(91, 110, 63, 0.30),
+    0 16px 28px -8px rgba(197, 52, 22, 0.26),
     0 32px 56px -16px rgba(197, 52, 22, 0.22);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -166,30 +162,30 @@ body {
   }
 }
 
-/* Underline-grow link treatment in olive, used for the desktop nav. */
-.nav-link-olive {
+/* Underline-grow link treatment in brand red, used for the desktop nav. */
+.nav-link-wine {
   position: relative;
 }
-.nav-link-olive::after {
+.nav-link-wine::after {
   content: '';
   position: absolute;
   left: 0;
   right: 100%;
   bottom: -4px;
   height: 2px;
-  background: #5B6E3F;
+  background: #C53416;
   transition: right 0.25s ease;
 }
-.nav-link-olive:hover::after {
+.nav-link-wine:hover::after {
   right: 0;
 }
 
 /* Big, game-like slider thumb for the pizza calculator, styled as a little
-   olive pizza-slice badge. Track fill color is set inline per-instance via a
+   red pizza-slice badge. Track fill color is set inline per-instance via a
    linear-gradient background (see PizzaCalculator.js), so only thumb + track
    shape live here. Thumb icon is the lucide "pizza" glyph baked into an SVG
    data-uri, since native range thumbs can't host a real React icon. */
-.range-olive {
+.range-wine {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -198,46 +194,46 @@ body {
   outline: none;
   cursor: pointer;
 }
-.range-olive::-webkit-slider-runnable-track {
+.range-wine::-webkit-slider-runnable-track {
   height: 10px;
   border-radius: 9999px;
 }
-.range-olive::-webkit-slider-thumb {
+.range-wine::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 32px;
   height: 32px;
   margin-top: -11px;
   border-radius: 50%;
-  background-color: #5B6E3F;
+  background-color: #C53416;
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m12%2014-1%201%22%2F%3E%3Cpath%20d%3D%22m13.75%2018.25-1.25%201.42%22%2F%3E%3Cpath%20d%3D%22M17.775%205.654a15.68%2015.68%200%200%200-12.121%2012.12%22%2F%3E%3Cpath%20d%3D%22M18.8%209.3a1%201%200%200%200%202.1%207.7%22%2F%3E%3Cpath%20d%3D%22M21.964%2020.732a1%201%200%200%201-1.232%201.232l-18-5a1%201%200%200%201-.695-1.232A19.68%2019.68%200%200%201%2015.732%202.037a1%201%200%200%201%201.232.695z%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60%;
   border: 3px solid white;
-  box-shadow: 0 2px 6px rgba(91, 110, 63, 0.45);
+  box-shadow: 0 2px 6px rgba(197, 52, 22, 0.45);
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.range-olive:active::-webkit-slider-thumb {
+.range-wine:active::-webkit-slider-thumb {
   transform: scale(1.12);
 }
-.range-olive::-moz-range-track {
+.range-wine::-moz-range-track {
   height: 10px;
   border-radius: 9999px;
   background: transparent;
 }
-.range-olive::-moz-range-thumb {
+.range-wine::-moz-range-thumb {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: #5B6E3F;
+  background-color: #C53416;
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222.25%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m12%2014-1%201%22%2F%3E%3Cpath%20d%3D%22m13.75%2018.25-1.25%201.42%22%2F%3E%3Cpath%20d%3D%22M17.775%205.654a15.68%2015.68%200%200%200-12.121%2012.12%22%2F%3E%3Cpath%20d%3D%22M18.8%209.3a1%201%200%200%200%202.1%207.7%22%2F%3E%3Cpath%20d%3D%22M21.964%2020.732a1%201%200%200%201-1.232%201.232l-18-5a1%201%200%200%201-.695-1.232A19.68%2019.68%200%200%201%2015.732%202.037a1%201%200%200%201%201.232.695z%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60%;
   border: 3px solid white;
-  box-shadow: 0 2px 6px rgba(91, 110, 63, 0.45);
+  box-shadow: 0 2px 6px rgba(197, 52, 22, 0.45);
   cursor: pointer;
 }
 
