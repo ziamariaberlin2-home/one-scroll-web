@@ -7,9 +7,18 @@ import { Field, Select, TextArea } from '@/components/FormField';
 import EventsSection from '@/components/EventsSection';
 import FAQBlock from '@/components/FAQBlock';
 import ReviewsSection from '@/components/ReviewsSection';
+import FeatureStrip from '@/components/FeatureStrip';
+import QuoteBanner from '@/components/QuoteBanner';
 import { basePath } from '@/lib/basePath';
 import { BIZ_ICONS } from '@/lib/icons';
 import IconChip from '@/components/IconBadge';
+
+const BIZ_FACTS = [
+  'Roman-style pizza in Friedrichshain',
+  'Recurring team lunches for Berlin offices',
+  'Company invoice via email',
+  'Vegetarian and vegan options',
+];
 
 const PERKS = [
   { text: 'One-time and recurring orders', icon: 'recurring' },
@@ -135,6 +144,8 @@ export default function BusinessLunchContent() {
         </div>
       </section>
 
+      <FeatureStrip items={BIZ_FACTS} />
+
       <section className="marble-light pb-16 md:pb-20">
         <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 px-6 md:grid-cols-2 md:gap-14 md:px-10">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem]">
@@ -205,6 +216,12 @@ export default function BusinessLunchContent() {
           </div>
         </div>
       </section>
+
+      <QuoteBanner
+        text="Tell us your headcount and preferred day, we&rsquo;ll build the right lunch set for your team."
+        ctaText="Request Business Lunch"
+        ctaHref="#lunch-form"
+      />
 
       <section id="lunch-form" className="marble-light scroll-mt-24 pb-24 md:pb-28">
         <div className="mx-auto max-w-7xl px-6 text-center md:px-10">
