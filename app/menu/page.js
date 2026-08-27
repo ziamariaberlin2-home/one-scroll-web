@@ -1,4 +1,6 @@
 import MenuSection from '@/components/MenuSection';
+import FeatureStrip from '@/components/FeatureStrip';
+import QuoteBanner from '@/components/QuoteBanner';
 import { pageMetadata } from '@/lib/seo';
 import { basePath } from '@/lib/basePath';
 
@@ -7,6 +9,13 @@ export const metadata = pageMetadata({
   description: 'Explore the Zia Maria menu: fresh Roman-style pizza, salads, and drinks in the heart of Friedrichshain, Berlin. Vegetarian and vegan options available.',
   path: '/menu/',
 });
+
+const MENU_FACTS = [
+  'Pizza priced per slice, from €2.50',
+  'Vegetarian and vegan options',
+  'Order online or via WhatsApp',
+  'Pickup or delivery in Berlin',
+];
 
 export default function MenuPage() {
   return (
@@ -31,7 +40,15 @@ export default function MenuPage() {
         </div>
       </section>
 
+      <FeatureStrip items={MENU_FACTS} />
+
       <MenuSection hideHeader />
+
+      <QuoteBanner
+        text="Planning a private event or office lunch? Tell us the occasion, headcount, and location, we&rsquo;ll recommend the right quantities and menu."
+        ctaText="Request a Quote"
+        ctaHref={`${basePath}/catering/#catering-form`}
+      />
     </main>
   );
 }
