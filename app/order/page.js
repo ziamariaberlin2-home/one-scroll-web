@@ -32,8 +32,8 @@ export default function OrderPage() {
         <p className="font-mono text-xs uppercase tracking-widest text-ink/40">
           Neue Bahnhofstraße 32, 10245 Berlin · Friedrichshain
         </p>
-        <a href="tel:+4917627705583" className="mt-2 inline-block text-sm text-ink/60 hover:text-wine-dark">
-          Prefer to call? +49 176 2770 5583
+        <a href="tel:+4915172487397" className="mt-2 inline-block text-sm text-ink/60 hover:text-wine-dark">
+          Prefer to call? +49 1517 248 7397
         </a>
       </section>
     </main>
