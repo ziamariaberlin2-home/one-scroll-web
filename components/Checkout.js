@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { whatsappLink, sendEnquiry, EMAILJS_ORDER_TEMPLATE } from '@/lib/emailjs';
 import PayPalButton from './PayPalButton';
@@ -10,11 +10,6 @@ const EMPTY_FORM = { name: '', phone: '', email: '', fulfillment: 'pickup', addr
 // Same 30-minute slot pattern used on the Reservations form, so pickup and
 // delivery times stay consistent with the kitchen's actual service windows.
 const TIME_SLOTS = ['12:00','12:30','13:00','13:30','14:00','14:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30'];
-
-// Pending Stripe orders lose React state across the hosted-checkout redirect,
-// so the details needed for the confirmation email are stashed here and read
-// back once Stripe sends the customer back to `?stripe=success`.
-const STRIPE_PENDING_KEY = 'zia_pending_stripe_order';
 
 // Emails the pickup/delivery confirmation via the same EmailJS setup already
 // used for reservations and catering enquiries. Never blocks or fails the
@@ -43,39 +38,7 @@ async function sendOrderConfirmation({ form, items, subtotal, via }) {
 export default function Checkout() {
   const { items, updateQty, removeItem, subtotal, clearCart, hydrated } = useCart();
   const [form, setForm] = useState(EMPTY_FORM);
-  const [placed, setPlaced] = useState(null); // { via: 'paypal' | 'stripe' | 'whatsapp' }
-  const [stripeLoading, setStripeLoading] = useState(false);
-  const [stripeError, setStripeError] = useState('');
-
-  // Stripe redirects back here after a hosted Checkout session finishes.
-  // The order total was already verified and charged server-side before
-  // this redirect, so a success here is trustworthy.
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const stripeResult = params.get('stripe');
-    if (stripeResult === 'success') {
-      setPlaced({ via: 'stripe' });
-      clearCart();
-      try {
-        const pending = sessionStorage.getItem(STRIPE_PENDING_KEY);
-        if (pending) {
-          const { form: savedForm, items: savedItems, subtotal: savedSubtotal } = JSON.parse(pending);
-          sendOrderConfirmation({ form: savedForm, items: savedItems, subtotal: savedSubtotal, via: 'Card' });
-          sessionStorage.removeItem(STRIPE_PENDING_KEY);
-        }
-      } catch (err) {
-        // No saved order details to confirm by email — payment itself already succeeded.
-      }
-    } else if (stripeResult === 'cancelled') {
-      setStripeError('Checkout was cancelled, your cart is still here whenever you’re ready.');
-    }
-    if (stripeResult) {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('stripe');
-      window.history.replaceState({}, '', url.toString());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [placed, setPlaced] = useState(null); // { via: 'paypal' | 'whatsapp' }
 
   const isDelivery = form.fulfillment === 'delivery';
   const detailsValid =
@@ -113,6 +76,12 @@ export default function Checkout() {
     ].join('\n');
   }, [items, form, isDelivery, subtotal]);
 
+  // The PayPal button only ever needs item names/quantities (the backend
+  // looks up real prices) -- memoized on the cart's own items reference so
+  // typing in the form fields doesn't hand PayPalButton a new array every
+  // render and force it to re-render its SDK buttons unnecessarily.
+  const paypalItems = useMemo(() => items.map((i) => ({ name: i.name, qty: i.qty })), [items]);
+
   function handleWhatsAppCheckout() {
     window.open(whatsappLink(orderMessage), '_blank', 'noopener');
     sendOrderConfirmation({ form, items, subtotal, via: 'WhatsApp' });
@@ -124,39 +93,6 @@ export default function Checkout() {
     sendOrderConfirmation({ form, items, subtotal, via: 'PayPal' });
     setPlaced({ via: 'paypal' });
     clearCart();
-  }
-
-  async function handleStripeCheckout() {
-    setStripeError('');
-    setStripeLoading(true);
-    try {
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          items: items.map((i) => ({ name: i.name, qty: i.qty })),
-          fulfillment: form.fulfillment,
-          customer: { name: form.name, phone: form.phone, email: form.email, address: form.address, time: form.time, notes: form.notes },
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.url) {
-        throw new Error(data.error || 'Could not start checkout.');
-      }
-      // Stash the order details so the confirmation email can be sent once
-      // Stripe redirects back here — this component remounts on return, so
-      // in-memory form state won't survive the round trip.
-      try {
-        sessionStorage.setItem(STRIPE_PENDING_KEY, JSON.stringify({ form, items, subtotal }));
-      } catch (err) {
-        // sessionStorage unavailable — the order still goes through, it just
-        // won't get an automatic confirmation email on return.
-      }
-      window.location.href = data.url;
-    } catch (err) {
-      setStripeError(err.message || 'Could not start checkout. Please try again.');
-      setStripeLoading(false);
-    }
   }
 
   if (placed) {
@@ -363,16 +299,7 @@ export default function Checkout() {
               </div>
 
               <div className="mt-6 space-y-3">
-                <button
-                  type="button"
-                  onClick={handleStripeCheckout}
-                  disabled={!canCheckout || stripeLoading}
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-[#635BFF] px-4 py-3 text-sm font-semibold text-white transition-opacity hover:bg-[#544ee0] disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  {stripeLoading ? 'Redirecting to checkout…' : 'Pay with Card'}
-                </button>
-                {stripeError && <p className="text-xs text-sand">{stripeError}</p>}
-                <PayPalButton amount={subtotal} onSuccess={handlePayPalSuccess} disabled={!canCheckout} />
+                <PayPalButton items={paypalItems} onSuccess={handlePayPalSuccess} disabled={!canCheckout} />
                 <button
                   type="button"
                   onClick={handleWhatsAppCheckout}
