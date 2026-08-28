@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { whatsappLink, sendEnquiry, EMAILJS_ORDER_TEMPLATE } from '@/lib/emailjs';
-import { pizzaCountFromItems, getDeliveryTier } from '@/lib/delivery';
+import { totalQuantityFromItems, getDeliveryTier } from '@/lib/delivery';
 import PayPalButton from './PayPalButton';
 
 const EMPTY_FORM = { name: '', phone: '', email: '', fulfillment: 'pickup', address: '', date: '', time: '', notes: '' };
@@ -71,9 +71,9 @@ export default function Checkout() {
     (!isDelivery || form.address.trim().length > 4);
   const canCheckout = hydrated && items.length > 0 && detailsValid;
 
-  // Live estimate based on how many pizzas are actually in the cart right
-  // now -- purely informational, never blocks checkout even past 50 pizzas.
-  const deliveryTier = useMemo(() => getDeliveryTier(pizzaCountFromItems(items)), [items]);
+  // Live estimate based on the total order size right now -- purely
+  // informational, never blocks checkout even past 50 items.
+  const deliveryTier = useMemo(() => getDeliveryTier(totalQuantityFromItems(items)), [items]);
 
   function updateField(field, value) {
     setForm((f) => ({ ...f, [field]: value }));

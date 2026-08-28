@@ -93,23 +93,34 @@ function OrderBuilder({ quantities, onChange }) {
 function BestSellersStrip() {
   return (
     <div className="mx-auto mb-10 max-w-4xl rounded-3xl border border-ink/10 bg-white/40 p-6 md:p-8">
-      <div className="mb-4 text-center md:text-left">
+      <div className="mb-5 text-center md:text-left">
         <span className="eyebrow">Crowd Favorites</span>
-        <h3 className="mt-1 font-display text-xl font-semibold text-ink">
-          Try Pizzas Loved by Our Guests
+        <h3 className="display-heading mt-2 text-2xl text-wine/90 md:text-3xl">
+          Pizzas Loved by Our Guests
         </h3>
       </div>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {BEST_SELLERS.map((item) => (
           <div
             key={item.name}
-            className="card-3d card-pop overflow-hidden rounded-2xl border border-ink/10 bg-white/60 transition-colors"
+            className="card-3d card-pop group overflow-hidden rounded-2xl border border-ink/10 bg-white transition-colors hover:border-wine/30"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={item.image} alt={item.name} loading="lazy" className="h-24 w-full object-cover" />
-            <p className="p-2.5 text-center font-display text-xs font-semibold leading-tight text-ink">
-              {item.name}
-            </p>
+            <div className="relative overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={item.image}
+                alt={item.name}
+                loading="lazy"
+                className="h-28 w-full object-cover transition-transform duration-500 group-hover:scale-110 sm:h-36"
+              />
+              <span className="absolute left-2 top-2 rounded-full bg-white/95 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest text-wine-dark shadow">
+                Most Ordered
+              </span>
+            </div>
+            <div className="p-3 text-center">
+              <p className="font-display text-sm font-semibold leading-tight text-ink">{item.name}</p>
+              <p className="mt-1 font-mono text-xs uppercase tracking-widest text-wine-dark">{item.price} / slice</p>
+            </div>
           </div>
         ))}
       </div>
