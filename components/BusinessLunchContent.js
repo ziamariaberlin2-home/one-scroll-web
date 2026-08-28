@@ -175,7 +175,7 @@ export default function BusinessLunchContent() {
           </div>
         </div>
 
-        <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
+        <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm font-semibold text-ink/85 sm:grid-cols-2 md:px-10">
           {PERKS.map((f) => {
             const { Icon, color } = BIZ_ICONS[f.icon];
             return (
@@ -209,7 +209,7 @@ export default function BusinessLunchContent() {
                     <span className="font-mono text-xs uppercase tracking-widest text-wine-dark">Step {s.step}</span>
                   </div>
                   <h3 className="mt-4 font-display text-lg font-semibold text-ink">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.body}</p>
+                  <p className="mt-2 text-sm font-medium leading-relaxed text-ink/75">{s.body}</p>
                 </div>
               );
             })}
@@ -232,7 +232,7 @@ export default function BusinessLunchContent() {
                 <div key={set.name} className="card-3d card-pop hover-line-wine group rounded-2xl border border-ink/10 bg-white/50 p-6 text-left transition-colors hover:border-wine/30">
                   <IconChip icon={Icon} color={color} size="lg" />
                   <h3 className="mt-4 font-display text-xl font-semibold text-ink">{set.name}</h3>
-                  <ul className="mt-3 space-y-1 text-sm text-ink/60">
+                  <ul className="mt-3 space-y-1 text-sm font-medium text-ink/70">
                     {set.items.map((i) => <li key={i}>&middot; {i}</li>)}
                   </ul>
                   <span className="mt-4 block font-display text-lg font-semibold text-wine-dark">{set.price}</span>

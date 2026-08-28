@@ -33,7 +33,7 @@ export default function CateringSection() {
           </p>
         </div>
 
-        <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 text-sm text-ink/70 sm:grid-cols-2">
+        <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-4 text-sm font-semibold text-ink/85 sm:grid-cols-2">
           {FEATURES.map((f) => {
             const { Icon, color } = FEATURE_ICONS[f.icon];
             return (

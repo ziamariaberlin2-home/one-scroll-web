@@ -90,7 +90,7 @@ export default function Footer() {
           <div>
             <h4 className="font-mono text-xs uppercase tracking-widest text-ink">Contact Us</h4>
             <p className="mt-4 text-sm">Neue Bahnhofstraße 32,<br />10245 Berlin, Friedrichshain</p>
-            <a href="https://wa.me/4917627705583" target="_blank" rel="noopener noreferrer" className={`mt-3 block ${linkClass}`}>
+            <a href="https://wa.me/4915172487397" target="_blank" rel="noopener noreferrer" className={`mt-3 block ${linkClass}`}>
               Chat on WhatsApp
             </a>
             <a

@@ -81,7 +81,7 @@ export default function MenuSection({ hideHeader = false }) {
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="font-display text-lg font-semibold text-ink">{item.name}</h3>
-                  <p className="mt-1 flex-1 text-sm text-ink/60">{item.description}</p>
+                  <p className="mt-1 flex-1 text-sm font-medium text-ink/70">{item.description}</p>
                   <div className="mt-3 flex items-center justify-between gap-3">
                     <span className="font-display text-lg font-semibold text-wine-dark">{item.price}</span>
                     <button

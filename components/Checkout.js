@@ -3,51 +3,77 @@
 import { useMemo, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { whatsappLink, sendEnquiry, EMAILJS_ORDER_TEMPLATE } from '@/lib/emailjs';
+import { pizzaCountFromItems, getDeliveryTier } from '@/lib/delivery';
 import PayPalButton from './PayPalButton';
 
-const EMPTY_FORM = { name: '', phone: '', email: '', fulfillment: 'pickup', address: '', time: '', notes: '' };
+const EMPTY_FORM = { name: '', phone: '', email: '', fulfillment: 'pickup', address: '', date: '', time: '', notes: '' };
 
 // Same 30-minute slot pattern used on the Reservations form, so pickup and
 // delivery times stay consistent with the kitchen's actual service windows.
 const TIME_SLOTS = ['12:00','12:30','13:00','13:30','14:00','14:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30'];
 
+// Local (not UTC) today, in yyyy-mm-dd form, for the date input's min and
+// the default selected date -- customers can order today or any day after.
+function todayISO() {
+  const d = new Date();
+  const localMidnight = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
+  return localMidnight.toISOString().slice(0, 10);
+}
+
 // Emails the pickup/delivery confirmation via the same EmailJS setup already
 // used for reservations and catering enquiries. Never blocks or fails the
 // checkout flow itself — if the template isn't configured yet, this just
-// quietly no-ops.
-async function sendOrderConfirmation({ form, items, subtotal, via }) {
+// quietly no-ops. Also pings our own backend so the WhatsApp order alert can
+// go out to the business owner (see /api/notify-order) -- also best-effort.
+async function sendOrderConfirmation({ form, items, subtotal, via, readyEstimate }) {
+  const data = {
+    name: form.name,
+    email: form.email,
+    phone: form.phone,
+    fulfillment: form.fulfillment === 'delivery' ? 'Delivery' : 'Pickup',
+    date: form.date,
+    time: form.time,
+    address: form.fulfillment === 'delivery' ? form.address : '—',
+    items: items.map((i) => `${i.qty}x ${i.name} (${i.price} each)`).join('\n'),
+    subtotal: `€${subtotal.toFixed(2)}`,
+    notes: form.notes || '—',
+    readyEstimate: readyEstimate || 'shortly',
+    via,
+  };
   try {
-    const data = {
-      name: form.name,
-      email: form.email,
-      phone: form.phone,
-      fulfillment: form.fulfillment === 'delivery' ? 'Delivery' : 'Pickup',
-      time: form.time,
-      address: form.fulfillment === 'delivery' ? form.address : '—',
-      items: items.map((i) => `${i.qty}x ${i.name} (${i.price} each)`).join('\n'),
-      subtotal: `€${subtotal.toFixed(2)}`,
-      notes: form.notes || '—',
-      via,
-    };
     await sendEnquiry({ templateId: EMAILJS_ORDER_TEMPLATE, data });
   } catch (err) {
     // Swallow errors — a missing/unconfigured template shouldn't block an order.
+  }
+  try {
+    await fetch('/api/notify-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+  } catch (err) {
+    // Same here -- the owner WhatsApp alert is a nice-to-have, never blocking.
   }
 }
 
 export default function Checkout() {
   const { items, updateQty, removeItem, subtotal, clearCart, hydrated } = useCart();
-  const [form, setForm] = useState(EMPTY_FORM);
-  const [placed, setPlaced] = useState(null); // { via: 'paypal' | 'whatsapp' }
+  const [form, setForm] = useState(() => ({ ...EMPTY_FORM, date: todayISO() }));
+  const [placed, setPlaced] = useState(null); // { via: 'paypal' | 'whatsapp', readyEstimate }
 
   const isDelivery = form.fulfillment === 'delivery';
   const detailsValid =
     form.name.trim().length > 1 &&
     form.phone.trim().length > 4 &&
     form.email.trim().includes('@') &&
+    form.date.trim().length > 0 &&
     form.time.trim().length > 0 &&
     (!isDelivery || form.address.trim().length > 4);
   const canCheckout = hydrated && items.length > 0 && detailsValid;
+
+  // Live estimate based on how many pizzas are actually in the cart right
+  // now -- purely informational, never blocks checkout even past 50 pizzas.
+  const deliveryTier = useMemo(() => getDeliveryTier(pizzaCountFromItems(items)), [items]);
 
   function updateField(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -60,6 +86,7 @@ export default function Checkout() {
       `Phone: ${form.phone}`,
       form.email ? `Email: ${form.email}` : null,
       isDelivery ? 'Delivery' : 'Pickup',
+      form.date ? `Date: ${form.date}` : null,
       form.time ? `Time: ${form.time}` : null,
       isDelivery && form.address ? `Address: ${form.address}` : null,
       form.notes ? `Notes: ${form.notes}` : null,
@@ -83,15 +110,17 @@ export default function Checkout() {
   const paypalItems = useMemo(() => items.map((i) => ({ name: i.name, qty: i.qty })), [items]);
 
   function handleWhatsAppCheckout() {
+    const readyEstimate = deliveryTier?.estimate;
     window.open(whatsappLink(orderMessage), '_blank', 'noopener');
-    sendOrderConfirmation({ form, items, subtotal, via: 'WhatsApp' });
-    setPlaced({ via: 'whatsapp' });
+    sendOrderConfirmation({ form, items, subtotal, via: 'WhatsApp', readyEstimate });
+    setPlaced({ via: 'whatsapp', readyEstimate });
     clearCart();
   }
 
   function handlePayPalSuccess() {
-    sendOrderConfirmation({ form, items, subtotal, via: 'PayPal' });
-    setPlaced({ via: 'paypal' });
+    const readyEstimate = deliveryTier?.estimate;
+    sendOrderConfirmation({ form, items, subtotal, via: 'PayPal', readyEstimate });
+    setPlaced({ via: 'paypal', readyEstimate });
     clearCart();
   }
 
@@ -109,13 +138,16 @@ export default function Checkout() {
               : "We've got your payment, thank you! We'll start preparing your order right away."}
           </p>
           <p className="mx-auto mt-2 max-w-md font-body text-sm text-cream/50">
+            {placed.readyEstimate
+              ? `Your order will be ready in about ${placed.readyEstimate}. `
+              : ''}
             A confirmation with your pickup/delivery time is on its way to your email.
           </p>
           <button
             type="button"
             onClick={() => {
               setPlaced(null);
-              setForm(EMPTY_FORM);
+              setForm({ ...EMPTY_FORM, date: todayISO() });
             }}
             className="btn-pill-light mt-8"
           >
@@ -228,7 +260,21 @@ export default function Checkout() {
                     placeholder="you@example.com"
                     className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm font-semibold text-ink placeholder:font-normal placeholder:text-ink/40 outline-none focus:border-wine"
                   />
-                  <p className="mt-1 text-[11px] text-cream/40">We&rsquo;ll send your pickup/delivery time confirmation here.</p>
+                  <p className="mt-1 text-[11px] text-cream/40">We&rsquo;ll send your pickup/delivery time confirmation on this email.</p>
+                </div>
+
+                <div>
+                  <label className="font-mono text-xs font-bold uppercase tracking-widest text-cream/75">
+                    Order Date *
+                  </label>
+                  <input
+                    type="date"
+                    value={form.date}
+                    min={todayISO()}
+                    onChange={(e) => updateField('date', e.target.value)}
+                    className="mt-1 w-full rounded-xl border border-cream/15 bg-cream/95 px-3 py-2 text-sm font-semibold text-ink placeholder:font-normal placeholder:text-ink/40 outline-none focus:border-wine"
+                  />
+                  <p className="mt-1 text-[11px] text-cream/40">Ordering ahead? Pick any future date.</p>
                 </div>
 
                 <div className="flex gap-2">
@@ -290,9 +336,23 @@ export default function Checkout() {
                   />
                 </div>
 
+                {deliveryTier && (
+                  <p
+                    className={`rounded-xl border px-3 py-2 text-xs font-semibold ${
+                      deliveryTier.key === 'xlarge'
+                        ? 'border-sand/40 bg-sand/10 text-sand'
+                        : 'border-cream/15 bg-cream/5 text-cream/70'
+                    }`}
+                  >
+                    {deliveryTier.key === 'xlarge'
+                      ? `Orders of ${deliveryTier.range.toLowerCase()} need to be discussed with us first — message us on WhatsApp before checking out.`
+                      : `Estimated ${isDelivery ? 'delivery' : 'ready for pickup'} time for this order: ${deliveryTier.estimate}.`}
+                  </p>
+                )}
+
                 {!detailsValid && (
                   <p className="text-xs text-sand">
-                    Fill in your name, phone, email, and {isDelivery ? 'delivery' : 'pickup'} time
+                    Fill in your name, phone, email, order date, and {isDelivery ? 'delivery' : 'pickup'} time
                     {isDelivery ? ', and delivery address' : ''} to check out.
                   </p>
                 )}

@@ -13,12 +13,12 @@ export default function LocationsSection() {
         <div className="card-3d card-pop grid grid-cols-1 overflow-hidden rounded-3xl border border-ink/10 bg-white/50 transition-colors md:grid-cols-2">
           <div className="p-8 md:p-10">
             <h3 className="font-display text-2xl font-semibold text-ink">Zia Maria</h3>
-            <p className="mt-3 text-ink/70">
+            <p className="mt-3 font-medium text-ink/80">
               Neue Bahnhofstraße 32
               <br />
               10245 Berlin, Friedrichshain
             </p>
-            <div className="mt-6 space-y-1 text-sm text-ink/70">
+            <div className="mt-6 space-y-1 text-sm font-medium text-ink/80">
               <p>Mon – Wed: 12:00–22:00</p>
               <p>Thu – Sat: 12:00–23:00</p>
               <p>Sun: 12:00–22:00</p>

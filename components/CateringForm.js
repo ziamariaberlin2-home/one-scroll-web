@@ -4,18 +4,30 @@ import { useMemo, useState } from 'react';
 import { sendEnquiry, EMAILJS_HOST_TEMPLATE } from '@/lib/emailjs';
 import { Field, Select, TextArea } from '@/components/FormField';
 import PizzaIcon from '@/components/PizzaIcon';
-import { menuData } from '@/lib/menuData';
+import { menuData, parsePrice } from '@/lib/menuData';
 import { basePath } from '@/lib/basePath';
 
 const ENQUIRY_TYPES = ['Catering', 'Private Event / Celebration', 'Birthday', 'Corporate Dinner', 'Team Event', 'Other'];
-const STEP = 5;
 const CATERING_ITEMS = menuData.filter((item) => item.category === 'Most Ordered');
+// Menu prices are listed per slice; a whole Roman-style catering pizza is
+// cut into 3 slices, so this is the multiplier used to price whole pizzas
+// in the order builder below.
+const SLICES_PER_PIZZA = 3;
+const pizzaPrice = (item) => parsePrice(item.price) * SLICES_PER_PIZZA;
+// A handful of the Most Ordered items to spotlight as crowd favorites.
+const BEST_SELLERS = CATERING_ITEMS.slice(0, 4);
 
 function OrderBuilder({ quantities, onChange }) {
-  const totalSlices = useMemo(
-    () => Object.values(quantities).reduce((sum, n) => sum + n, 0),
-    [quantities]
-  );
+  const { totalPizzas, totalCost } = useMemo(() => {
+    let pizzas = 0;
+    let cost = 0;
+    for (const item of CATERING_ITEMS) {
+      const qty = quantities[item.name] || 0;
+      pizzas += qty;
+      cost += qty * pizzaPrice(item);
+    }
+    return { totalPizzas: pizzas, totalCost: cost };
+  }, [quantities]);
 
   function adjust(name, delta) {
     onChange((prev) => {
@@ -28,9 +40,9 @@ function OrderBuilder({ quantities, onChange }) {
     <div className="rounded-3xl border border-ink/10 bg-white/50 p-6 md:p-8">
       <div className="mb-2">
         <h3 className="font-display text-xl font-semibold text-ink">Build Your Order (Optional)</h3>
-        <p className="mt-1 text-sm text-ink/60">
-          Not sure how many trays you need? Add slices per pizza style in batches of five and
-          we&rsquo;ll use it as a starting point for your quote.
+        <p className="mt-1 text-sm font-medium text-ink/65">
+          Not sure how many trays you need? Add whole pizzas per style below and we&rsquo;ll use
+          it as a starting point for your quote.
         </p>
       </div>
       <ul className="mt-5 divide-y divide-ink/10">
@@ -40,14 +52,14 @@ function OrderBuilder({ quantities, onChange }) {
             <li key={item.name} className="flex items-center justify-between gap-4 py-3">
               <div>
                 <p className="font-display text-sm font-semibold text-ink">{item.name}</p>
-                <p className="text-xs text-ink/50">{item.price} per slice</p>
+                <p className="text-xs font-medium text-ink/55">€{pizzaPrice(item).toFixed(2)} per pizza</p>
               </div>
               <div className="flex flex-shrink-0 items-center gap-3">
                 <button
                   type="button"
-                  onClick={() => adjust(item.name, -STEP)}
+                  onClick={() => adjust(item.name, -1)}
                   disabled={qty === 0}
-                  aria-label={`Remove 5 slices of ${item.name}`}
+                  aria-label={`Remove one ${item.name} pizza`}
                   className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/20 text-ink hover:border-wine hover:text-wine-dark disabled:opacity-30"
                 >
                   &minus;
@@ -55,8 +67,8 @@ function OrderBuilder({ quantities, onChange }) {
                 <span className="w-6 text-center font-mono text-sm text-ink">{qty}</span>
                 <button
                   type="button"
-                  onClick={() => adjust(item.name, STEP)}
-                  aria-label={`Add 5 slices of ${item.name}`}
+                  onClick={() => adjust(item.name, 1)}
+                  aria-label={`Add one ${item.name} pizza`}
                   className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/20 text-ink hover:border-wine hover:text-wine-dark"
                 >
                   +
@@ -66,9 +78,41 @@ function OrderBuilder({ quantities, onChange }) {
           );
         })}
       </ul>
-      <p className="mt-4 text-right font-mono text-xs uppercase tracking-widest text-ink/50">
-        {totalSlices} slice{totalSlices === 1 ? '' : 's'} selected
-      </p>
+      <div className="mt-4 flex items-center justify-between border-t border-ink/10 pt-4">
+        <span className="font-mono text-xs uppercase tracking-widest text-ink/50">
+          {totalPizzas} pizza{totalPizzas === 1 ? '' : 's'} selected
+        </span>
+        <span className="font-display text-lg font-semibold text-wine-dark">
+          €{totalCost.toFixed(2)}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function BestSellersStrip() {
+  return (
+    <div className="mx-auto mb-10 max-w-4xl rounded-3xl border border-ink/10 bg-white/40 p-6 md:p-8">
+      <div className="mb-4 text-center md:text-left">
+        <span className="eyebrow">Crowd Favorites</span>
+        <h3 className="mt-1 font-display text-xl font-semibold text-ink">
+          Try Pizzas Loved by Our Guests
+        </h3>
+      </div>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {BEST_SELLERS.map((item) => (
+          <div
+            key={item.name}
+            className="card-3d card-pop overflow-hidden rounded-2xl border border-ink/10 bg-white/60 transition-colors"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={item.image} alt={item.name} loading="lazy" className="h-24 w-full object-cover" />
+            <p className="p-2.5 text-center font-display text-xs font-semibold leading-tight text-ink">
+              {item.name}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -87,12 +131,16 @@ export default function CateringForm() {
     const parts = [];
     for (const [key, value] of raw.entries()) if (value) parts.push(`${key}: ${value}`);
 
-    const orderLines = Object.entries(quantities)
-      .filter(([, qty]) => qty > 0)
-      .map(([name, qty]) => `${name}: ${qty} slices`);
-    if (orderLines.length) {
+    const orderEntries = Object.entries(quantities).filter(([, qty]) => qty > 0);
+    if (orderEntries.length) {
+      const totalPizzas = orderEntries.reduce((sum, [, qty]) => sum + qty, 0);
+      const totalCost = orderEntries.reduce((sum, [name, qty]) => {
+        const item = CATERING_ITEMS.find((i) => i.name === name);
+        return sum + (item ? qty * pizzaPrice(item) : 0);
+      }, 0);
       parts.push('--- Build Your Order ---');
-      parts.push(...orderLines);
+      parts.push(...orderEntries.map(([name, qty]) => `${name}: ${qty} pizza${qty === 1 ? '' : 's'}`));
+      parts.push(`Total: ${totalPizzas} pizza${totalPizzas === 1 ? '' : 's'}, €${totalCost.toFixed(2)}`);
     }
 
     const data = {
@@ -132,7 +180,7 @@ export default function CateringForm() {
           </p>
           <a
             href={`${basePath}/blog/how-much-pizza-per-person-to-order/`}
-            className="card-3d mt-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-5 py-2.5 text-sm text-ink/75 transition-colors hover:border-wine/40"
+            className="card-3d mt-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-5 py-2.5 text-sm font-semibold text-ink/85 transition-colors hover:border-wine/40"
           >
             <span>
               Not sure how many <PizzaIcon /> you need? Explore our{' '}
@@ -140,6 +188,8 @@ export default function CateringForm() {
             </span>
           </a>
         </div>
+
+        <BestSellersStrip />
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
           <OrderBuilder quantities={quantities} onChange={setQuantities} />

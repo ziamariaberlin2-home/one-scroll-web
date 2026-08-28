@@ -53,7 +53,7 @@ export default function WhyChoose() {
                   </span>
                 </div>
                 <h3 className="mt-4 font-display text-lg font-semibold text-ink">{p.title}</h3>
-                <p className="mt-2 flex-1 text-sm text-ink/65">{p.body}</p>
+                <p className="mt-2 flex-1 text-sm font-medium text-ink/75">{p.body}</p>
               </div>
             );
           })}

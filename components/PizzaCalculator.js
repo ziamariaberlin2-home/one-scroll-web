@@ -5,10 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Pizza } from 'lucide-react';
 import { basePath } from '@/lib/basePath';
 
-// House rule, straight from the "How Much Pizza Per Person" guide: 2 slices
-// per person, every pizza cut into 3 generous Roman-style slices.
-const SLICES_PER_PERSON = 2;
-const SLICES_PER_PIZZA = 3;
+// House rule, straight from the "How Much Pizza Per Person" guide: 2
+// generous Roman-style pizzas per person.
+const PIZZAS_PER_PERSON = 2;
 // When drinks/alcohol are part of the event, guests graze slower over a
 // longer window, so the standard count can be trimmed 10-15%. We use the
 // midpoint.
@@ -26,15 +25,14 @@ export default function PizzaCalculator({ compact = false }) {
   const [eventType, setEventType] = useState('lunch');
   const [hasDrinks, setHasDrinks] = useState(false);
 
-  const { slices, pizzas } = useMemo(() => {
+  const pizzas = useMemo(() => {
     const g = Math.max(0, Number(guests) || 0);
-    let rawSlices = g * SLICES_PER_PERSON;
-    if (hasDrinks) rawSlices *= 1 - DRINKS_DISCOUNT;
-    // A seated daytime lunch has a short window, so round the slice count
-    // up rather than down; an evening party self-corrects over a few hours.
-    const roundedSlices = eventType === 'lunch' ? Math.ceil(rawSlices) : Math.round(rawSlices);
-    const pizzaCount = g > 0 ? Math.ceil(roundedSlices / SLICES_PER_PIZZA) : 0;
-    return { slices: roundedSlices, pizzas: pizzaCount };
+    if (g === 0) return 0;
+    let rawPizzas = g * PIZZAS_PER_PERSON;
+    if (hasDrinks) rawPizzas *= 1 - DRINKS_DISCOUNT;
+    // A seated daytime lunch has a short window, so round the count up
+    // rather than down; an evening party self-corrects over a few hours.
+    return eventType === 'lunch' ? Math.ceil(rawPizzas) : Math.round(rawPizzas);
   }, [guests, eventType, hasDrinks]);
 
   const sliderPct = Math.round((guests / MAX_GUESTS) * 100);
@@ -52,7 +50,7 @@ export default function PizzaCalculator({ compact = false }) {
             How Many Pizzas Do I Need?
           </h3>
           <p className="mt-2 text-sm text-ink/60">
-            Our house rule: 2 slices per person, 3 slices per pizza. Slide to your headcount.
+            Our house rule: 2 generous Roman-style pizzas per person. Slide to your headcount.
           </p>
         </div>
       )}
@@ -144,7 +142,7 @@ export default function PizzaCalculator({ compact = false }) {
           </motion.p>
         </AnimatePresence>
         <p className="mt-1 text-sm text-ink/60">
-          ({slices} slices for {guests || 0} guest{Number(guests) === 1 ? '' : 's'})
+          for {guests || 0} guest{Number(guests) === 1 ? '' : 's'}
         </p>
 
         {pizzas > 0 && (
