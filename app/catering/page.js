@@ -9,6 +9,7 @@ import { basePath } from '@/lib/basePath';
 import { whatsappLink } from '@/lib/emailjs';
 import { FEATURE_ICONS, OCCASION_ICONS, Pizza } from '@/lib/icons';
 import IconChip from '@/components/IconBadge';
+import DeliveryTiersBanner from '@/components/DeliveryTiersBanner';
 
 export const metadata = pageMetadata({
   title: 'Pizza Catering Berlin for Offices, Weddings & Private Events',
@@ -119,7 +120,7 @@ export default function CateringPage() {
             <a href="#catering-form" className="btn-pill-wine">Request a Quote</a>
             <a href="#pizza-calculator" className="btn-pill-white">
               <Pizza className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" />
-              Try the Pizza Calculator
+              Calculate How Many Pizzas You Need
             </a>
             <a
               href={whatsappLink("Hi Zia Maria! I'd like a catering or private event quote in Berlin.")}
@@ -165,7 +166,7 @@ export default function CateringPage() {
           </div>
         </div>
 
-        <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm text-ink/70 sm:grid-cols-2 md:px-10">
+        <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-4 px-6 text-sm font-semibold text-ink/85 sm:grid-cols-2 md:px-10">
           {FEATURES.map((f) => {
             const { Icon, color } = FEATURE_ICONS[f.icon];
             return (
@@ -180,11 +181,15 @@ export default function CateringPage() {
           })}
         </ul>
 
-        <p className="mx-auto mt-10 max-w-xl text-center text-sm text-ink/60">
-          Still unsure how much to order? Try the pizza calculator below, build your own order in
-          batches of five per pizza style further down, or send us a rough headcount and
-          we&rsquo;ll help you land on the right amount.
+        <p className="mx-auto mt-10 max-w-xl text-center text-sm font-medium text-ink/65">
+          Still unsure how much to order? Calculate how many pizzas you need below, build your own
+          order pizza by pizza further down, or send us a rough headcount and we&rsquo;ll help you
+          land on the right amount.
         </p>
+
+        <div className="mt-10 px-6 md:px-10">
+          <DeliveryTiersBanner />
+        </div>
       </section>
 
       <section id="pizza-calculator" className="marble-light scroll-mt-24 pb-16 md:pb-20">
@@ -208,7 +213,7 @@ export default function CateringPage() {
                 <div key={o.title} className="card-3d card-pop hover-line-wine group rounded-2xl border border-ink/10 bg-white/50 p-6 transition-colors hover:border-wine/30">
                   <IconChip icon={Icon} color={color} size="lg" />
                   <h3 className="mt-4 font-display text-lg font-semibold text-ink">{o.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/65">{o.body}</p>
+                  <p className="mt-2 text-sm font-medium leading-relaxed text-ink/75">{o.body}</p>
                 </div>
               );
             })}
