@@ -65,7 +65,7 @@ const jsonLd = {
   image: 'https://www.ziamariaberlin.com/images/home.jpg',
   logo: 'https://www.ziamariaberlin.com/images/zia-maria-logo.png',
   url: 'https://www.ziamariaberlin.com/',
-  telephone: '+49-176-27705583',
+  telephone: '+49-15172487397',
   email: 'bringteamtogether@ziamariaberlin.com',
   priceRange: '€€',
   acceptsReservations: true,
