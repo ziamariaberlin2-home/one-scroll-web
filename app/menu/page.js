@@ -1,6 +1,7 @@
 import MenuSection from '@/components/MenuSection';
 import FeatureStrip from '@/components/FeatureStrip';
 import QuoteBanner from '@/components/QuoteBanner';
+import DeliveryTiersBanner from '@/components/DeliveryTiersBanner';
 import { pageMetadata } from '@/lib/seo';
 import { basePath } from '@/lib/basePath';
 
@@ -35,12 +36,16 @@ export default function MenuPage() {
             priced individually.
           </p>
           <div className="mt-6 flex justify-center">
-            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-wine">Host an Event With Us</a>
+            <a href={`${basePath}/catering/#catering-form`} className="btn-pill-wine">Plan Your First Event With Us</a>
           </div>
         </div>
       </section>
 
       <FeatureStrip items={MENU_FACTS} />
+
+      <section className="marble-light px-6 pb-16 md:px-10">
+        <DeliveryTiersBanner />
+      </section>
 
       <MenuSection hideHeader />
 
