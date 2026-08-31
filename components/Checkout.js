@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useCart } from '@/lib/cart';
-import { whatsappLink, sendEnquiry, EMAILJS_ORDER_TEMPLATE } from '@/lib/emailjs';
+import { whatsappLink } from '@/lib/emailjs';
 import { totalQuantityFromItems, getDeliveryTier } from '@/lib/delivery';
 import PayPalButton from './PayPalButton';
 
@@ -20,11 +20,11 @@ function todayISO() {
   return localMidnight.toISOString().slice(0, 10);
 }
 
-// Emails the pickup/delivery confirmation via the same EmailJS setup already
-// used for reservations and catering enquiries. Never blocks or fails the
-// checkout flow itself — if the template isn't configured yet, this just
-// quietly no-ops. Also pings our own backend so the WhatsApp order alert can
-// go out to the business owner (see /api/notify-order) -- also best-effort.
+// Pings our own backend for both the customer-facing order-confirmation
+// email (via Resend, see /api/send-order-confirmation and lib/resend.js) and
+// the owner-facing WhatsApp alert (see /api/notify-order). Both are
+// server-side, best-effort, and never block or fail the checkout flow --
+// if either isn't configured yet, it just quietly no-ops.
 async function sendOrderConfirmation({ form, items, subtotal, via, readyEstimate }) {
   const data = {
     name: form.name,
@@ -41,9 +41,13 @@ async function sendOrderConfirmation({ form, items, subtotal, via, readyEstimate
     via,
   };
   try {
-    await sendEnquiry({ templateId: EMAILJS_ORDER_TEMPLATE, data });
+    await fetch('/api/send-order-confirmation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
   } catch (err) {
-    // Swallow errors — a missing/unconfigured template shouldn't block an order.
+    // Swallow errors — a missing/unconfigured Resend setup shouldn't block an order.
   }
   try {
     await fetch('/api/notify-order', {
