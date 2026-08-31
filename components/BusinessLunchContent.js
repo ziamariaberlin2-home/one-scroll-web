@@ -96,11 +96,16 @@ export default function BusinessLunchContent() {
 
     const data = {
       name: form.name.value,
+      // Same EmailJS template as CateringForm.js -- see the comment there.
+      // Its subject/body use {{yourName}}/{{eventType}}/{{eventDate}}.
+      yourName: form.name.value,
       phone: form.phone.value,
       email: form.email.value,
       city: form.company.value,
       event_date: '',
+      eventDate: '',
       event_type: 'Business Lunch',
+      eventType: 'Business Lunch',
       guests: form.guests.value,
       budget: '',
       message: `[Business Lunch Enquiry]\n${parts.join('\n')}`,

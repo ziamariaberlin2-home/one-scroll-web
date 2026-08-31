@@ -16,6 +16,10 @@ export default function ReserveSection() {
     const form = e.target;
     const data = {
       name: form.fullName.value,
+      // The EmailJS "Contact Us-Reservation" template's subject/body use
+      // {{fullName}} while its From Name field uses {{name}} -- send both
+      // keys with the same value so neither placeholder renders blank.
+      fullName: form.fullName.value,
       phone: form.phone.value,
       email: form.email.value,
       date: form.date.value,

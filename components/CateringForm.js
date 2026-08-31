@@ -156,11 +156,18 @@ export default function CateringForm() {
 
     const data = {
       name: form.name.value,
+      // The EmailJS "Contact Us-Catering and Event" template's subject/body
+      // use {{yourName}}, {{eventType}}, {{eventDate}} while its From Name
+      // field uses {{name}} -- send both key spellings with the same
+      // values so no placeholder renders blank in the email the owner gets.
+      yourName: form.name.value,
       phone: form.phone.value,
       email: form.email.value,
       city: '',
       event_date: form.date.value,
+      eventDate: form.date.value,
       event_type: form.enquiryType.value,
+      eventType: form.enquiryType.value,
       guests: form.guests.value,
       budget: form.budget.value,
       message: `[Catering / Event Enquiry]\n${parts.join('\n')}`,
