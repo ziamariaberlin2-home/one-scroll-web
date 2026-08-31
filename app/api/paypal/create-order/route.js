@@ -61,7 +61,12 @@ export async function POST(request) {
 
     return NextResponse.json({ id: order.id });
   } catch (err) {
-    console.error('PayPal create-order error:', err);
+    // err.data is PayPal's full JSON error body -- Node's console.error only
+    // prints it 2 levels deep by default, which hides the actual `details`
+    // array (the specific reason code/description), leaving only the generic
+    // top-level `message`. Stringify it explicitly so the real cause shows
+    // up in Vercel's logs instead of "[Object]".
+    console.error('PayPal create-order error:', err.message, err.status, JSON.stringify(err.data));
     return NextResponse.json({ error: 'Could not start PayPal checkout. Please try again.' }, { status: 500 });
   }
 }
