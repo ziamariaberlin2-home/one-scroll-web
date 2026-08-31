@@ -12,10 +12,11 @@ export const metadata = pageMetadata({
 });
 
 const MENU_FACTS = [
-  'Pizza priced per slice, from €2.50',
+  'Pizza priced per slice, from €4.00',
   'Vegetarian and vegan options',
   'Order online or via WhatsApp',
   'Pickup or delivery in Berlin',
+  'Now serving fresh focaccia from €2.50'
 ];
 
 export default function MenuPage() {
@@ -29,7 +30,7 @@ export default function MenuPage() {
           </h1>
           <p className="mx-auto mt-4 max-w-xl font-body text-ink/75">
             Roman-style pizza, salads, and drinks, with vegetarian and vegan options, from just
-            €2.50 a slice.
+            €4.00 a slice.
           </p>
           <p className="mx-auto mt-2 max-w-xl font-mono text-xs uppercase tracking-widest text-ink/40">
             All pizza is priced per slice. Salads and desserts are priced per portion. Drinks are
